@@ -132,6 +132,10 @@
 				"role" : "flags"
 			},
 			{
+				"fragment" : "-L/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1",
+				"role" : "libraryPath"
+			},
+			{
 				"backtrace" : 2,
 				"fragment" : "CMAKE_BINARY_DIR/src/libglfw3.a",
 				"role" : "libraries"
@@ -148,6 +152,26 @@
 			{
 				"backtrace" : 5,
 				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgcc",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgcc_s",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lc",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgcc",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lgcc_s",
 				"role" : "libraries"
 			}
 		],

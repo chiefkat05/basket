@@ -27,7 +27,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-addr2line"
+			"value" : "/usr/bin/addr2line"
 		},
 		{
 			"name" : "CMAKE_AR",
@@ -43,7 +43,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-ar"
+			"value" : "/usr/bin/ar"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -235,7 +235,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-g"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_MINSIZEREL",
@@ -251,7 +251,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-Os -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_RELEASE",
@@ -267,7 +267,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-O3 -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS_RELWITHDEBINFO",
@@ -283,7 +283,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-O2 -g -DNDEBUG"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_C_COMPILER",
@@ -298,8 +298,8 @@
 					"value" : "C compiler"
 				}
 			],
-			"type" : "STRING",
-			"value" : "/usr/bin/x86_64-w64-mingw32-gcc"
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/cc"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -315,7 +315,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-gcc-ar"
+			"value" : "/usr/bin/gcc-ar"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -331,7 +331,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-gcc-ranlib"
+			"value" : "/usr/bin/gcc-ranlib"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -451,7 +451,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Unknown"
+			"value" : "ELF"
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS",
@@ -631,7 +631,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_HAVE_GETHOSTBYNAME",
@@ -643,7 +643,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_HAVE_LIBC_PTHREAD",
@@ -679,7 +679,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_HOME_DIRECTORY",
@@ -974,18 +974,6 @@
 			"value" : "etc"
 		},
 		{
-			"name" : "CMAKE_LIB_BSD_HAS_GETHOSTBYNAME",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Have library bsd"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
 			"name" : "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER",
 			"properties" : 
 			[
@@ -995,43 +983,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_LIB_IPS_HAS_SHMAT",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Have library ipc"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_LIB_NSL_HAS_GETHOSTBYNAME",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Have library nsl"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_LIB_SOCKET_HAS_CONNECT",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Have library socket"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "1"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -1047,7 +999,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-ld"
+			"value" : "/usr/bin/ld"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -1159,7 +1111,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-nm"
+			"value" : "/usr/bin/nm"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -1187,7 +1139,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-objcopy"
+			"value" : "/usr/bin/objcopy"
 		},
 		{
 			"name" : "CMAKE_OBJDUMP",
@@ -1203,7 +1155,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-objdump"
+			"value" : "/usr/bin/objdump"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -1327,7 +1279,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-ranlib"
+			"value" : "/usr/bin/ranlib"
 		},
 		{
 			"name" : "CMAKE_READELF",
@@ -1343,7 +1295,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-readelf"
+			"value" : "/usr/bin/readelf"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -1563,7 +1515,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/x86_64-w64-mingw32-strip"
+			"value" : "/usr/bin/strip"
 		},
 		{
 			"name" : "CMAKE_TAPI",
@@ -1911,7 +1863,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "1"
 		},
 		{
 			"name" : "MATH_LIBRARY",
@@ -3054,30 +3006,6 @@
 			"value" : "/usr/lib/libICE.so"
 		},
 		{
-			"name" : "X11_LIB_DNET_HAS_DNET_NTOA",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Have library dnet"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
-			"name" : "X11_LIB_DNET_STUB_HAS_DNET_NTOA",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Have library dnet_stub"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ""
-		},
-		{
 			"name" : "X11_LIB_X11_SOLO",
 			"properties" : 
 			[
@@ -3087,7 +3015,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : ""
+			"value" : "1"
 		},
 		{
 			"name" : "X11_SM_INCLUDE_PATH",
