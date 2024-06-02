@@ -221,29 +221,7 @@ namespace gfx
 
         proj = glm::perspective(glm::radians(45.0f), width / height, near, far);
 
-        glm::vec3 cubePositions[] = {
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 5.0f, -15.0f),
-            glm::vec3(-1.5f, -2.2f, -2.5f),
-            glm::vec3(-3.8f, -2.0f, -12.3f),
-            glm::vec3(2.4f, -0.4f, -3.5f),
-            glm::vec3(-1.7f, 3.0f, -7.5f),
-            glm::vec3(1.3f, -2.0f, -2.5f),
-            glm::vec3(1.5f, 2.0f, -2.5f),
-            glm::vec3(1.5f, 0.2f, -1.5f),
-            glm::vec3(-1.3f, 1.0f, -1.5f)};
-        float cubeRotations[] = {
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-            0.0f,
-        };
+        std::vector<glm::vec3> playerPositions;
 
         glEnable(GL_DEPTH_TEST);
 
@@ -263,10 +241,10 @@ namespace gfx
             playerVel.x = 0.0f;
             playerVel.z = 0.0f;
 
-            if (clientonline && camFront != prevCamFront)
-            {
-                mClient->UpdateRotation(camFront);
-            }
+            // if (clientonline && camFront != prevCamFront)
+            // {
+            //     mClient->UpdateRotation(camFront);
+            // }
             prevCamFront = camFront;
 
             if (ehandler.requestKeyState(GLFW_KEY_A))
@@ -345,7 +323,7 @@ namespace gfx
             }
             if (clientonline && !noclientduplicates)
             {
-                clientThread = std::thread([&clientonline, &cubePositions, &cubeRotations]()
+                clientThread = std::thread([&clientonline, &playerPositions]()
                                            {
                 static client cl;
                 static uint32_t playerMoved = 0;
@@ -368,20 +346,30 @@ namespace gfx
                         {
                         case 0:
                             std::cout << "server sent connection greetings\n";
+
                             // cl.ConnectionGreeting();
                             break;
                         case 1:
                             msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
                             msg >> playerMoved;
                             playerMoved -= 400;
-                            msg >> cubePositions[playerMoved].z >> cubePositions[playerMoved].y >> cubePositions[playerMoved].x;
+
+                            while (playerPositions.size() < playerMoved + 1)
+                            {
+                                playerPositions.push_back(glm::vec3(0.0f));
+                            }
+
+                            msg >> playerPositions[playerMoved].z >> playerPositions[playerMoved].y >> playerPositions[playerMoved].x;
+                            
+                            std::cout << playerMoved << " updated position as " << playerPositions[playerMoved].x << "\n";
+
                             break;
-                        case 2:
-                            msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                            msg >> playerMoved;
-                            playerMoved -= 400;
-                            msg >> cubeRotations[playerMoved];
-                            break;
+                        // case 2:
+                        //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                        //     msg >> playerMoved;
+                        //     playerMoved -= 400;
+                        //     msg >> cubeRotations[playerMoved];
+                        //     break;
                         default:
                             std::cout << "received unknown message type: " << msg.header.id << "\n";
                             break;
@@ -441,14 +429,14 @@ namespace gfx
             glBindTexture(GL_TEXTURE_2D, happytexture);
             glBindVertexArray(VAO);
             // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            for (unsigned int i = 0; i < 10; ++i)
+            for (unsigned int i = 0; i < playerPositions.size(); ++i)
             {
                 glm::mat4 model = glm::mat4(1.0f);
-                model = glm::translate(model, cubePositions[i]);
+                model = glm::translate(model, playerPositions[i]);
                 // float angle = 20.0f * i;
                 float angle = 1.0f;
                 // model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0, 0.3, 0.5));
-                model = glm::rotate(model, glm::radians(cubeRotations[i]), glm::vec3(1.0f, 0.0f, 0.0f));
+                // model = glm::rotate(model, glm::radians(cubeRotations[i]), glm::vec3(1.0f, 0.0f, 0.0f));
 
                 int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
                 glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));

@@ -182,6 +182,11 @@ public:
     void UpdateRotation(glm::vec3 camLook);
     void ConnectionGreeting();
 
+    uint32_t GetID()
+    {
+        return connection_->GetID();
+    }
+
     void Disconnect();
 
     bool IsConnected();

@@ -11,7 +11,7 @@
 						1
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"jsonFile" : "directory-.-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -31,7 +31,7 @@
 						3
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-CMAKE_BINARY_DIR-Debug-158df8ce4172b30eb944.json",
+					"jsonFile" : "directory-CMAKE_BINARY_DIR-158df8ce4172b30eb944.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -47,7 +47,7 @@
 				{
 					"build" : "CMAKE_BINARY_DIR/src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-CMAKE_BINARY_DIR.src-Debug-d1522e30944ddffe33fe.json",
+					"jsonFile" : "directory-CMAKE_BINARY_DIR.src-d1522e30944ddffe33fe.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -63,7 +63,7 @@
 				},
 				{
 					"build" : "CMAKE_BINARY_DIR/docs",
-					"jsonFile" : "directory-CMAKE_BINARY_DIR.docs-Debug-83917086732c33c5c69d.json",
+					"jsonFile" : "directory-CMAKE_BINARY_DIR.docs-83917086732c33c5c69d.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.4"
@@ -73,7 +73,7 @@
 					"source" : "/home/chiefkat/Documents/CxxDeps/glfw-3.4/docs"
 				}
 			],
-			"name" : "Debug",
+			"name" : "",
 			"projects" : 
 			[
 				{
@@ -113,28 +113,28 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "engine::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-engine-Debug-83affaf225cbdf46b09a.json",
+					"jsonFile" : "target-engine-a51e2aae5baa629b812e.json",
 					"name" : "engine",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "glfw::@4340c0039e0dc6946dbb",
-					"jsonFile" : "target-glfw-Debug-8bf7989029102682e327.json",
+					"jsonFile" : "target-glfw-1fd2abfacdda7d9b05e4.json",
 					"name" : "glfw",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "uninstall::@d69b06495024caf8a1ba",
-					"jsonFile" : "target-uninstall-Debug-c81340acc0d5df791858.json",
+					"jsonFile" : "target-uninstall-c81340acc0d5df791858.json",
 					"name" : "uninstall",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "update_mappings::@4340c0039e0dc6946dbb",
-					"jsonFile" : "target-update_mappings-Debug-f3d6e06cf99ffe6067c9.json",
+					"jsonFile" : "target-update_mappings-f3d6e06cf99ffe6067c9.json",
 					"name" : "update_mappings",
 					"projectIndex" : 1
 				}

@@ -27,7 +27,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/addr2line"
+			"value" : "/usr/bin/x86_64-w64-mingw32-addr2line"
 		},
 		{
 			"name" : "CMAKE_AR",
@@ -43,7 +43,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/ar"
+			"value" : "/usr/bin/x86_64-w64-mingw32-ar"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -51,11 +51,11 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
 				}
 			],
 			"type" : "STRING",
-			"value" : "Debug"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -170,8 +170,8 @@
 					"value" : "CXX compiler"
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "/usr/bin/c++"
+			"type" : "STRING",
+			"value" : "/usr/bin/x86_64-w64-mingw32-g++"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -187,7 +187,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ar"
+			"value" : "/usr/bin/x86_64-w64-mingw32-gcc-ar"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -203,7 +203,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ranlib"
+			"value" : "/usr/bin/x86_64-w64-mingw32-gcc-ranlib"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -298,8 +298,8 @@
 					"value" : "C compiler"
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "/usr/bin/cc"
+			"type" : "STRING",
+			"value" : "/usr/bin/x86_64-w64-mingw32-gcc"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -315,7 +315,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ar"
+			"value" : "/usr/bin/x86_64-w64-mingw32-gcc-ar"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -331,7 +331,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/gcc-ranlib"
+			"value" : "/usr/bin/x86_64-w64-mingw32-gcc-ranlib"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -427,7 +427,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "CMAKE_DLLTOOL-NOTFOUND"
+			"value" : "/usr/bin/x86_64-w64-mingw32-dlltool"
 		},
 		{
 			"name" : "CMAKE_EDIT_COMMAND",
@@ -451,7 +451,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "ELF"
+			"value" : "Unknown"
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS",
@@ -543,11 +543,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Enable/Disable output of compile commands during generation."
 				}
 			],
 			"type" : "BOOL",
-			"value" : "TRUE"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
@@ -631,7 +631,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_HAVE_GETHOSTBYNAME",
@@ -643,7 +643,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_HAVE_LIBC_PTHREAD",
@@ -679,7 +679,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_HOME_DIRECTORY",
@@ -974,6 +974,18 @@
 			"value" : "etc"
 		},
 		{
+			"name" : "CMAKE_LIB_BSD_HAS_GETHOSTBYNAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library bsd"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
 			"name" : "CMAKE_LIB_ICE_HAS_ICECONNECTIONNUMBER",
 			"properties" : 
 			[
@@ -983,7 +995,43 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_LIB_IPS_HAS_SHMAT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library ipc"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_LIB_NSL_HAS_GETHOSTBYNAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library nsl"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "CMAKE_LIB_SOCKET_HAS_CONNECT",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library socket"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -999,7 +1047,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/ld"
+			"value" : "/usr/bin/x86_64-w64-mingw32-ld"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -1111,7 +1159,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/nm"
+			"value" : "/usr/bin/x86_64-w64-mingw32-nm"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -1139,7 +1187,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/objcopy"
+			"value" : "/usr/bin/x86_64-w64-mingw32-objcopy"
 		},
 		{
 			"name" : "CMAKE_OBJDUMP",
@@ -1155,7 +1203,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/objdump"
+			"value" : "/usr/bin/x86_64-w64-mingw32-objdump"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -1279,7 +1327,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/ranlib"
+			"value" : "/usr/bin/x86_64-w64-mingw32-ranlib"
 		},
 		{
 			"name" : "CMAKE_READELF",
@@ -1295,7 +1343,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/readelf"
+			"value" : "/usr/bin/x86_64-w64-mingw32-readelf"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -1515,7 +1563,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/strip"
+			"value" : "/usr/bin/x86_64-w64-mingw32-strip"
 		},
 		{
 			"name" : "CMAKE_TAPI",
@@ -1863,7 +1911,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : ""
 		},
 		{
 			"name" : "MATH_LIBRARY",
@@ -2791,7 +2839,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1.22.0"
+			"value" : "1.23.0"
 		},
 		{
 			"name" : "Wayland_wayland-cursor_INCLUDEDIR",
@@ -2851,7 +2899,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1.22.0"
+			"value" : "1.23.0"
 		},
 		{
 			"name" : "Wayland_wayland-egl_INCLUDEDIR",
@@ -3006,6 +3054,30 @@
 			"value" : "/usr/lib/libICE.so"
 		},
 		{
+			"name" : "X11_LIB_DNET_HAS_DNET_NTOA",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library dnet"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
+			"name" : "X11_LIB_DNET_STUB_HAS_DNET_NTOA",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Have library dnet_stub"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : ""
+		},
+		{
 			"name" : "X11_LIB_X11_SOLO",
 			"properties" : 
 			[
@@ -3015,7 +3087,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : ""
 		},
 		{
 			"name" : "X11_SM_INCLUDE_PATH",

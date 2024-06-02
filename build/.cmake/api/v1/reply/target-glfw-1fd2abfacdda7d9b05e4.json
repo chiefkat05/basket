@@ -50,12 +50,6 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 71,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
 				"line" : 288,
 				"parent" : 0
 			},
@@ -81,6 +75,12 @@
 				"command" : 4,
 				"file" : 0,
 				"line" : 135,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 169,
 				"parent" : 0
 			},
 			{
@@ -235,7 +235,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=c99 -fPIC"
+					"fragment" : "-std=c99 -fPIC"
 				},
 				{
 					"backtrace" : 3,
@@ -246,34 +246,34 @@
 			[
 				{
 					"backtrace" : 4,
-					"define" : "HAVE_MEMFD_CREATE"
-				},
-				{
-					"backtrace" : 5,
 					"define" : "_DEFAULT_SOURCE"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 5,
 					"define" : "_GLFW_WAYLAND"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 6,
 					"define" : "_GLFW_X11"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 8,
+					"backtrace" : 7,
 					"path" : "/home/chiefkat/Documents/CxxDeps/glfw-3.4/include"
 				},
 				{
-					"backtrace" : 9,
+					"backtrace" : 8,
 					"path" : "/home/chiefkat/Documents/CxxDeps/glfw-3.4/src"
 				},
 				{
-					"backtrace" : 9,
+					"backtrace" : 8,
 					"path" : "/home/chiefkat/Documents/vscodeprojects/basket/build/CMAKE_BINARY_DIR/src"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/usr/include"
 				}
 			],
 			"language" : "C",
