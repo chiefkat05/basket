@@ -2,12 +2,12 @@
 #define MULTIPLAYER_H
 
 #define ASIO_STANDALONE
-#define ASIO_WINDOWS
-#define __USE_W32_SOCKETS
+// #define ASIO_WINDOWS
+// #define __USE_W32_SOCKETS
 
-#ifdef __WIN32__
-#define WEOFIH WAITNOAH
-#endif
+// #ifdef __WIN32__
+// #define WEOFIH WAITNOAH
+// #endif
 
 #include <iostream>
 #include <asio.hpp>
