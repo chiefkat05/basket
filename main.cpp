@@ -1,10 +1,11 @@
-#include "version.h"
+// #include "linux/version.h"
 #include "./gfx/graphics.h"
 
 int main()
 {
-    std::cout << "version is " << basket_VERSION_MAJOR
-              << "." << basket_VERSION_MINOR << "\n";
+    // std::cout << "version is " << basket_VERSION_MAJOR
+    //           << "." << basket_VERSION_MINOR << "\n";
+    std::cout << "WEOFIH\n";
 
     if (gfx::windowInit() != 0)
     {

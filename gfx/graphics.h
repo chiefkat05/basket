@@ -152,8 +152,8 @@ namespace gfx
             glfwSetWindowShouldClose(mainWindow, true);
     }
 
-    server *hostServer;
-    client *mClient;
+    // server *hostServer;
+    // client *mClient;
 
     void mainLoop()
     {
@@ -226,7 +226,7 @@ namespace gfx
         glEnable(GL_DEPTH_TEST);
 
         bool clientonline = false, serveronline = false, noserverduplicates = false, noclientduplicates = false;
-        std::thread serverThread, clientThread;
+        // std::thread serverThread, clientThread;
 
         while (!glfwWindowShouldClose(gfx::mainWindow))
         {
@@ -252,135 +252,135 @@ namespace gfx
                 // playerVel.x = -1.5f;
                 playerPos -= 4.2f * glm::cross(camFront, camUp) * delta_time;
 
-                if (clientonline)
-                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                // if (clientonline)
+                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
             if (ehandler.requestKeyState(GLFW_KEY_D))
             {
                 // playerVel.x = 1.5f;
                 playerPos += 4.2f * glm::cross(camFront, camUp) * delta_time;
 
-                if (clientonline)
-                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                // if (clientonline)
+                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
             if (ehandler.requestKeyState(GLFW_KEY_S))
             {
                 // playerVel.z = 1.5f;
                 playerPos -= 4.2f * glm::vec3(camFront.x, 0.0f, camFront.z) * delta_time;
 
-                if (clientonline)
-                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                // if (clientonline)
+                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
             if (ehandler.requestKeyState(GLFW_KEY_W))
             {
                 // playerVel.z = -1.5f;
                 playerPos += 4.2f * glm::vec3(camFront.x, 0.0f, camFront.z) * delta_time;
 
-                if (clientonline)
-                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                // if (clientonline)
+                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
-            if (playerPos.y > 0.0f && clientonline)
-                mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+            // if (playerPos.y > 0.0f && clientonline)
+            //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
 
             if (ehandler.requestKeyState(GLFW_KEY_1) == 2)
                 serveronline = true;
             if (ehandler.requestKeyState(GLFW_KEY_2) == 2)
                 clientonline = true;
-            if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && serveronline)
-            {
-                serveronline = false;
-                hostServer->Stop();
-                noserverduplicates = false;
+            // if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && serveronline)
+            // {
+            //     serveronline = false;
+            //     hostServer->Stop();
+            //     noserverduplicates = false;
 
-                if (serverThread.joinable())
-                    serverThread.join();
-            }
-            if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && clientonline)
-            {
-                clientonline = false;
+            //     if (serverThread.joinable())
+            //         serverThread.join();
+            // }
+            // if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && clientonline)
+            // {
+            //     clientonline = false;
 
-                if (clientThread.joinable())
-                    clientThread.join();
-            }
-            if (ehandler.requestKeyState(GLFW_KEY_Z))
-                glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            if (ehandler.requestKeyState(GLFW_KEY_X))
-                glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            //     if (clientThread.joinable())
+            //         clientThread.join();
+            // }
+            // if (ehandler.requestKeyState(GLFW_KEY_Z))
+            //     glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            // if (ehandler.requestKeyState(GLFW_KEY_X))
+            //     glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-            if (serveronline && !noserverduplicates)
-            {
-                serverThread = std::thread([&serveronline]()
-                                           {
-                                            static server wizServer(4444);
-                                            wizServer.Start();
-                                            hostServer = &wizServer;
-                                            while (serveronline)
-                                            {
-                                                wizServer.Update(-1, serveronline);
-                                            } });
+            // if (serveronline && !noserverduplicates)
+            // {
+            //     serverThread = std::thread([&serveronline]()
+            //                                {
+            //                                 static server wizServer(4444);
+            //                                 wizServer.Start();
+            //                                 hostServer = &wizServer;
+            //                                 while (serveronline)
+            //                                 {
+            //                                     wizServer.Update(-1, serveronline);
+            //                                 } });
 
-                noserverduplicates = true;
-            }
-            if (clientonline && !noclientduplicates)
-            {
-                clientThread = std::thread([&clientonline, &playerPositions]()
-                                           {
-                static client cl;
-                static uint32_t playerMoved = 0;
-                mClient = &cl;
+            //     noserverduplicates = true;
+            // }
+            // if (clientonline && !noclientduplicates)
+            // {
+            //     clientThread = std::thread([&clientonline, &playerPositions]()
+            //                                {
+            //     static client cl;
+            //     static uint32_t playerMoved = 0;
+            //     mClient = &cl;
 
-                static std::string ipInput;
-                std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
-                std::cin >> ipInput;
+            //     static std::string ipInput;
+            //     std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
+            //     std::cin >> ipInput;
 
-                cl.Connect(ipInput, "4444");
+            //     cl.Connect(ipInput, "4444");
 
-                while (clientonline)
-                {
-                        message_header eh;
-                    if (!cl.Incoming().empty())
-                    {
-                        auto msg = cl.Incoming().pop_front().msg;
+            //     while (clientonline)
+            //     {
+            //             message_header eh;
+            //         if (!cl.Incoming().empty())
+            //         {
+            //             auto msg = cl.Incoming().pop_front().msg;
 
-                        switch (msg.header.id)
-                        {
-                        case 0:
-                            std::cout << "server sent connection greetings\n";
+            //             switch (msg.header.id)
+            //             {
+            //             case 0:
+            //                 std::cout << "server sent connection greetings\n";
 
-                            // cl.ConnectionGreeting();
-                            break;
-                        case 1:
-                            msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                            msg >> playerMoved;
-                            playerMoved -= 400;
+            //                 // cl.ConnectionGreeting();
+            //                 break;
+            //             case 1:
+            //                 msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+            //                 msg >> playerMoved;
+            //                 playerMoved -= 400;
 
-                            while (playerPositions.size() < playerMoved + 1)
-                            {
-                                playerPositions.push_back(glm::vec3(0.0f));
-                            }
+            //                 while (playerPositions.size() < playerMoved + 1)
+            //                 {
+            //                     playerPositions.push_back(glm::vec3(0.0f));
+            //                 }
 
-                            msg >> playerPositions[playerMoved].z >> playerPositions[playerMoved].y >> playerPositions[playerMoved].x;
-                            
-                            std::cout << playerMoved << " updated position as " << playerPositions[playerMoved].x << "\n";
+            //                 msg >> playerPositions[playerMoved].z >> playerPositions[playerMoved].y >> playerPositions[playerMoved].x;
 
-                            break;
-                        // case 2:
-                        //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                        //     msg >> playerMoved;
-                        //     playerMoved -= 400;
-                        //     msg >> cubeRotations[playerMoved];
-                        //     break;
-                        default:
-                            std::cout << "received unknown message type: " << msg.header.id << "\n";
-                            break;
-                        }
-                    }
-                }
+            //                 std::cout << playerMoved << " updated position as " << playerPositions[playerMoved].x << "\n";
 
-                cl.Disconnect(); });
+            //                 break;
+            //             // case 2:
+            //             //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+            //             //     msg >> playerMoved;
+            //             //     playerMoved -= 400;
+            //             //     msg >> cubeRotations[playerMoved];
+            //             //     break;
+            //             default:
+            //                 std::cout << "received unknown message type: " << msg.header.id << "\n";
+            //                 break;
+            //             }
+            //         }
+            //     }
 
-                noclientduplicates = true;
-            }
+            //     cl.Disconnect(); });
+
+            //     noclientduplicates = true;
+            // }
 
             if (playerPos.y > 0.0f)
                 playerVel.y -= 1.0f;
@@ -394,17 +394,17 @@ namespace gfx
                 playerVel.y = 10.0f;
             }
 
-            if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
-            {
-                glfwSetWindowShouldClose(mainWindow, true);
+            // if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
+            // {
+            //     glfwSetWindowShouldClose(mainWindow, true);
 
-                serveronline = false;
-                hostServer->Stop();
-                noserverduplicates = false;
+            //     serveronline = false;
+            //     hostServer->Stop();
+            //     noserverduplicates = false;
 
-                if (serverThread.joinable())
-                    serverThread.join();
-            }
+            //     if (serverThread.joinable())
+            //         serverThread.join();
+            // }
 
             playerPos += playerVel * delta_time;
 
@@ -449,7 +449,7 @@ namespace gfx
             glfwPollEvents();
         }
 
-        if (serverThread.joinable())
-            serverThread.join();
+        // if (serverThread.joinable())
+        //     serverThread.join();
     }
 };

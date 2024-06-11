@@ -1,1 +1,0 @@
-/usr/bin/x86_64-w64-mingw32-g++ CMakeFiles/engine.dir/main.cpp.o CMakeFiles/engine.dir/multiplayer.cpp.o CMakeFiles/engine.dir/events.cpp.o CMakeFiles/engine.dir/gfx/shader.cpp.o CMakeFiles/engine.dir/nms/glad/src/gl.c.o -o engine   -L/usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1  CMAKE_BINARY_DIR/src/libglfw3.a /usr/lib/librt.a -lm -ldl -lgcc -lgcc_s -lc -lgcc -lgcc_s
