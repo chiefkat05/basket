@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 project(basket)
 
-include_directories("${PROJECT_SOURCE_DIR}/nms/glad/include/")
+include_directories("${CMAKE_SOURCE_DIR}/nms/glad/include/")
 
-add_executable(engine main.cpp multiplayer.cpp events.cpp "${PROJECT_SOURCE_DIR}/gfx/shader.cpp" "${PROJECT_SOURCE_DIR}/nms/glad/src/gl.c")
+add_executable(engine main.cpp multiplayer.cpp "${CMAKE_SOURCE_DIR}/logic/game.cpp" "${CMAKE_SOURCE_DIR}/gfx/graphics.cpp" "${CMAKE_SOURCE_DIR}/logic/events.cpp" "${CMAKE_SOURCE_DIR}/logic/collision.cpp" "${CMAKE_SOURCE_DIR}/gfx/shader.cpp" "${CMAKE_SOURCE_DIR}/nms/glad/src/gl.c")
+
+set(CMAKE_CXX_FLAGS "-O1 -Wall")
 
 if (WIN32)
-    set(CMAKE_CXX_FLAGS "--static")
+    set(CMAKE_CXX_FLAGS "--static -O1 -Wall")
 endif()
 
 target_link_libraries(engine glfw3)

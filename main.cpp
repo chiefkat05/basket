@@ -1,20 +1,12 @@
-// #include "linux/version.h"
-#include "./gfx/graphics.h"
+#include "logic/game.h"
 
 int main()
 {
-    // std::cout << "version is " << basket_VERSION_MAJOR
-    //           << "." << basket_VERSION_MINOR << "\n";
+    gameInit();
 
-    if (gfx::windowInit() != 0)
-    {
-        std::cerr << "There was an error, and the program could not be run." << std::endl;
-        return 1;
-    }
+    mainLoop();
 
-    gfx::mainLoop();
-
-    glfwTerminate();
+    terminate();
 
     return 0;
 }
