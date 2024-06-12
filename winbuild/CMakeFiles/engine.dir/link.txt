@@ -1,0 +1,3 @@
+/usr/bin/cmake -E rm -f CMakeFiles/engine.dir/objects.a
+/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/engine.dir/objects.a @CMakeFiles/engine.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-g++ --static -O1 -Wall -Wl,--whole-archive CMakeFiles/engine.dir/objects.a -Wl,--no-whole-archive -o engine.exe -Wl,--out-implib,libengine.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/engine.dir/linkLibs.rsp
