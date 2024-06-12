@@ -15,8 +15,8 @@ namespace gfx
 
     const float width = 1280.0f;
     const float height = 720.0f;
-    const float near = 0.01f;
-    const float far = 100.0f;
+    const float nearView = 0.01f;
+    const float farView = 100.0f;
 
     float cube[] = {
         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
@@ -152,8 +152,8 @@ namespace gfx
             glfwSetWindowShouldClose(mainWindow, true);
     }
 
-    // server *hostServer;
-    // client *mClient;
+    server *hostServer;
+    client *mClient;
 
     void mainLoop()
     {
@@ -219,14 +219,24 @@ namespace gfx
 
         glm::mat4 proj = glm::mat4(1.0f);
 
-        proj = glm::perspective(glm::radians(45.0f), width / height, near, far);
+        proj = glm::perspective(glm::radians(45.0f), width / height, nearView, farView);
 
-        std::vector<glm::vec3> playerPositions;
+        glm::vec3 cubePositions[] = {
+            glm::vec3(0.0f, 0.0f, 0.0f),
+            glm::vec3(2.0f, 5.0f, -15.0f),
+            glm::vec3(-1.5f, -2.2f, -2.5f),
+            glm::vec3(-3.8f, -2.0f, -12.3f),
+            glm::vec3(2.4f, -0.4f, -3.5f),
+            glm::vec3(-1.7f, 3.0f, -7.5f),
+            glm::vec3(1.3f, -2.0f, -2.5f),
+            glm::vec3(1.5f, 2.0f, -2.5f),
+            glm::vec3(1.5f, 0.2f, -1.5f),
+            glm::vec3(-1.3f, 1.0f, -1.5f)};
 
         glEnable(GL_DEPTH_TEST);
 
         bool clientonline = false, serveronline = false, noserverduplicates = false, noclientduplicates = false;
-        // std::thread serverThread, clientThread;
+        std::thread serverThread, clientThread;
 
         while (!glfwWindowShouldClose(gfx::mainWindow))
         {
@@ -241,146 +251,138 @@ namespace gfx
             playerVel.x = 0.0f;
             playerVel.z = 0.0f;
 
-            // if (clientonline && camFront != prevCamFront)
-            // {
-            //     mClient->UpdateRotation(camFront);
-            // }
             prevCamFront = camFront;
 
             if (ehandler.requestKeyState(GLFW_KEY_A))
             {
-                // playerVel.x = -1.5f;
+                playerVel.x = -1.5f;
                 playerPos -= 4.2f * glm::cross(camFront, camUp) * delta_time;
 
-                // if (clientonline)
-                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                if (clientonline)
+                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
             if (ehandler.requestKeyState(GLFW_KEY_D))
             {
-                // playerVel.x = 1.5f;
+                playerVel.x = 1.5f;
                 playerPos += 4.2f * glm::cross(camFront, camUp) * delta_time;
 
-                // if (clientonline)
-                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                if (clientonline)
+                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
             if (ehandler.requestKeyState(GLFW_KEY_S))
             {
-                // playerVel.z = 1.5f;
+                playerVel.z = 1.5f;
                 playerPos -= 4.2f * glm::vec3(camFront.x, 0.0f, camFront.z) * delta_time;
 
-                // if (clientonline)
-                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                if (clientonline)
+                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
             if (ehandler.requestKeyState(GLFW_KEY_W))
             {
-                // playerVel.z = -1.5f;
+                playerVel.z = -1.5f;
                 playerPos += 4.2f * glm::vec3(camFront.x, 0.0f, camFront.z) * delta_time;
 
-                // if (clientonline)
-                //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+                if (clientonline)
+                    mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
             }
-            // if (playerPos.y > 0.0f && clientonline)
-            //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
+            if (playerPos.y > 0.0f && clientonline)
+                mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
 
             if (ehandler.requestKeyState(GLFW_KEY_1) == 2)
                 serveronline = true;
             if (ehandler.requestKeyState(GLFW_KEY_2) == 2)
                 clientonline = true;
-            // if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && serveronline)
-            // {
-            //     serveronline = false;
-            //     hostServer->Stop();
-            //     noserverduplicates = false;
+            if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && serveronline)
+            {
+                serveronline = false;
+                hostServer->Stop();
+                noserverduplicates = false;
 
-            //     if (serverThread.joinable())
-            //         serverThread.join();
-            // }
-            // if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && clientonline)
-            // {
-            //     clientonline = false;
+                if (serverThread.joinable())
+                    serverThread.join();
+            }
+            if (ehandler.requestKeyState(GLFW_KEY_3) == 2 && clientonline)
+            {
+                clientonline = false;
 
-            //     if (clientThread.joinable())
-            //         clientThread.join();
-            // }
-            // if (ehandler.requestKeyState(GLFW_KEY_Z))
-            //     glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-            // if (ehandler.requestKeyState(GLFW_KEY_X))
-            //     glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+                if (clientThread.joinable())
+                    clientThread.join();
+            }
+            if (ehandler.requestKeyState(GLFW_KEY_Z))
+                glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            if (ehandler.requestKeyState(GLFW_KEY_X))
+                glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-            // if (serveronline && !noserverduplicates)
-            // {
-            //     serverThread = std::thread([&serveronline]()
-            //                                {
-            //                                 static server wizServer(4444);
-            //                                 wizServer.Start();
-            //                                 hostServer = &wizServer;
-            //                                 while (serveronline)
-            //                                 {
-            //                                     wizServer.Update(-1, serveronline);
-            //                                 } });
+            if (serveronline && !noserverduplicates)
+            {
+                serverThread = std::thread([&serveronline]()
+                                           {
+                                            static server wizServer(4444);
+                                            wizServer.Start();
+                                            hostServer = &wizServer;
+                                            while (serveronline)
+                                            {
+                                                wizServer.Update(-1, serveronline);
+                                            }
+                                            wizServer.Stop(); });
 
-            //     noserverduplicates = true;
-            // }
-            // if (clientonline && !noclientduplicates)
-            // {
-            //     clientThread = std::thread([&clientonline, &playerPositions]()
-            //                                {
-            //     static client cl;
-            //     static uint32_t playerMoved = 0;
-            //     mClient = &cl;
+                noserverduplicates = true;
+            }
+            if (clientonline && !noclientduplicates)
+            {
+                clientThread = std::thread([&clientonline, &cubePositions]()
+                                           {
+                                               static client cl;
+                                               mClient = &cl;
 
-            //     static std::string ipInput;
-            //     std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
-            //     std::cin >> ipInput;
+                                                  static std::string ipInput;
+                                                  uint32_t playerMoved = 0;
+                                               std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
+                                                  std::cin >> ipInput;
 
-            //     cl.Connect(ipInput, "4444");
+                                               cl.Connect(ipInput, "4444");
 
-            //     while (clientonline)
-            //     {
-            //             message_header eh;
-            //         if (!cl.Incoming().empty())
-            //         {
-            //             auto msg = cl.Incoming().pop_front().msg;
+                                               while (clientonline)
+                                               {
+                                                       message_header eh;
+                                                   if (!cl.Incoming().empty())
+                                                   {
+                                                       auto msg = cl.Incoming().pop_front().msg;
 
-            //             switch (msg.header.id)
-            //             {
-            //             case 0:
-            //                 std::cout << "server sent connection greetings\n";
+                                                       switch (msg.header.id)
+                                                       {
+                                                       case 0:
+                                                           std::cout << "server sent connection greetings\n";
 
-            //                 // cl.ConnectionGreeting();
-            //                 break;
-            //             case 1:
-            //                 msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-            //                 msg >> playerMoved;
-            //                 playerMoved -= 400;
+                                                           // cl.ConnectionGreeting();
+                                                           break;
+                                                       case 1:
+                                                           msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                                                           msg >> playerMoved;
+                                                           playerMoved -= 400;
 
-            //                 while (playerPositions.size() < playerMoved + 1)
-            //                 {
-            //                     playerPositions.push_back(glm::vec3(0.0f));
-            //                 }
+                                                           msg >> cubePositions[playerMoved].z >> cubePositions[playerMoved].y >> cubePositions[playerMoved].x;
 
-            //                 msg >> playerPositions[playerMoved].z >> playerPositions[playerMoved].y >> playerPositions[playerMoved].x;
+                                                           std::cout << playerMoved << " updated position as " << cubePositions[playerMoved].x << "\n";
 
-            //                 std::cout << playerMoved << " updated position as " << playerPositions[playerMoved].x << "\n";
+                                                           break;
+                                                       // case 2:
+                                                       //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                                                       //     msg >> playerMoved;
+                                                       //     playerMoved -= 400;
+                                                       //     msg >> cubeRotations[playerMoved];
+                                                       //     break;
+                                                       default:
+                                                           std::cout << "received unknown message type: " << msg.header.id << "\n";
+                                                           break;
+                                                       }
+                                                   }
+                                               }
 
-            //                 break;
-            //             // case 2:
-            //             //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-            //             //     msg >> playerMoved;
-            //             //     playerMoved -= 400;
-            //             //     msg >> cubeRotations[playerMoved];
-            //             //     break;
-            //             default:
-            //                 std::cout << "received unknown message type: " << msg.header.id << "\n";
-            //                 break;
-            //             }
-            //         }
-            //     }
+                                               cl.Disconnect(); });
 
-            //     cl.Disconnect(); });
-
-            //     noclientduplicates = true;
-            // }
+                noclientduplicates = true;
+            }
 
             if (playerPos.y > 0.0f)
                 playerVel.y -= 1.0f;
@@ -394,17 +396,17 @@ namespace gfx
                 playerVel.y = 10.0f;
             }
 
-            // if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
-            // {
-            //     glfwSetWindowShouldClose(mainWindow, true);
+            if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
+            {
+                glfwSetWindowShouldClose(mainWindow, true);
 
-            //     serveronline = false;
-            //     hostServer->Stop();
-            //     noserverduplicates = false;
+                serveronline = false;
+                hostServer->Stop();
+                noserverduplicates = false;
 
-            //     if (serverThread.joinable())
-            //         serverThread.join();
-            // }
+                if (serverThread.joinable())
+                    serverThread.join();
+            }
 
             playerPos += playerVel * delta_time;
 
@@ -429,10 +431,10 @@ namespace gfx
             glBindTexture(GL_TEXTURE_2D, happytexture);
             glBindVertexArray(VAO);
             // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            for (unsigned int i = 0; i < playerPositions.size(); ++i)
+            for (unsigned int i = 0; i < 10; ++i)
             {
                 glm::mat4 model = glm::mat4(1.0f);
-                model = glm::translate(model, playerPositions[i]);
+                model = glm::translate(model, cubePositions[i]);
                 // float angle = 20.0f * i;
                 float angle = 1.0f;
                 // model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0, 0.3, 0.5));
@@ -449,7 +451,7 @@ namespace gfx
             glfwPollEvents();
         }
 
-        // if (serverThread.joinable())
-        //     serverThread.join();
+        if (serverThread.joinable())
+            serverThread.join();
     }
 };

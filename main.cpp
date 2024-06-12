@@ -5,7 +5,6 @@ int main()
 {
     // std::cout << "version is " << basket_VERSION_MAJOR
     //           << "." << basket_VERSION_MINOR << "\n";
-    std::cout << "WEOFIH\n";
 
     if (gfx::windowInit() != 0)
     {
