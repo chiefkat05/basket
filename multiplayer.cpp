@@ -91,6 +91,7 @@ void connection::ConnectToServer(const tcp::resolver::results_type &endP)
     if (ownerType_ != owner::client)
         return;
 
+    validationTimer = 10.0;
     asio::async_connect(socket_, endP,
                         [this](std::error_code ec, tcp::endpoint endpoint)
                         {
@@ -271,6 +272,10 @@ uint64_t connection::scramble(uint64_t input)
 
 void connection::WriteValidation()
 {
+    if (ownerType_ == owner::server)
+    {
+        std::cout << "server side = " << handshakeOut << "\n";
+    }
     asio::async_write(socket_, asio::buffer(&handshakeOut, sizeof(uint64_t)),
                       [this](std::error_code ec, std::size_t length)
                       {
@@ -283,10 +288,12 @@ void connection::WriteValidation()
 
                           if (ownerType_ == owner::client)
                           {
+                              std::cout << handshakeOut << ", " << validationTimer << " wow\n";
                               if (validationTimer > 0.0)
                               {
                                   validationTimer -= 0.5f;
-                                  WriteValidation();
+                                  ReadValidation();
+                                  return;
                               }
 
                               ReadHeader();
@@ -306,11 +313,13 @@ void connection::ReadValidation(server *server)
                          }
                          if (ownerType_ == owner::client)
                          {
+                             std::cout << handshakeIn << " in, " << scramble(handshakeIn) << "\n";
                              handshakeOut = scramble(handshakeIn);
                              WriteValidation();
                              return;
                          }
 
+                         std::cout << handshakeIn << " w " << handshakeCheck << "\n";
                          if (handshakeIn == handshakeCheck)
                          {
                              server->OnClientValidated(this->shared_from_this());
@@ -324,7 +333,7 @@ void connection::ReadValidation(server *server)
                              {
                                  validationTimer -= 0.5f;
                                  WriteValidation();
-                                 ReadValidation();
+                                 ReadValidation(server);
                              }
                              else
                              {
