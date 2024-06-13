@@ -13,12 +13,13 @@ extern const float height;
 extern const float nearView;
 extern const float farView;
 
-extern float cube[180];
+extern float cube[216];
 
 extern glm::vec3 camRotation;
 
 extern glm::vec3 camFront;
 extern glm::vec3 prevCamFront;
+extern glm::vec3 camFrontAlign;
 extern const glm::vec3 camUp;
 extern bool firstMouseInteraction;
 
@@ -54,7 +55,7 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_A))
     {
         playerVel.x = -1.5f;
-        playerPos -= 4.2f * glm::cross(camFront, camUp) * delta_time;
+        playerPos -= 4.2f * glm::cross(camFrontAlign, camUp) * delta_time;
 
         if (clientonline)
             mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
@@ -62,7 +63,7 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_D))
     {
         playerVel.x = 1.5f;
-        playerPos += 4.2f * glm::cross(camFront, camUp) * delta_time;
+        playerPos += 4.2f * glm::cross(camFrontAlign, camUp) * delta_time;
 
         if (clientonline)
             mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
@@ -70,7 +71,7 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_S))
     {
         playerVel.z = 1.5f;
-        playerPos -= 4.2f * glm::vec3(camFront.x, 0.0f, camFront.z) * delta_time;
+        playerPos -= 4.2f * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
 
         if (clientonline)
             mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
@@ -87,7 +88,7 @@ void playerInput()
     {
         playerVel.z = -1.5f;
 
-        playerPos += (4.2f + (8.4f * playerRunning)) * glm::vec3(camFront.x, 0.0f, camFront.z) * delta_time;
+        playerPos += (4.2f + (8.4f * playerRunning)) * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
 
         if (clientonline)
             mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
@@ -143,12 +144,12 @@ void mainLoop()
 
     glfwSetKeyCallback(mainWindow, key_callback);
 
-    Shader shaderProgram("../gfx/shaders/vertex.shader", "../gfx/shaders/fragment.shader");
+    Shader objectShader("../gfx/shaders/vertex.shader", "../gfx/shaders/fragment.shader");
+    Shader lightShader("../gfx/shaders/vertex-light.shader", "../gfx/shaders/fragment-light.shader");
+    Shader lampShader("../gfx/shaders/vertex-blank.shader", "../gfx/shaders/fragment-blank.shader");
 
-    unsigned int VBO, VAO;
-    // unsigned int EBO;
+    unsigned int VBO, VAO, lightVAO;
     glGenBuffers(1, &VBO);
-    // glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
 
     glBindVertexArray(VAO);
@@ -156,47 +157,51 @@ void mainLoop()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
 
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(quadIndices), quadIndices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    // glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
-    // glEnableVertexAttribArray(2);
 
-    int texWidth, texHeight, nrChannels;
-    unsigned int texture, happytexture;
+    glGenVertexArrays(1, &lightVAO);
+    glBindVertexArray(lightVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(0);
+
+    // int texWidth, texHeight, nrChannels;
+    // unsigned int texture, happytexture;
 
     stbi_set_flip_vertically_on_load(true);
 
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    unsigned char *data = stbi_load("../textures/container.jpg", &texWidth, &texHeight, &nrChannels, 0);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    stbi_image_free(data);
+    // glGenTextures(1, &texture);
+    // glBindTexture(GL_TEXTURE_2D, texture);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // unsigned char *data = stbi_load("../textures/container.jpg", &texWidth, &texHeight, &nrChannels, 0);
+    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    // glGenerateMipmap(GL_TEXTURE_2D);
+    // stbi_image_free(data);
 
-    glGenTextures(2, &happytexture);
-    glBindTexture(GL_TEXTURE_2D, happytexture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    data = stbi_load("../textures/awesomeface.png", &texWidth, &texHeight, &nrChannels, 0);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
+    // glGenTextures(2, &happytexture);
+    // glBindTexture(GL_TEXTURE_2D, happytexture);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // data = stbi_load("../textures/awesomeface.png", &texWidth, &texHeight, &nrChannels, 0);
+    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    // glGenerateMipmap(GL_TEXTURE_2D);
 
-    stbi_image_free(data);
+    // stbi_image_free(data);
 
-    glUseProgram(shaderProgram.ID);
-    shaderProgram.setInt("texture1", 0);
-    shaderProgram.setInt("texture2", 1);
+    // glUseProgram(objectShader.ID);
+    // objectShader.setInt("texture", 0);
+
+    // objectShader.setInt("texture2", 1); // multiple clients from different computers fail validation, but two seperate computers can connect just fine
 
     double mixA = 0.3;
     float time = 0.0f;
@@ -207,16 +212,17 @@ void mainLoop()
     proj = glm::perspective(glm::radians(45.0f), width / height, nearView, farView);
 
     glm::vec3 cubePositions[] = {
-        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 0.7f, 0.0f),
         glm::vec3(2.0f, 5.0f, -15.0f),
-        glm::vec3(-1.5f, -2.2f, -2.5f),
-        glm::vec3(-3.8f, -2.0f, -12.3f),
-        glm::vec3(2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.5f, 2.2f, -2.5f),
+        glm::vec3(-3.8f, 2.0f, -12.3f),
+        glm::vec3(2.4f, 0.4f, -3.5f),
         glm::vec3(-1.7f, 3.0f, -7.5f),
-        glm::vec3(1.3f, -2.0f, -2.5f),
+        glm::vec3(1.3f, 2.0f, -5.5f),
         glm::vec3(1.5f, 2.0f, -2.5f),
         glm::vec3(1.5f, 0.2f, -1.5f),
         glm::vec3(-1.3f, 1.0f, -1.5f)};
+    glm::vec3 lampPos(-15.0f, 4.0f, -15.0f);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -236,7 +242,7 @@ void mainLoop()
         prevCamFront = camFront;
 
         if (playerPos.y > 0.0f)
-            playerVel.y -= 1.0f;
+            playerVel.y -= 40.0f * delta_time;
         if (playerPos.y <= 0.0f)
         {
             playerPos.y = 0.0f;
@@ -330,42 +336,56 @@ void mainLoop()
             noclientduplicates = true;
         }
 
-        glClearColor(0.05, 0.05, 0.1, 1.0);
+        // graphics begin here
+
+        glUseProgram(lightShader.ID);
+        lightShader.setVec3("objectColor", 0.6f, 0.6f, 1.0f);
+        lightShader.setVec3("lightColor", 1.0, 1.0, 1.0);
+        lightShader.setVec3("lightPos", lampPos);
+
+        glClearColor(0.03, 0.03, 0.05, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glm::mat4 view = glm::mat4(1.0f);
         view = glm::lookAt(playerPos, playerPos + camFront, camUp);
 
-        glUseProgram(shaderProgram.ID);
-        shaderProgram.setDouble("mixamount", mixA);
-        int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-        int projLoc = glGetUniformLocation(shaderProgram.ID, "projection");
-        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
+        // glUseProgram(objectShader.ID);
+        lightShader.setMat4("view", view);
+        lightShader.setMat4("projection", proj);
 
-        // glUniform4f(colorLocation, cValue, 0.5f, cValue, 1.0);
+        lampPos += glm::vec3(sin(glfwGetTime()) * 20.0f * delta_time, 0.0f, cos(glfwGetTime()) * 20.0f * delta_time);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, happytexture);
+        // glActiveTexture(GL_TEXTURE0);
+        // glBindTexture(GL_TEXTURE_2D, texture);
         glBindVertexArray(VAO);
         // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         for (unsigned int i = 0; i < 10; ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
-            // float angle = 20.0f * i;
+            model = glm::translate(model, cubePositions[i] * 1.5f - 1.0f);
+            model = glm::scale(model, glm::vec3(1.0f, cubePositions[i].y * 3.0f, 1.0f));
+            glm::mat3 normalMat = glm::transpose(glm::inverse(model));
             float angle = 1.0f;
-            // model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0, 0.3, 0.5));
-            // model = glm::rotate(model, glm::radians(cubeRotations[i]), glm::vec3(1.0f, 0.0f, 0.0f));
 
-            int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            lightShader.setMat4("model", model);
+            lightShader.setMat3("normalMat", normalMat);
+            lightShader.setBool("speeding", playerRunning);
+            lightShader.setVec3("viewPos", playerPos);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
-        // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        lampShader.use();
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, lampPos);
+        model = glm::scale(model, glm::vec3(0.2f));
+
+        lampShader.setMat4("projection", proj);
+        lampShader.setMat4("view", view);
+        lampShader.setMat4("model", model);
+
+        glBindVertexArray(lightVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         glfwSwapBuffers(mainWindow);
         glfwPollEvents();

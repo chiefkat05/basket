@@ -9,12 +9,13 @@ extern const float height;
 extern const float nearView;
 extern const float farView;
 
-extern float cube[180];
+extern float cube[216];
 
 extern glm::vec3 camRotation;
 
 extern glm::vec3 camFront;
 extern glm::vec3 prevCamFront;
+extern glm::vec3 camFrontAlign;
 extern const glm::vec3 camUp;
 extern bool firstMouseInteraction;
 

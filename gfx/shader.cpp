@@ -13,8 +13,14 @@ Shader::Shader(const std::string vPath, const std::string fPath)
         std::cerr << "fragment file failed to open" << std::endl;
 
     std::string tempLine;
-    while (std::getline(vertexFile, tempLine)) { vertexSource.append(tempLine + '\n'); };
-    while (std::getline(fragmentFile, tempLine)) { fragmentSource.append(tempLine + '\n'); };
+    while (std::getline(vertexFile, tempLine))
+    {
+        vertexSource.append(tempLine + '\n');
+    };
+    while (std::getline(fragmentFile, tempLine))
+    {
+        fragmentSource.append(tempLine + '\n');
+    };
 
     const char *vShaderCode = vertexSource.c_str();
     const char *fShaderCode = fragmentSource.c_str();
@@ -62,7 +68,6 @@ Shader::Shader(const std::string vPath, const std::string fPath)
 
     glDeleteShader(vShader);
     glDeleteShader(fShader);
-
 }
 
 void Shader::use()
@@ -105,4 +110,17 @@ void Shader::setVec4(const std::string name, glm::vec4 value) const
 void Shader::setVec4(const std::string name, double x, double y, double z, double w) const
 {
     glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+}
+
+void Shader::setMat2(const std::string &name, const glm::mat2 &mat) const
+{
+    glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+void Shader::setMat3(const std::string &name, const glm::mat3 &mat) const
+{
+    glUniformMatrix3fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+void Shader::setMat4(const std::string &name, const glm::mat4 &mat) const
+{
+    glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
