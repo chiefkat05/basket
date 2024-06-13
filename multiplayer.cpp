@@ -263,9 +263,10 @@ void connection::AddToIncomingMessageQueue()
 // honestly just using passwords would probably be easiest and most secure
 uint64_t connection::scramble(uint64_t input)
 {
-    uint64_t out = input ^ (id * 0x9999999);
-    out = (out & 0xE4E4E4E46E6E5E5E) >> 3 | (out & 0x7B7B7B7B) << 5;
-    return out ^ 0x777777777;
+    // uint64_t out = input ^ (id * 0x9999999);
+    // out = (out & 0xE4E4E4E46E6E5E5E) >> 3 | (out & 0x7B7B7B7B) << 5;
+    // return out ^ 0x777777777;
+    return input;
 }
 
 void connection::WriteValidation()
