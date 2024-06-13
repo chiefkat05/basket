@@ -1,0 +1,3 @@
+/home/chiefkat/Documents/vscodeprojects/basket/linuxbuild/CMakeFiles/engine.dir
+/home/chiefkat/Documents/vscodeprojects/basket/linuxbuild/CMakeFiles/edit_cache.dir
+/home/chiefkat/Documents/vscodeprojects/basket/linuxbuild/CMakeFiles/rebuild_cache.dir

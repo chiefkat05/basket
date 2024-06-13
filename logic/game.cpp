@@ -258,8 +258,6 @@ void mainLoop()
 
         prevCamFront = camFront;
 
-        std::cout << playerVel.y << " wha\n";
-
         if (playerPos.y > 0.0f)
             playerVel.y -= 40.0f * delta_time; // shaders broken on windows
         if (playerPos.y < 0.0f)                // still no jump

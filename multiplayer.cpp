@@ -104,7 +104,7 @@ void connection::ConnectToServer(const tcp::resolver::results_type &endP)
 }
 bool connection::ConnectToClient(server *server, uint32_t uid)
 {
-    // return true; ??
+    return true;
 
     if (ownerType_ != owner::server)
         return false;
