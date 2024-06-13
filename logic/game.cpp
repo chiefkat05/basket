@@ -308,7 +308,7 @@ void mainLoop()
                                                        case 0:
                                                            std::cout << "server sent connection greetings\n";
 
-                                                           // cl.ConnectionGreeting();
+                                                        //    cl.ConnectionGreeting();
                                                            break;
                                                        case 1:
                                                            msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp

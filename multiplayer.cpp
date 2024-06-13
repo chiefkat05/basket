@@ -104,7 +104,7 @@ void connection::ConnectToServer(const tcp::resolver::results_type &endP)
 }
 bool connection::ConnectToClient(server *server, uint32_t uid)
 {
-    return true;
+    // return true;
 
     if (ownerType_ != owner::server)
         return false;
@@ -562,7 +562,7 @@ void server::Update(size_t messageLimit, bool &doSomething)
 
 void server::OnClientValidated(std::shared_ptr<connection> client)
 {
-    // message yayMsg;
-    // yayMsg.header.id = 0;
-    // client->Send(yayMsg);
+    message yayMsg;
+    yayMsg.header.id = 0;
+    client->Send(yayMsg);
 }
