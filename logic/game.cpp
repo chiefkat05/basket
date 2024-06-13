@@ -259,9 +259,9 @@ void mainLoop()
         prevCamFront = camFront;
 
         if (playerPos.y > 0.0f)
-            playerVel.y -= 40.0f * delta_time; // shaders broken on windows
-        if (playerPos.y < 0.0f)                // still no jump
-        {                                      // still no client validation
+            playerVel.y -= 40.0f * delta_time;
+        if (playerPos.y < 0.0f)
+        {
             playerPos.y = 0.0f;
             playerVel.y = 0.0f;
         }
@@ -276,7 +276,7 @@ void mainLoop()
                                             hostServer = &wizServer;
                                             while (serveronline)
                                             {
-                                                wizServer.Update(-1, serveronline);
+                                                wizServer.Update(-1, serveronline, delta_time);
                                             }
                                             wizServer.Stop(); });
 
@@ -286,52 +286,53 @@ void mainLoop()
         {
             clientThread = std::thread([&cubePositions]()
                                        {
-                                               static client cl;
-                                               mClient = &cl;
+                                           static client cl;
+                                           mClient = &cl;
 
-                                                  static std::string ipInput;
-                                                  uint32_t playerMoved = 0;
-                                               std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
-                                                  std::cin >> ipInput;
+                                           static std::string ipInput;
+                                           uint32_t playerMoved = 0;
+                                           std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
+                                           std::cin >> ipInput;
 
-                                               cl.Connect(ipInput, "4444");
+                                           cl.Connect(ipInput, "4444");
 
-                                               while (clientonline)
+                                           while (clientonline)
+                                           {
+
+                                               message_header eh;
+                                               if (!cl.Incoming().empty())
                                                {
-                                                       message_header eh;
-                                                   if (!cl.Incoming().empty())
+                                                   auto msg = cl.Incoming().pop_front().msg;
+
+                                                   switch (msg.header.id)
                                                    {
-                                                       auto msg = cl.Incoming().pop_front().msg;
+                                                   case 0:
+                                                       std::cout << "server sent connection greetings\n";
 
-                                                       switch (msg.header.id)
-                                                       {
-                                                       case 0:
-                                                           std::cout << "server sent connection greetings\n";
+                                                       //    cl.ConnectionGreeting();
+                                                       break;
+                                                   case 1:
+                                                       msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                                                       msg >> playerMoved;
+                                                       playerMoved -= 400;
 
-                                                        //    cl.ConnectionGreeting();
-                                                           break;
-                                                       case 1:
-                                                           msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                                                           msg >> playerMoved;
-                                                           playerMoved -= 400;
+                                                       msg >> cubePositions[playerMoved].z >> cubePositions[playerMoved].y >> cubePositions[playerMoved].x;
 
-                                                           msg >> cubePositions[playerMoved].z >> cubePositions[playerMoved].y >> cubePositions[playerMoved].x;
-
-                                                           break;
-                                                       // case 2:
-                                                       //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                                                       //     msg >> playerMoved;
-                                                       //     playerMoved -= 400;
-                                                       //     msg >> cubeRotations[playerMoved];
-                                                       //     break;
-                                                       default:
-                                                           std::cout << "received unknown message type: " << msg.header.id << "\n";
-                                                           break;
-                                                       }
+                                                       break;
+                                                   // case 2:
+                                                   //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                                                   //     msg >> playerMoved;
+                                                   //     playerMoved -= 400;
+                                                   //     msg >> cubeRotations[playerMoved];
+                                                   //     break;
+                                                   default:
+                                                       std::cout << "received unknown message type: " << msg.header.id << "\n";
+                                                       break;
                                                    }
                                                }
+                                           }
 
-                                               cl.Disconnect(); });
+                                           cl.Disconnect(); });
 
             noclientduplicates = true;
         }

@@ -104,15 +104,16 @@ void connection::ConnectToServer(const tcp::resolver::results_type &endP)
 }
 bool connection::ConnectToClient(server *server, uint32_t uid)
 {
-    // return true;
+    // return true; sigh
 
     if (ownerType_ != owner::server)
         return false;
 
     if (socket_.is_open())
     {
+        validationTimer = 10.0;
         id = uid;
-        WriteValidation(); // d
+        WriteValidation();
         ReadValidation(server);
     }
     return true;
@@ -280,7 +281,15 @@ void connection::WriteValidation()
                           }
 
                           if (ownerType_ == owner::client)
+                          {
+                              if (validationTimer > 0.0)
+                              {
+                                  validationTimer -= 0.5f;
+                                  WriteValidation();
+                              }
+
                               ReadHeader();
+                          }
                       });
 }
 void connection::ReadValidation(server *server)
@@ -310,7 +319,16 @@ void connection::ReadValidation(server *server)
                          else
                          {
                              std::cout << "\n\tClient validation failed\n";
-                             socket_.close();
+                             if (validationTimer > 0.0)
+                             {
+                                 validationTimer -= 0.5f;
+                                 WriteValidation();
+                                 ReadValidation();
+                             }
+                             else
+                             {
+                                 socket_.close();
+                             }
                          }
                      });
 }
@@ -321,6 +339,10 @@ client::client()
 client::~client()
 {
     Disconnect();
+}
+
+void client::Update(double delta_time)
+{
 }
 
 bool client::Connect(const std::string &host, const std::string port)
@@ -544,7 +566,7 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg)
     }
 }
 
-void server::Update(size_t messageLimit, bool &doSomething)
+void server::Update(size_t messageLimit, bool &doSomething, double delta_time)
 {
     msgIn_.wait(doSomething);
 
@@ -562,7 +584,7 @@ void server::Update(size_t messageLimit, bool &doSomething)
 
 void server::OnClientValidated(std::shared_ptr<connection> client)
 {
-    message yayMsg;
-    yayMsg.header.id = 0;
-    client->Send(yayMsg);
+    // message yayMsg;
+    // yayMsg.header.id = 0;
+    // client->Send(yayMsg);
 }

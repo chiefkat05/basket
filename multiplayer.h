@@ -142,6 +142,8 @@ public:
 
     uint32_t GetID() const;
 
+    double validationTimer = 0.0f;
+
 private:
     void ReadHeader();
     void ReadBody();
@@ -183,6 +185,8 @@ public:
     void UpdateRotation(glm::vec3 camLook);
     void ConnectionGreeting();
 
+    void Update(double delta_time);
+
     uint32_t GetID()
     {
         return connection_->GetID();
@@ -221,7 +225,7 @@ public:
     void OnClientDisconnect(std::shared_ptr<connection> client);
     void OnMessage(std::shared_ptr<connection> client, message &msg);
 
-    void Update(size_t messageLimit, bool &doSomething);
+    void Update(size_t messageLimit, bool &doSomething, double delta_time);
 
     void OnClientValidated(std::shared_ptr<connection> client);
 
