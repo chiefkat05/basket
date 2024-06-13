@@ -145,7 +145,7 @@ void gfx::mouse_callback(GLFWwindow *window, double xpos, double ypos)
     direction.y = sin(glm::radians(camRotation.y));
     direction.z = sin(glm::radians(camRotation.x)) * cos(glm::radians(camRotation.y));
 
-    glm::vec3 alignDir;
+    glm::vec3 alignDir = glm::vec3(0.0f, 0.0f, 0.0f);
     alignDir.x = cos(glm::radians(camRotation.x));
     alignDir.z = sin(glm::radians(camRotation.x));
 

@@ -132,6 +132,23 @@ void playerInput()
     {
         doubleTapTimer -= 4.0f * delta_time;
     }
+
+    if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && playerPos.y == 0.0f)
+    {
+        playerVel.y = 10.0f;
+    }
+
+    if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
+    {
+        glfwSetWindowShouldClose(mainWindow, true);
+
+        serveronline = false;
+        hostServer->Stop();
+        noserverduplicates = false;
+
+        if (serverThread.joinable())
+            serverThread.join();
+    }
 }
 
 void mainLoop()
@@ -241,31 +258,16 @@ void mainLoop()
 
         prevCamFront = camFront;
 
+        std::cout << playerVel.y << " wha\n";
+
         if (playerPos.y > 0.0f)
-            playerVel.y -= 40.0f * delta_time;
-        if (playerPos.y <= 0.0f)
-        {
+            playerVel.y -= 40.0f * delta_time; // shaders broken on windows
+        if (playerPos.y < 0.0f)                // still no jump
+        {                                      // still no client validation
             playerPos.y = 0.0f;
             playerVel.y = 0.0f;
         }
-        if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && playerPos.y == 0.0f)
-        {
-            playerVel.y = 10.0f;
-        }
-
         playerPos += playerVel * delta_time;
-
-        if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
-        {
-            glfwSetWindowShouldClose(mainWindow, true);
-
-            serveronline = false;
-            hostServer->Stop();
-            noserverduplicates = false;
-
-            if (serverThread.joinable())
-                serverThread.join();
-        }
 
         if (serveronline && !noserverduplicates)
         {
