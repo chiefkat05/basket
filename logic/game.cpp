@@ -13,7 +13,8 @@ extern const float height;
 extern const float nearView;
 extern const float farView;
 
-extern float cube[216];
+extern float cube[288];
+extern float quad[24];
 
 extern glm::vec3 camRotation;
 
@@ -37,6 +38,43 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 void gameInit()
 {
     std::cout << "version alpha0.0\n\n";
+}
+
+unsigned int loadTexture(char const *path)
+{
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+
+    int width, height, nrComponents;
+    unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
+    if (data)
+    {
+        GLenum format;
+        if (nrComponents == 1)
+            format = GL_RED;
+        else if (nrComponents == 3)
+            format = GL_RGB;
+        else if (nrComponents == 4)
+            format = GL_RGBA;
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        std::cout << "Texture failed to load at path: " << path << std::endl;
+        stbi_image_free(data);
+    }
+
+    return textureID;
 }
 
 server *hostServer;
@@ -151,6 +189,13 @@ void playerInput()
     }
 }
 
+struct player
+{
+    glm::vec3 position;
+    float xzRotation;
+    uint32_t id;
+};
+
 void mainLoop()
 {
     if (gfx::windowInit() != 0)
@@ -164,61 +209,51 @@ void mainLoop()
     Shader objectShader("../gfx/shaders/vertex.shader", "../gfx/shaders/fragment.shader");
     Shader lightShader("../gfx/shaders/vertex-light.shader", "../gfx/shaders/fragment-light.shader");
     Shader lampShader("../gfx/shaders/vertex-blank.shader", "../gfx/shaders/fragment-blank.shader");
+    Shader playerShader("../gfx/shaders/vertex.shader", "../gfx/shaders/fragment.shader");
 
-    unsigned int VBO, VAO, lightVAO;
+    unsigned int VBO,
+        quadVBO, VAO, lightVAO;
     glGenBuffers(1, &VBO);
-    glGenVertexArrays(1, &VAO);
 
+    glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     glGenVertexArrays(1, &lightVAO);
     glBindVertexArray(lightVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(quad), quad, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
 
-    // int texWidth, texHeight, nrChannels;
-    // unsigned int texture, happytexture;
+    // glGenBuffers(1, &quadVBO); // for quad???
+    // glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(quad), quad, GL_STATIC_DRAW);
+
+    int texWidth, texHeight, nrChannels;
 
     stbi_set_flip_vertically_on_load(true);
 
-    // glGenTextures(1, &texture);
-    // glBindTexture(GL_TEXTURE_2D, texture);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    // unsigned char *data = stbi_load("../textures/container.jpg", &texWidth, &texHeight, &nrChannels, 0);
-    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    // glGenerateMipmap(GL_TEXTURE_2D);
-    // stbi_image_free(data);
+    unsigned int texture = loadTexture("../textures/container2.png");
+    unsigned int specularMap = loadTexture("../textures/container2_specular.png");
+    unsigned int emissionMap = loadTexture("../textures/matrix.jpg");
+    unsigned int playerTex = loadTexture("../textures/awesomeface.png");
 
-    // glGenTextures(2, &happytexture);
-    // glBindTexture(GL_TEXTURE_2D, happytexture);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    // data = stbi_load("../textures/awesomeface.png", &texWidth, &texHeight, &nrChannels, 0);
-    // glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-    // glGenerateMipmap(GL_TEXTURE_2D);
-
-    // stbi_image_free(data);
-
-    // glUseProgram(objectShader.ID);
-    // objectShader.setInt("texture", 0);
-
-    // objectShader.setInt("texture2", 1); // multiple clients from different computers fail validation, but two seperate computers can connect just fine
+    lightShader.use();
+    lightShader.setInt("material.diffuse", 0);
+    lightShader.setInt("material.specular", 1);
+    lightShader.setInt("material.emission", 2);
 
     double mixA = 0.3;
     float time = 0.0f;
@@ -229,17 +264,18 @@ void mainLoop()
     proj = glm::perspective(glm::radians(45.0f), width / height, nearView, farView);
 
     glm::vec3 cubePositions[] = {
-        glm::vec3(0.0f, 0.7f, 0.0f),
-        glm::vec3(2.0f, 5.0f, -15.0f),
-        glm::vec3(-1.5f, 2.2f, -2.5f),
-        glm::vec3(-3.8f, 2.0f, -12.3f),
-        glm::vec3(2.4f, 0.4f, -3.5f),
-        glm::vec3(-1.7f, 3.0f, -7.5f),
-        glm::vec3(1.3f, 2.0f, -5.5f),
-        glm::vec3(1.5f, 2.0f, -2.5f),
-        glm::vec3(1.5f, 0.2f, -1.5f),
-        glm::vec3(-1.3f, 1.0f, -1.5f)};
-    glm::vec3 lampPos(-15.0f, 4.0f, -15.0f);
+        glm::vec3(0.0f, -0.5f, 0.0f),
+        glm::vec3(2.0f, -0.5f, -15.0f),
+        glm::vec3(-1.5f, -0.5f, -2.5f),
+        glm::vec3(-3.8f, -0.5f, -12.3f),
+        glm::vec3(2.4f, -0.5f, -3.5f),
+        glm::vec3(-1.7f, -0.5f, -7.5f),
+        glm::vec3(1.3f, -0.5f, -5.5f),
+        glm::vec3(1.5f, -0.5f, -2.5f),
+        glm::vec3(1.5f, -0.5f, -1.5f),
+        glm::vec3(-1.3f, -0.5f, -1.5f)};
+    glm::vec3 lampPos(-5.0f, 0.5f, -5.0f);
+    std::vector<glm::vec3> players;
 
     glEnable(GL_DEPTH_TEST);
 
@@ -284,7 +320,7 @@ void mainLoop()
         }
         if (clientonline && !noclientduplicates)
         {
-            clientThread = std::thread([&cubePositions]()
+            clientThread = std::thread([&players]()
                                        {
                                            static client cl;
                                            mClient = &cl;
@@ -296,9 +332,9 @@ void mainLoop()
 
                                            cl.Connect(ipInput, "4444");
 
-                                           while (clientonline)
-                                           {
-
+                                           while (clientonline) // positions might be set as vec3(posx, posy, -posz)???
+                                           { // learnopengl -> engine planning
+                                                // udemy speedrun
                                                message_header eh;
                                                if (!cl.Incoming().empty())
                                                {
@@ -316,7 +352,12 @@ void mainLoop()
                                                        msg >> playerMoved;
                                                        playerMoved -= 400;
 
-                                                       msg >> cubePositions[playerMoved].z >> cubePositions[playerMoved].y >> cubePositions[playerMoved].x;
+                                                       if (players.size() < playerMoved)
+                                                       {
+                                                        players.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+                                                       }
+
+                                                       msg >> players[playerMoved].z >> players[playerMoved].y >> players[playerMoved].x;
 
                                                        break;
                                                    // case 2:
@@ -339,10 +380,14 @@ void mainLoop()
 
         // graphics begin here
 
+        glm::vec3 disco = glm::vec3(0.5f, 0.5f, 0.5f);
+
         glUseProgram(lightShader.ID);
-        lightShader.setVec3("objectColor", 0.6f, 0.6f, 1.0f);
-        lightShader.setVec3("lightColor", 1.0, 1.0, 1.0);
-        lightShader.setVec3("lightPos", lampPos);
+        lightShader.setVec3("light.specular", 1.0, 1.0, 1.0);
+        lightShader.setVec3("light.position", lampPos);
+        lightShader.setVec3("light.diffuse", disco);
+        lightShader.setVec3("light.ambient", disco * 0.2f);
+        lightShader.setDouble("material.shininess", 128.0);
 
         glClearColor(0.03, 0.03, 0.05, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -356,15 +401,19 @@ void mainLoop()
 
         lampPos += glm::vec3(sin(glfwGetTime()) * 20.0f * delta_time, 0.0f, cos(glfwGetTime()) * 20.0f * delta_time);
 
-        // glActiveTexture(GL_TEXTURE0);
-        // glBindTexture(GL_TEXTURE_2D, texture);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, specularMap);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, emissionMap);
         glBindVertexArray(VAO);
         // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         for (unsigned int i = 0; i < 10; ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i] * 1.5f - 1.0f);
-            model = glm::scale(model, glm::vec3(1.0f, cubePositions[i].y * 3.0f, 1.0f));
+            model = glm::translate(model, cubePositions[i] * 2.0f + glm::vec3(0.0f, 0.5f, 0.0f));
+            // model = glm::scale(model, glm::vec3(1.0f, cubePositions[i].y * 4.0f, 1.0f));
             glm::mat3 normalMat = glm::transpose(glm::inverse(model));
             float angle = 1.0f;
 
@@ -372,6 +421,19 @@ void mainLoop()
             lightShader.setMat3("normalMat", normalMat);
             lightShader.setBool("speeding", playerRunning);
             lightShader.setVec3("viewPos", playerPos);
+
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+
+        playerShader.use();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, playerTex);
+        for (unsigned int i = 0; i < players.size(); ++i)
+        {
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::translate(model, players[i]);
+
+            playerShader.setVec3("color", glm::vec3(0.5f, 0.5f, 0.5f));
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
@@ -384,6 +446,7 @@ void mainLoop()
         lampShader.setMat4("projection", proj);
         lampShader.setMat4("view", view);
         lampShader.setMat4("model", model);
+        lampShader.setVec3("inColor", disco);
 
         glBindVertexArray(lightVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -392,7 +455,7 @@ void mainLoop()
         glfwPollEvents();
     }
 
-    if (serverThread.joinable())
+    if (serveronline && serverThread.joinable())
         serverThread.join();
 }
 

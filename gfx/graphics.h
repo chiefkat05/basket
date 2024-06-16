@@ -9,7 +9,8 @@ extern const float height;
 extern const float nearView;
 extern const float farView;
 
-extern float cube[216];
+extern float cube[288];
+extern float quad[24];
 
 extern glm::vec3 camRotation;
 
