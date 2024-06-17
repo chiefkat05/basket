@@ -229,6 +229,8 @@ public:
 
     void OnClientValidated(std::shared_ptr<connection> client);
 
+    unsigned int ConnectionCount();
+
 protected:
     queue<owned_message> msgIn_;
 

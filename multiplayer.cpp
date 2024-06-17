@@ -589,5 +589,15 @@ void server::OnClientValidated(std::shared_ptr<connection> client)
 {
     // message yayMsg;
     // yayMsg.header.id = 0;
-    // client->Send(yayMsg);
+    // // message_header tmpHeader;
+    // // yayMsg >> tmpHeader;
+
+    // yayMsg << client->GetID();
+    // // client->Send(yayMsg);
+    // MessageAllClients(yayMsg, client);
+}
+
+unsigned int server::ConnectionCount()
+{
+    return connections_.size();
 }

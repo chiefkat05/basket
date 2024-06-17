@@ -21,6 +21,7 @@ extern glm::vec3 camRotation;
 extern glm::vec3 camFront;
 extern glm::vec3 prevCamFront;
 extern glm::vec3 camFrontAlign;
+extern glm::vec3 camRight;
 extern const glm::vec3 camUp;
 extern bool firstMouseInteraction;
 
@@ -93,7 +94,7 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_A))
     {
         playerVel.x = -1.5f;
-        playerPos -= 4.2f * glm::cross(camFrontAlign, camUp) * delta_time;
+        playerPos -= 4.2f * camRight * delta_time;
 
         if (clientonline)
             mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
@@ -101,7 +102,7 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_D))
     {
         playerVel.x = 1.5f;
-        playerPos += 4.2f * glm::cross(camFrontAlign, camUp) * delta_time;
+        playerPos += 4.2f * camRight * delta_time;
 
         if (clientonline)
             mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
@@ -196,6 +197,8 @@ struct player
     uint32_t id;
 };
 
+int strangeCounter = 0; // for debug
+
 void mainLoop()
 {
     if (gfx::windowInit() != 0)
@@ -250,7 +253,7 @@ void mainLoop()
     lightShader.use();
     lightShader.setInt("material.diffuse", 0);
     lightShader.setInt("material.specular", 1);
-    lightShader.setInt("material.emission", 2);
+    // lightShader.setInt("material.emission", 2);
 
     float time = 0.0f;
     float prev_time = time;
@@ -270,8 +273,13 @@ void mainLoop()
         glm::vec3(1.5f, -0.5f, -2.5f),
         glm::vec3(1.5f, -0.5f, -1.5f),
         glm::vec3(-1.3f, -0.5f, -1.5f)};
-    glm::vec3 lampPos(-5.0f, 0.5f, -5.0f);
+    // glm::vec3 lampPos(-5.0f, 0.5f, -5.0f);
     std::vector<player> players;
+    glm::vec3 pointLightPositions[] = {
+        glm::vec3(0.7f, 0.2f, 2.0f),
+        glm::vec3(4.3f, 0.0f, -28.0f),
+        glm::vec3(-4.0f, 2.0f, -12.0f),
+        glm::vec3(0.0f, 0.0f, -3.0f)};
 
     glEnable(GL_DEPTH_TEST);
 
@@ -318,68 +326,73 @@ void mainLoop()
         {
             clientThread = std::thread([&players]()
                                        {
-                                           static client cl;
-                                           mClient = &cl;
+                        bool playerExists = false;
+                        static client cl;
+                        mClient = &cl;
 
-                                           static std::string ipInput;
-                                           uint32_t playerMoved = 0;
-                                           std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
-                                           std::cin >> ipInput;
+                        static std::string ipInput;
+                        uint32_t playerMoved = 0;
+                        std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
+                        std::cin >> ipInput;
 
-                                           cl.Connect(ipInput, "4444");
+                        cl.Connect(ipInput, "4444");
 
-                                           while (clientonline) // positions might be set as vec3(posx, posy, -posz)???
-                                           { // learnopengl -> engine planning
-                                                // udemy speedrun
-                                               message_header eh;
-                                               if (!cl.Incoming().empty())
-                                               {
-                                                   auto msg = cl.Incoming().pop_front().msg;
+                        while (clientonline) // positions might be set as vec3(posx, posy, -posz)???
+                        { // learnopengl -> engine planning
+                                // udemy speedrun
+                            message_header eh;
+                            if (!cl.Incoming().empty())
+                            {
+                                auto msg = cl.Incoming().pop_front().msg;
 
-                                                    bool playerExists = false;
-                                                   switch (msg.header.id)
-                                                   {
-                                                   case 0:
-                                                       std::cout << "server sent connection greetings\n";
+                                switch (msg.header.id)
+                                {
+                                case 0:
+                                    std::cout << "server sent connection greetings\n";
 
-                                                       //    cl.ConnectionGreeting();
-                                                       break;
-                                                   case 1:
-                                                       msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                                                       msg >> playerMoved;
-                                                       playerMoved -= 400;
+                                    // uint32_t playerID;
+                                    // msg >> playerID;
 
-                                                       for (unsigned int i = 0; i < players.size(); ++i)
-                                                       {
-                                                        if (players[i].id == playerMoved)
-                                                        {
-                                                            playerMoved = i;
-                                                            playerExists = true;
-                                                            break;
-                                                        }
-                                                       }
-                                                        if (!playerExists)
-                                                        {
-                                                            playerMoved = players.size();
-                                                            players.push_back({glm::vec3(0.0f), 0.0f, playerMoved});
-                                                        }
-                                                       msg >> players[playerMoved].position.z >> players[playerMoved].position.y >> players[playerMoved].position.x;
+                                    // players.push_back({glm::vec3(0.0f, 0.0f, 0.0f), 0.0f, playerMoved});
 
-                                                       break;
-                                                   // case 2:
-                                                   //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                                                   //     msg >> playerMoved;
-                                                   //     playerMoved -= 400;
-                                                   //     msg >> cubeRotations[playerMoved];
-                                                   //     break;
-                                                   default:
-                                                       std::cout << "received unknown message type: " << msg.header.id << "\n";
-                                                       break;
-                                                   }
-                                               }
-                                           }
+                                    //    cl.ConnectionGreeting();
+                                    break;
+                                case 1:
+                                    msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                                    msg >> playerMoved;
+                                    playerMoved -= 400; // new player additions should really happen on connection
 
-                                           cl.Disconnect(); });
+                                    for (unsigned int i = 0; i < players.size(); ++i)
+                                    {
+                                        if (players[i].id == playerMoved)
+                                        {
+                                            playerMoved = i;
+                                            playerExists = true;
+                                        }
+                                    }
+                                        if (!playerExists)
+                                        {
+                                            players.push_back({glm::vec3(0.0f), 0.0f, playerMoved});
+                                            playerMoved = players.size() - 1;
+                                            playerExists = true;
+                                        }
+                                    msg >> players[playerMoved].position.z >> players[playerMoved].position.y >> players[playerMoved].position.x;
+
+                                    break;
+                                // case 2:
+                                //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
+                                //     msg >> playerMoved;
+                                //     playerMoved -= 400;
+                                //     msg >> cubeRotations[playerMoved];
+                                //     break;
+                                default:
+                                    std::cout << "received unknown message type: " << msg.header.id << "\n";
+                                    break;
+                                }
+                            }
+                        }
+
+                        cl.Disconnect(); });
 
             noclientduplicates = true;
         }
@@ -389,11 +402,33 @@ void mainLoop()
         glm::vec3 disco = glm::vec3(0.5f, 0.5f, 0.5f);
 
         glUseProgram(lightShader.ID);
-        lightShader.setVec3("light.specular", 1.0, 1.0, 1.0);
-        lightShader.setVec3("light.position", lampPos);
-        lightShader.setVec3("light.diffuse", disco);
-        lightShader.setVec3("light.ambient", disco * 0.2f);
+        // lightShader.setInt("pointLightCount", 4);
+        // lightShader.setInt("spotLightCount", 1);
+        lightShader.setVec3("sLights[0].specular", 1.0, 1.0, 1.0);
+        lightShader.setVec3("sLights[0].position", playerPos + camRight * 0.3f);
+        lightShader.setVec3("sLights[0].direction", camFront + camRight * -0.05f);
+        lightShader.setDouble("sLights[0].constant", 1.0f);
+        lightShader.setDouble("sLights[0].linear", 0.09f);
+        lightShader.setDouble("sLights[0].quadratic", 0.032f);
+        lightShader.setDouble("sLights[0].cutOff", glm::cos(glm::radians(12.5f)));
+        lightShader.setDouble("sLights[0].outerCutOff", glm::cos(glm::radians(14.5f)));
+        lightShader.setVec3("sLights[0].diffuse", disco);
+        lightShader.setVec3("sLights[0].ambient", disco * 0.2f);
+        for (int i = 0; i < 4; ++i)
+        {
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].position", pointLightPositions[i]);
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].specular", glm::vec3(1.0f));
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].diffuse", glm::vec3(0.5f));
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].ambient", glm::vec3(0.1f));
+            lightShader.setDouble("pLights[" + std::to_string(i) + "].constant", 1.0f);
+            lightShader.setDouble("pLights[" + std::to_string(i) + "].linear", 0.09f);
+            lightShader.setDouble("pLights[" + std::to_string(i) + "].quadratic", 0.032f);
+        }
         lightShader.setDouble("material.shininess", 128.0);
+        lightShader.setVec3("dLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
+        lightShader.setVec3("dLight.specular", glm::vec3(1.0));
+        lightShader.setVec3("dLight.ambient", glm::vec3(0.1f));
+        lightShader.setVec3("dLight.diffuse", glm::vec3(0.5f));
 
         glClearColor(0.03, 0.03, 0.05, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -405,7 +440,7 @@ void mainLoop()
         lightShader.setMat4("view", view);
         lightShader.setMat4("projection", proj);
 
-        lampPos += glm::vec3(sin(glfwGetTime()) * 20.0f * delta_time, 0.0f, cos(glfwGetTime()) * 20.0f * delta_time);
+        // lampPos += glm::vec3(sin(glfwGetTime()) * 20.0f * delta_time, 0.0f, cos(glfwGetTime()) * 20.0f * delta_time);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
@@ -448,17 +483,21 @@ void mainLoop()
         }
 
         lampShader.use();
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, lampPos);
-        model = glm::scale(model, glm::vec3(0.2f));
 
         lampShader.setMat4("projection", proj);
         lampShader.setMat4("view", view);
-        lampShader.setMat4("model", model);
         lampShader.setVec3("inColor", disco);
-
         glBindVertexArray(lightVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        for (int i = 0; i < 4; ++i)
+        {
+            pointLightPositions[i] += glm::vec3(sin(glfwGetTime()) * (2.0f * i - 4.0f) * delta_time, 0.0f, cos(glfwGetTime()) * (2.0f * i - 4.0f) * delta_time);
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::translate(model, pointLightPositions[i]);
+            model = glm::scale(model, glm::vec3(0.2f));
+            lampShader.setMat4("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
 
         glfwSwapBuffers(mainWindow);
         glfwPollEvents();

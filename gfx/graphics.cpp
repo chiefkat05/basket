@@ -65,6 +65,7 @@ glm::vec3 camRotation = glm::vec3(-90.0f, 0.0f, 0.0f);
 glm::vec3 camFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 prevCamFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 camFrontAlign = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 camRight = glm::vec3(1.0f, 0.0f, 0.0f);
 const glm::vec3 camUp = glm::vec3(0.0, 1.0, 0.0);
 bool firstMouseInteraction = true;
 
@@ -114,6 +115,7 @@ void gfx::mouse_callback(GLFWwindow *window, double xpos, double ypos)
 
     camFront = glm::normalize(direction);
     camFrontAlign = glm::normalize(alignDir);
+    camRight = glm::cross(camFront, camUp);
 }
 
 int gfx::windowInit()
