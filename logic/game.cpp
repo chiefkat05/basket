@@ -274,7 +274,9 @@ void mainLoop()
         glm::vec3(1.5f, -0.5f, -1.5f),
         glm::vec3(-1.3f, -0.5f, -1.5f)};
     // glm::vec3 lampPos(-5.0f, 0.5f, -5.0f);
-    std::vector<player> players;
+    // std::vector<player> players;
+#define PLAYER_COUNT 5
+    player players[PLAYER_COUNT];
     glm::vec3 pointLightPositions[] = {
         glm::vec3(0.7f, 0.2f, 2.0f),
         glm::vec3(4.3f, 0.0f, -28.0f),
@@ -362,20 +364,22 @@ void mainLoop()
                                     msg >> playerMoved;
                                     playerMoved -= 400; // new player additions should really happen on connection
 
-                                    for (unsigned int i = 0; i < players.size(); ++i)
-                                    {
-                                        if (players[i].id == playerMoved)
-                                        {
-                                            playerMoved = i;
-                                            playerExists = true;
-                                        }
-                                    }
-                                        if (!playerExists)
-                                        {
-                                            players.push_back({glm::vec3(0.0f), 0.0f, playerMoved});
-                                            playerMoved = players.size() - 1;
-                                            playerExists = true;
-                                        }
+                                    // for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
+                                    // {
+                                    //     if (players[i].id == playerMoved)
+                                    //     {
+                                    //         playerMoved = i;
+                                    //         playerExists = true;
+                                    //     }
+                                    // }
+                                        // if (!playerExists)
+                                        // {
+                                        //     players.push_back({glm::vec3(0.0f), 0.0f, playerMoved});
+                                        //     playerMoved = PLAYER_COUNT - 1;
+                                        //     playerExists = true;
+                                        // }
+                                        if (playerMoved >= PLAYER_COUNT)
+                                            playerMoved = PLAYER_COUNT;
                                     msg >> players[playerMoved].position.z >> players[playerMoved].position.y >> players[playerMoved].position.x;
 
                                     break;
@@ -473,7 +477,7 @@ void mainLoop()
         playerShader.setVec3("color", glm::vec3(0.5f, 0.5f, 0.5f));
         playerShader.setMat4("projection", proj);
         playerShader.setMat4("view", view);
-        for (unsigned int i = 0; i < players.size(); ++i)
+        for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, players[i].position);
