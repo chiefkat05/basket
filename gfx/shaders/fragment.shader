@@ -7,5 +7,5 @@ uniform vec3 color;
 
 void main()
 {
-    gl_FragColor = texture(image, texcoord).rgb * color;
+    gl_FragColor = vec4(texture(image, texcoord).rgb * color, 1.0);
 };

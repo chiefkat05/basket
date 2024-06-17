@@ -49,10 +49,10 @@ unsigned int loadTexture(char const *path)
     unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
     if (data)
     {
-        GLenum format;
-        if (nrComponents == 1)
-            format = GL_RED;
-        else if (nrComponents == 3)
+        GLenum format = GL_RED;
+        // if (nrComponents == 1)
+        //     format = GL_RED;
+        if (nrComponents == 3)
             format = GL_RGB;
         else if (nrComponents == 4)
             format = GL_RGBA;
@@ -211,8 +211,7 @@ void mainLoop()
     Shader lampShader("../gfx/shaders/vertex-blank.shader", "../gfx/shaders/fragment-blank.shader");
     Shader playerShader("../gfx/shaders/vertex.shader", "../gfx/shaders/fragment.shader");
 
-    unsigned int VBO,
-        quadVBO, VAO, lightVAO;
+    unsigned int VBO, VAO, lightVAO;
     glGenBuffers(1, &VBO);
 
     glGenVertexArrays(1, &VAO);
@@ -241,8 +240,6 @@ void mainLoop()
     // glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
     // glBufferData(GL_ARRAY_BUFFER, sizeof(quad), quad, GL_STATIC_DRAW);
 
-    int texWidth, texHeight, nrChannels;
-
     stbi_set_flip_vertically_on_load(true);
 
     unsigned int texture = loadTexture("../textures/container2.png");
@@ -255,7 +252,6 @@ void mainLoop()
     lightShader.setInt("material.specular", 1);
     lightShader.setInt("material.emission", 2);
 
-    double mixA = 0.3;
     float time = 0.0f;
     float prev_time = time;
 
@@ -275,7 +271,7 @@ void mainLoop()
         glm::vec3(1.5f, -0.5f, -1.5f),
         glm::vec3(-1.3f, -0.5f, -1.5f)};
     glm::vec3 lampPos(-5.0f, 0.5f, -5.0f);
-    std::vector<glm::vec3> players;
+    std::vector<player> players;
 
     glEnable(GL_DEPTH_TEST);
 
@@ -340,6 +336,7 @@ void mainLoop()
                                                {
                                                    auto msg = cl.Incoming().pop_front().msg;
 
+                                                    bool playerExists = false;
                                                    switch (msg.header.id)
                                                    {
                                                    case 0:
@@ -352,12 +349,21 @@ void mainLoop()
                                                        msg >> playerMoved;
                                                        playerMoved -= 400;
 
-                                                       if (players.size() < playerMoved)
+                                                       for (unsigned int i = 0; i < players.size(); ++i)
                                                        {
-                                                        players.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+                                                        if (players[i].id == playerMoved)
+                                                        {
+                                                            playerMoved = i;
+                                                            playerExists = true;
+                                                            break;
+                                                        }
                                                        }
-
-                                                       msg >> players[playerMoved].z >> players[playerMoved].y >> players[playerMoved].x;
+                                                        if (!playerExists)
+                                                        {
+                                                            playerMoved = players.size();
+                                                            players.push_back({glm::vec3(0.0f), 0.0f, playerMoved});
+                                                        }
+                                                       msg >> players[playerMoved].position.z >> players[playerMoved].position.y >> players[playerMoved].position.x;
 
                                                        break;
                                                    // case 2:
@@ -413,9 +419,9 @@ void mainLoop()
         {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, cubePositions[i] * 2.0f + glm::vec3(0.0f, 0.5f, 0.0f));
+            // model = glm::translate(model, players[i]);
             // model = glm::scale(model, glm::vec3(1.0f, cubePositions[i].y * 4.0f, 1.0f));
             glm::mat3 normalMat = glm::transpose(glm::inverse(model));
-            float angle = 1.0f;
 
             lightShader.setMat4("model", model);
             lightShader.setMat3("normalMat", normalMat);
@@ -428,12 +434,15 @@ void mainLoop()
         playerShader.use();
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, playerTex);
+        glBindVertexArray(VAO);
+        playerShader.setVec3("color", glm::vec3(0.5f, 0.5f, 0.5f));
+        playerShader.setMat4("projection", proj);
+        playerShader.setMat4("view", view);
         for (unsigned int i = 0; i < players.size(); ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, players[i]);
-
-            playerShader.setVec3("color", glm::vec3(0.5f, 0.5f, 0.5f));
+            model = glm::translate(model, players[i].position);
+            playerShader.setMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }

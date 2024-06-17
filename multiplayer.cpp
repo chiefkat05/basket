@@ -272,10 +272,6 @@ uint64_t connection::scramble(uint64_t input)
 
 void connection::WriteValidation()
 {
-    if (ownerType_ == owner::server)
-    {
-        std::cout << "server side = " << handshakeOut << "\n";
-    }
     asio::async_write(socket_, asio::buffer(&handshakeOut, sizeof(uint64_t)),
                       [this](std::error_code ec, std::size_t length)
                       {
@@ -288,7 +284,6 @@ void connection::WriteValidation()
 
                           if (ownerType_ == owner::client)
                           {
-                              std::cout << handshakeOut << ", " << validationTimer << " wow\n";
                               if (validationTimer > 0.0)
                               {
                                   validationTimer -= 0.5f;
@@ -313,13 +308,11 @@ void connection::ReadValidation(server *server)
                          }
                          if (ownerType_ == owner::client)
                          {
-                             std::cout << handshakeIn << " in, " << scramble(handshakeIn) << "\n";
                              handshakeOut = scramble(handshakeIn);
                              WriteValidation();
                              return;
                          }
 
-                         std::cout << handshakeIn << " w " << handshakeCheck << "\n";
                          if (handshakeIn == handshakeCheck)
                          {
                              server->OnClientValidated(this->shared_from_this());

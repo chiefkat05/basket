@@ -28,7 +28,11 @@ struct collider
             _point.velX = 0.0f;
             _point.velY = 0.0f;
             _point.velZ = 0.0f;
+
+            return true;
         }
+
+        return false;
     }
 };
 
