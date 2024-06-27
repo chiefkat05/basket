@@ -13,6 +13,9 @@ event event_handler::poll()
     {
     case INPUT_EVENT:
         break;
+    case COLLISION_EVENT:
+
+        break;
     default:
         break;
     }

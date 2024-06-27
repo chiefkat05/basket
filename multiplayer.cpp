@@ -91,7 +91,7 @@ void connection::ConnectToServer(const tcp::resolver::results_type &endP)
     if (ownerType_ != owner::client)
         return;
 
-    validationTimer = 10.0;
+    // validationTimer = 10.0;
     asio::async_connect(socket_, endP,
                         [this](std::error_code ec, tcp::endpoint endpoint)
                         {
@@ -112,7 +112,7 @@ bool connection::ConnectToClient(server *server, uint32_t uid)
 
     if (socket_.is_open())
     {
-        validationTimer = 10.0;
+        // validationTimer = 10.0;
         id = uid;
         WriteValidation();
         ReadValidation(server);
@@ -166,7 +166,7 @@ void connection::ReadHeader()
                          }
 
                          if (msgTmp_.header.size > 8)
-                         {
+                         {                                             // wouldn't that be because the 8 bytes are the header id???
                              msgTmp_.body.resize(msgTmp_.header.size); // for some reason msgtmp being 8 bytes less leads to a strange second message of random id to be read
                              ReadBody();
                              return;
@@ -208,6 +208,7 @@ void connection::WriteHeader()
                           }
                           else
                           {
+                              //   std::cout << queueOut_.front().header.id << " whyyyyy 2\n";
                               queueOut_.pop_front();
 
                               if (!queueOut_.empty())
@@ -284,12 +285,12 @@ void connection::WriteValidation()
 
                           if (ownerType_ == owner::client)
                           {
-                              if (validationTimer > 0.0)
-                              {
-                                  validationTimer -= 0.5f;
-                                  ReadValidation();
-                                  return;
-                              }
+                              //   if (validationTimer > 0.0)
+                              //   {
+                              //       validationTimer -= 0.5f;
+                              //   ReadValidation();
+                              //   return;
+                              //   }
 
                               ReadHeader();
                           }
@@ -322,16 +323,16 @@ void connection::ReadValidation(server *server)
                          else
                          {
                              std::cout << "\n\tClient validation failed\n";
-                             if (validationTimer > 0.0)
-                             {
-                                 validationTimer -= 0.5f;
-                                 WriteValidation();
-                                 ReadValidation(server);
-                             }
-                             else
-                             {
-                                 socket_.close();
-                             }
+                             //  if (validationTimer > 0.0)
+                             //  {
+                             //      validationTimer -= 0.5f;
+                             //  WriteValidation();
+                             //  ReadValidation(server);
+                             //  }
+                             //  else
+                             //  {
+                             socket_.close();
+                             //  }
                          }
                      });
 }
@@ -370,22 +371,23 @@ bool client::Connect(const std::string &host, const std::string port)
     return true;
 }
 
-void client::UpdatePosition(float x, float y, float z)
+void client::UpdatePosition(glm::vec3 position, glm::vec3 rotation)
 {
     message msg;
     msg.header.id = 1;
 
     // msg << x;
-    msg << x << y << z;
+    msg << position << rotation;
 
     connection_->Send(msg);
 }
-void client::UpdateRotation(glm::vec3 camLook)
+void client::Annoy()
 {
     message msg;
-    msg.header.id = 2;
+    msg.header.id = 4;
 
-    msg << camLook.y;
+    float thing = 0.4f;
+    msg << thing << thing << thing;
 
     connection_->Send(msg);
 }
@@ -437,7 +439,7 @@ bool server::Start()
         WaitForClientConnection();
 
         thr_ = std::thread([this]()
-                           { io_.run(); });
+                           { io_.run(); }); // this might be the culprite for the server hanging on quit application
     }
     catch (const std::exception &e)
     {
@@ -500,14 +502,12 @@ void server::MessageClient(std::shared_ptr<connection> client, const message &ms
 }
 void server::MessageAllClients(const message &msg, std::shared_ptr<connection> cIgnore)
 {
-    bool disconnectedClient = false;
     for (auto &client : connections_)
     {
         if (!client || !client->IsConnected())
         {
             OnClientDisconnect(client);
             client.reset();
-            disconnectedClient = true;
             continue;
         }
 
@@ -534,36 +534,53 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg)
     if (msg.header.id == 0)
     {
         std::cout << "client " << client->GetID() << " sent connection greetings\n";
+        // MessageClient(client, msg);
+
+        // message newMsg;
+        // newMsg.header.id = 0;
+        // unsigned int stupid = 32929292;
+        // newMsg << stupid << stupid << stupid;
+        // MessageAllClients(newMsg);
     }
+    // if (msg.header.id == 4)
+    // {
+    //     std::cout << "weofihwefosdidjc\n"
+    //               << std::endl;
+    //     message newMsg;
+    //     newMsg.header.id = 0;
+    //     unsigned int stupid = 32929292;
+    //     newMsg << stupid << stupid << stupid;
+    //     MessageAllClients(newMsg);
+    // }
     if (msg.header.id == 1)
     {
+        // std::cout << "msg recieved " << msg.body.size() << "\n";
         message newMsg;
         newMsg.header.id = 1;
-        float xD = 0.0f;
-        float yD = 0.0f;
-        float zD = 0.0f;
+        glm::vec3 pos, rot;
 
         message_header msgtempheader;
         msg >> msgtempheader;
-        msg >> zD >> yD >> xD;
-        newMsg << xD << yD << zD << client->GetID();
+        msg >> rot >> pos;
+        newMsg << pos << rot << client->GetID();
 
         MessageAllClients(newMsg, client);
+        // MessageAllClients(newMsg);
     }
     if (msg.header.id == 2)
     {
         message newMsg;
         newMsg.header.id = 2;
         float xD = 0.0f;
-        float yD = 0.0f;
-        float zD = 0.0f;
+        // float yD = 0.0f;
+        // float zD = 0.0f;
 
         message_header msgtempheader;
         msg >> msgtempheader;
         // msg >> zD >> yD >> xD;
         // newMsg << xD << yD << zD << client->GetID();
-        msg >> yD;
-        newMsg << yD << client->GetID();
+        msg >> xD;
+        newMsg << xD << client->GetID();
 
         MessageAllClients(newMsg, client);
     }
@@ -587,14 +604,10 @@ void server::Update(size_t messageLimit, bool &doSomething, double delta_time)
 
 void server::OnClientValidated(std::shared_ptr<connection> client)
 {
-    // message yayMsg;
-    // yayMsg.header.id = 0;
-    // // message_header tmpHeader;
-    // // yayMsg >> tmpHeader;
+    message yayMsg;
+    yayMsg.header.id = 0;
 
-    // yayMsg << client->GetID();
-    // // client->Send(yayMsg);
-    // MessageAllClients(yayMsg, client);
+    MessageClient(client, yayMsg);
 }
 
 unsigned int server::ConnectionCount()

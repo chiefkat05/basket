@@ -9,6 +9,8 @@ uniform mat4 model;
 uniform mat3 normalMat;
 uniform bool speeding;
 
+uniform vec2 textureScale;
+
 out vec3 normal;
 out vec3 fragmentPosition;
 out vec2 TexCoords;
@@ -27,5 +29,5 @@ void main()
     fragmentPosition = vec3(model * vec4(aPos, 1.0));
     normal = normalMat * aNormal;
 
-    TexCoords = aTexCoords;
+    TexCoords = aTexCoords * textureScale;
 };

@@ -1,0 +1,14 @@
+# ninja log v6
+1	27	1719342567469897735	CMakeFiles/engine.dir/main.cpp.o	1de03aeaada92652
+2	2927	1719342567469897735	CMakeFiles/engine.dir/gfx/graphics.cpp.o	a1bdcf6d5007fd56
+3	204	1719342567469897735	CMakeFiles/engine.dir/nms/glad/src/gl.c.o	cf096e5e2eff8b33
+2	595	1719342567469897735	CMakeFiles/engine.dir/logic/events.cpp.o	238abdfb440a6bd4
+2	4612	1719342567469897735	CMakeFiles/engine.dir/multiplayer.cpp.o	86a3b046c897ccbe
+2	322	1719342567469897735	CMakeFiles/engine.dir/logic/collision.cpp.o	d03dff174afa8a39
+3	1041	1719342567469897735	CMakeFiles/engine.dir/gfx/shader.cpp.o	c599497bb5edd2ff
+2	3106	1719342567469897735	CMakeFiles/engine.dir/logic/game.cpp.o	4df536f76088e7b8
+4612	5605	1719342572079897624	engine	aa39b0ca0d63f209
+3	3244	1719509141616651050	CMakeFiles/engine.dir/logic/game.cpp.o	4df536f76088e7b8
+4	4298	1719509141616651050	CMakeFiles/engine.dir/gfx/graphics.cpp.o	a1bdcf6d5007fd56
+3	5800	1719509141616651050	CMakeFiles/engine.dir/multiplayer.cpp.o	86a3b046c897ccbe
+5800	6973	1719509147409984244	engine	aa39b0ca0d63f209

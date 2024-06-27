@@ -52,11 +52,51 @@ float cube[288] = {
     -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
     -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f};
 
-extern float quad[24] = {
+float quad[24] = {
     -0.5f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f,
     -0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f,
     0.5f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f,
     0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f};
+
+unsigned int gfx::loadTexture(const char *path, const std::string &directory)
+{
+    std::string realPath = std::string(path);
+    realPath = directory + '/' + realPath;
+
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+
+    int width, height, nrComponents;
+    unsigned char *data = stbi_load(realPath.c_str(), &width, &height, &nrComponents, 0);
+    if (data)
+    {
+        GLenum format = GL_RED;
+        // if (nrComponents == 1)
+        //     format = GL_RED;
+        if (nrComponents == 3)
+            format = GL_RGB;
+        if (nrComponents == 4)
+            format = GL_RGBA;
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        std::cout << "Texture failed to load at path: " << realPath << std::endl;
+        stbi_image_free(data);
+    }
+
+    return textureID;
+}
 
 void framebuffer_size_callback(GLFWwindow *_win, int _w, int _h);
 
@@ -153,4 +193,116 @@ void gfx::processInput()
 {
     if (glfwGetKey(mainWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(mainWindow, true);
+}
+
+void gfx::model::loadModel(std::string path)
+{
+    Assimp::Importer import;
+    const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+
+    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+    {
+        std::cout << "Assimp failed to load model: " << import.GetErrorString() << "\n";
+        return;
+    }
+    directory = path.substr(0, path.find_last_of('/'));
+    fullPath = path;
+
+    processNode(scene->mRootNode, scene);
+}
+
+void gfx::model::processNode(aiNode *node, const aiScene *scene)
+{
+    for (unsigned int i = 0; i < node->mNumMeshes; ++i)
+    {
+        aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+        meshes.push_back(processMesh(mesh, scene));
+    }
+    for (unsigned int i = 0; i < node->mNumChildren; ++i)
+    {
+        processNode(node->mChildren[i], scene);
+    }
+}
+gfx::mesh gfx::model::processMesh(aiMesh *_mesh, const aiScene *_scene)
+{
+    std::vector<vertex> vertices;
+    std::vector<unsigned int> indices;
+    std::vector<texture> textures;
+
+    for (unsigned int i = 0; i < _mesh->mNumVertices; ++i)
+    {
+        vertex _vertex;
+
+        _vertex.position = glm::vec3(_mesh->mVertices[i].x,
+                                     _mesh->mVertices[i].y,
+                                     _mesh->mVertices[i].z);
+        _vertex.normal = glm::vec3(_mesh->mNormals[i].x,
+                                   _mesh->mNormals[i].y,
+                                   _mesh->mNormals[i].z);
+
+        if (_mesh->mTextureCoords[0])
+        {
+            _vertex.textureCoordinates = glm::vec2(
+                _mesh->mTextureCoords[0][i].x,
+                _mesh->mTextureCoords[0][i].y);
+        }
+        else
+        {
+            _vertex.textureCoordinates = glm::vec2(0.0f, 0.0f); // write simple container/caller for models
+        }
+
+        vertices.push_back(_vertex);
+    }
+
+    for (unsigned int i = 0; i < _mesh->mNumFaces; ++i)
+    {
+        aiFace face = _mesh->mFaces[i];
+        for (unsigned int j = 0; j < face.mNumIndices; ++j)
+            indices.push_back(face.mIndices[j]);
+    }
+
+    if (_mesh->mMaterialIndex >= 0)
+    {
+        aiMaterial *material = _scene->mMaterials[_mesh->mMaterialIndex];
+
+        std::vector<texture> diffuseMaps = loadMaterialTextures(material,
+                                                                aiTextureType_DIFFUSE, "diffuse");
+        textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+        std::vector<texture> specularMaps = loadMaterialTextures(material,
+                                                                 aiTextureType_SPECULAR, "specular");
+        textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+    }
+
+    return mesh(vertices, indices, textures);
+}
+std::vector<gfx::texture> gfx::model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
+                                                           std::string typeName)
+{
+    std::vector<texture> textures;
+    for (unsigned int i = 0; i < mat->GetTextureCount(type); ++i)
+    {
+        aiString str;
+        mat->GetTexture(type, i, &str);
+        bool loaded = false;
+        for (unsigned int j = 0; j < loaded_textures.size(); ++j)
+        {
+            if (std::strcmp(loaded_textures[j].path.data(), str.C_Str()) == 0)
+            {
+                textures.push_back(loaded_textures[j]);
+                loaded = true;
+                break;
+            }
+        }
+
+        if (!loaded)
+        {
+            texture _texture;
+            _texture.id = loadTexture(str.C_Str(), directory);
+            _texture.type = typeName;
+            _texture.path = str.C_Str();
+            textures.push_back(_texture);
+            loaded_textures.push_back(_texture);
+        }
+    }
+    return textures;
 }

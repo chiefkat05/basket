@@ -158,8 +158,8 @@ private:
     void ReadValidation(server *server = nullptr);
 
 protected:
-    tcp::socket socket_;
     asio::io_context &io_;
+    tcp::socket socket_;
 
     queue<message> queueOut_;
     queue<owned_message> &queueIn_;
@@ -181,8 +181,9 @@ public:
 
     bool Connect(const std::string &host, const std::string port);
 
-    void UpdatePosition(float x, float y, float z);
-    void UpdateRotation(glm::vec3 camLook);
+    void UpdatePosition(glm::vec3 position, glm::vec3 rotation);
+    // void UpdateRotation(glm::vec3 camLook);
+    void Annoy();
     void ConnectionGreeting();
 
     void Update(double delta_time);

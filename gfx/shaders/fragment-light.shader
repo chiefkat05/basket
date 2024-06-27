@@ -8,6 +8,8 @@ struct Material {
     float shininess;
 };
 
+uniform float w;
+
 struct DirectionalLight {
     vec3 direction;
 
@@ -143,7 +145,7 @@ void main()
     //     diffuse = vec3((fragmentPosition.y + 1.0) * -0.5);
     // }
     // result = (((diffuse + specular) * intensity) + ambient + emission) * attenuation;
-    // result = result + material.emission;
+    // result += vec3(texture(material.emission, TexCoords));
 
     gl_FragColor = vec4(result, 1.0);
 };

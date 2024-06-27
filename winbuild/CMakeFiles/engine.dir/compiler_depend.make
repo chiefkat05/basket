@@ -26,6 +26,37 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.obj: /home/chiefkat/Documents/vscodeproje
   /usr/x86_64-w64-mingw32/include/_mingw_stdarg.h \
   /usr/x86_64-w64-mingw32/include/_timeval.h \
   /usr/x86_64-w64-mingw32/include/assert.h \
+  /usr/x86_64-w64-mingw32/include/assimp/Compiler/poppack1.h \
+  /usr/x86_64-w64-mingw32/include/assimp/Compiler/pushpack1.h \
+  /usr/x86_64-w64-mingw32/include/assimp/Importer.hpp \
+  /usr/x86_64-w64-mingw32/include/assimp/MathFunctions.h \
+  /usr/x86_64-w64-mingw32/include/assimp/aabb.h \
+  /usr/x86_64-w64-mingw32/include/assimp/anim.h \
+  /usr/x86_64-w64-mingw32/include/assimp/camera.h \
+  /usr/x86_64-w64-mingw32/include/assimp/color4.h \
+  /usr/x86_64-w64-mingw32/include/assimp/color4.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/config.h \
+  /usr/x86_64-w64-mingw32/include/assimp/defs.h \
+  /usr/x86_64-w64-mingw32/include/assimp/light.h \
+  /usr/x86_64-w64-mingw32/include/assimp/material.h \
+  /usr/x86_64-w64-mingw32/include/assimp/material.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.h \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.h \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/mesh.h \
+  /usr/x86_64-w64-mingw32/include/assimp/metadata.h \
+  /usr/x86_64-w64-mingw32/include/assimp/postprocess.h \
+  /usr/x86_64-w64-mingw32/include/assimp/quaternion.h \
+  /usr/x86_64-w64-mingw32/include/assimp/quaternion.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/scene.h \
+  /usr/x86_64-w64-mingw32/include/assimp/texture.h \
+  /usr/x86_64-w64-mingw32/include/assimp/types.h \
+  /usr/x86_64-w64-mingw32/include/assimp/vector2.h \
+  /usr/x86_64-w64-mingw32/include/assimp/vector2.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/vector3.h \
+  /usr/x86_64-w64-mingw32/include/assimp/vector3.inl \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/algorithm \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/array \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/backward/binders.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bit \
@@ -98,6 +129,7 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.obj: /home/chiefkat/Documents/vscodeproje
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stringfwd.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uniform_int_dist.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_map.h \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_set.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator_args.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/utility.h \
@@ -137,6 +169,8 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.obj: /home/chiefkat/Documents/vscodeproje
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/math.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/new \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/ostream \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/execution_defs.h \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/glue_algorithm_defs.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/pstl_config.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/stdexcept \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/stdlib.h \
@@ -160,6 +194,7 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.obj: /home/chiefkat/Documents/vscodeproje
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/type_traits \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/typeinfo \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_map \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_set \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/vector \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/atomic_word.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/basic_file.h \
@@ -1046,6 +1081,7 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: /home/chiefkat/Documents/vscodeproject
   /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.h \
   /home/chiefkat/Documents/vscodeprojects/basket/logic/events.h \
   /home/chiefkat/Documents/vscodeprojects/basket/logic/game.h \
+  /home/chiefkat/Documents/vscodeprojects/basket/logic/world.h \
   /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/KHR/khrplatform.h \
   /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/glad/gl.h \
   /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/adxintrin.h \
@@ -1597,6 +1633,36 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: /home/chiefkat/Documents/vscodeproject
   /usr/x86_64-w64-mingw32/include/asio/write.hpp \
   /usr/x86_64-w64-mingw32/include/asio/write_at.hpp \
   /usr/x86_64-w64-mingw32/include/assert.h \
+  /usr/x86_64-w64-mingw32/include/assimp/Compiler/poppack1.h \
+  /usr/x86_64-w64-mingw32/include/assimp/Compiler/pushpack1.h \
+  /usr/x86_64-w64-mingw32/include/assimp/Importer.hpp \
+  /usr/x86_64-w64-mingw32/include/assimp/MathFunctions.h \
+  /usr/x86_64-w64-mingw32/include/assimp/aabb.h \
+  /usr/x86_64-w64-mingw32/include/assimp/anim.h \
+  /usr/x86_64-w64-mingw32/include/assimp/camera.h \
+  /usr/x86_64-w64-mingw32/include/assimp/color4.h \
+  /usr/x86_64-w64-mingw32/include/assimp/color4.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/config.h \
+  /usr/x86_64-w64-mingw32/include/assimp/defs.h \
+  /usr/x86_64-w64-mingw32/include/assimp/light.h \
+  /usr/x86_64-w64-mingw32/include/assimp/material.h \
+  /usr/x86_64-w64-mingw32/include/assimp/material.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.h \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.h \
+  /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/mesh.h \
+  /usr/x86_64-w64-mingw32/include/assimp/metadata.h \
+  /usr/x86_64-w64-mingw32/include/assimp/postprocess.h \
+  /usr/x86_64-w64-mingw32/include/assimp/quaternion.h \
+  /usr/x86_64-w64-mingw32/include/assimp/quaternion.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/scene.h \
+  /usr/x86_64-w64-mingw32/include/assimp/texture.h \
+  /usr/x86_64-w64-mingw32/include/assimp/types.h \
+  /usr/x86_64-w64-mingw32/include/assimp/vector2.h \
+  /usr/x86_64-w64-mingw32/include/assimp/vector2.inl \
+  /usr/x86_64-w64-mingw32/include/assimp/vector3.h \
+  /usr/x86_64-w64-mingw32/include/assimp/vector3.inl \
   /usr/x86_64-w64-mingw32/include/basetsd.h \
   /usr/x86_64-w64-mingw32/include/bcrypt.h \
   /usr/x86_64-w64-mingw32/include/bemapiset.h \
@@ -1699,6 +1765,7 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: /home/chiefkat/Documents/vscodeproject
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unique_lock.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unique_ptr.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_map.h \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_set.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator_args.h \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/utility.h \
@@ -1776,6 +1843,7 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: /home/chiefkat/Documents/vscodeproject
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/type_traits \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/typeinfo \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_map \
+  /usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_set \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/utility \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/vector \
   /usr/x86_64-w64-mingw32/include/c++/13.1.0/version \
@@ -3161,8 +3229,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/realtimeapiset.h:
 
-/usr/x86_64-w64-mingw32/include/qos.h:
-
 /usr/x86_64-w64-mingw32/include/pshpack4.h:
 
 /usr/x86_64-w64-mingw32/include/pshpack2.h:
@@ -3209,8 +3275,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/debugapi.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/sstream:
-
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/ratio:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/list:
@@ -3218,8 +3282,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/iterator:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/future:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/concurrence.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unique_ptr.h:
 
@@ -3242,8 +3304,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/align.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/atomic:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/algorithm:
 
 /usr/x86_64-w64-mingw32/include/bemapiset.h:
 
@@ -3351,17 +3411,9 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/asio/ip/impl/address.ipp:
 
-/usr/x86_64-w64-mingw32/include/ioapiset.h:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/icmp.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/ip/host_name.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/ip/detail/socket_option.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/ip/detail/endpoint.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/basic_resolver_query.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/prepend.hpp:
 
@@ -3723,8 +3775,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/asio/detail/call_stack.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/buffer_sequence_adapter.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/detail/blocking_executor_op.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/bind_handler.hpp:
@@ -3734,10 +3784,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/asio/detail/assert.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/detached.hpp:
-
-/usr/x86_64-w64-mingw32/include/winapifamily.h:
-
-/usr/x86_64-w64-mingw32/include/asio/deferred.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/readable_pipe.hpp:
 
@@ -3777,105 +3823,77 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/asio/buffer_registration.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float3x2_precision.hpp:
+/usr/x86_64-w64-mingw32/include/winnls.h:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float3x2.hpp:
+/usr/x86_64-w64-mingw32/include/asio/bind_immediate_executor.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_socket_service.hpp:
+/usr/x86_64-w64-mingw32/include/asio/bind_allocator.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x4_precision.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_waitable_timer.hpp:
 
-/usr/x86_64-w64-mingw32/include/winnetwk.h:
+/usr/x86_64-w64-mingw32/include/asio/basic_streambuf_fwd.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/strand.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_stream_socket.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x4_precision.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_stream_file.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x3.inl:
+/usr/x86_64-w64-mingw32/include/asio/basic_socket_streambuf.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h:
+/usr/x86_64-w64-mingw32/include/asio/basic_socket_acceptor.hpp:
 
-/usr/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h:
+/usr/x86_64-w64-mingw32/include/asio/basic_seq_packet_socket.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/traits/prefer_free.hpp:
+/usr/x86_64-w64-mingw32/include/asio/detail/local_free_on_block_exit.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/vaesintrin.h:
+/usr/x86_64-w64-mingw32/include/asio/basic_raw_socket.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/exponential.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_random_access_file.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_uint4_sized.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unique_lock.h:
 
-/usr/x86_64-w64-mingw32/include/stralign.h:
+/usr/x86_64-w64-mingw32/include/asio/detail/old_win_sdk_compat.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/windows/basic_object_handle.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_io_object.hpp:
 
-/usr/x86_64-w64-mingw32/include/math.h:
+/usr/x86_64-w64-mingw32/include/asio/basic_file.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/deadline_timer_service.hpp:
+/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_handle_write_op.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_vec3.inl:
+/usr/x86_64-w64-mingw32/include/asio/basic_datagram_socket.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.hpp:
+/usr/x86_64-w64-mingw32/include/asio/detail/impl/signal_set_service.ipp:
 
-/usr/x86_64-w64-mingw32/include/pthread.h:
+/usr/x86_64-w64-mingw32/include/asio/awaitable.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/array_fwd.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/async_result.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/associator.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/associated_executor.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/associated_cancellation_slot.hpp:
+
+/usr/x86_64-w64-mingw32/include/datetimeapi.h:
+
+/usr/x86_64-w64-mingw32/include/asio/any_io_executor.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/detail/type_vec1.inl:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x3.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_quat.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsavecintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/traits/execute_member.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x2.hpp:
+/usr/x86_64-w64-mingw32/include/assimp/quaternion.inl:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/signal_op.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x2.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_classes.tcc:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_vec4.inl:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_serial_port_service.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/common.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/multiple_exceptions.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_int1.hpp:
-
 /usr/x86_64-w64-mingw32/include/glm/detail/type_mat2x4.inl:
 
 /usr/x86_64-w64-mingw32/include/glm/detail/type_mat2x4.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.inl:
-
 /usr/x86_64-w64-mingw32/include/glm/detail/func_exponential.inl:
 
 /usr/x86_64-w64-mingw32/include/glm/detail/func_common.inl:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_float4.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/limits:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/_vectorize.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/_fixes.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/bad_address_cast.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x2.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/array:
-
-/usr/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h:
-
-/usr/x86_64-w64-mingw32/include/imm.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512erintrin.h:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/initiate_dispatch.hpp:
 
@@ -3887,21 +3905,11 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_handle_write_op.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_datagram_socket.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/ip/resolver_base.hpp:
 
 /usr/x86_64-w64-mingw32/include/corecrt.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/chrono.h:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x2_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/handler_cont_helpers.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstdint:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_classes.tcc:
 
 /usr/x86_64-w64-mingw32/include/processtopologyapi.h:
 
@@ -3915,17 +3923,17 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_common.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/packaged_task.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_signal_set.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/ctype_base.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/hashtable_policy.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_transform.inl:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x3_precision.hpp:
-
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/alloc_traits.h:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/detail/socket_option.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/config.h:
 
 /usr/x86_64-w64-mingw32/include/processthreadsapi.h:
 
@@ -3963,31 +3971,35 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/gamma.tcc:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/bmi2intrin.h:
+/usr/x86_64-w64-mingw32/include/asio/windows/overlapped_handle.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/typeinfo:
+/usr/x86_64-w64-mingw32/include/asio/basic_readable_pipe.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/memory_resource.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/exp_integral.tcc:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/node_handle.h:
 
-/usr/x86_64-w64-mingw32/include/sec_api/stdio_s.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/memory_resource.h:
 
-/usr/x86_64-w64-mingw32/include/asio/basic_seq_packet_socket.hpp:
+/usr/x86_64-w64-mingw32/include/assimp/color4.inl:
+
+/usr/x86_64-w64-mingw32/include/asio/traits/execute_member.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x2.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/invoke.h:
+
+/usr/x86_64-w64-mingw32/include/glm/mat3x4.hpp:
+
+/usr/x86_64-w64-mingw32/include/sec_api/stdio_s.h:
 
 /usr/x86_64-w64-mingw32/include/namedpipeapi.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/istream:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/config.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x3.hpp:
-
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/numeric_traits.h:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x4.inl:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/iostream:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_set:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/iosfwd:
 
@@ -4001,119 +4013,25 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/hresetintrin.h:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x4.inl:
+/usr/x86_64-w64-mingw32/include/asio/local/detail/impl/endpoint.ipp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unique_lock.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/type_traits.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/old_win_sdk_compat.hpp:
+/usr/x86_64-w64-mingw32/include/asio/traits/prefer_member.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/basic_io_object.hpp:
+/usr/x86_64-w64-mingw32/include/asio/execution_context.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h:
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x3.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/recycling_allocator.hpp:
+/usr/x86_64-w64-mingw32/include/asio/execution/blocking_adaptation.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/impl/append.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uniform_int_dist.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/streambuf_iterator.h:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avxneconvertintrin.h:
 
-/home/chiefkat/Documents/vscodeprojects/basket/logic/events.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/exception:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/cpu_defines.h:
-
-/usr/x86_64-w64-mingw32/include/sec_api/stdlib_s.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ios_base.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/utility:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator.h:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/v6_only.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_tempbuf.h:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_vec3.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/streambuf:
-
-/usr/x86_64-w64-mingw32/include/pthread_time.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/execution_defs.h:
-
-/usr/x86_64-w64-mingw32/include/asio/file_base.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/exception_defines.h:
-
-/usr/x86_64-w64-mingw32/include/glm/mat2x4.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x3_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/impl/win_event.ipp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_int3_sized.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/os_defines.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512fintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/impl/buffered_write_stream.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_relational.inl:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ios:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/char_traits.h:
-
-/usr/x86_64-w64-mingw32/include/asio/buffered_stream.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/geometric.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/atomic_base.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/cxxabi_forced.h:
-
-/usr/x86_64-w64-mingw32/include/asio/buffered_read_stream.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxint8intrin.h:
-
-/usr/x86_64-w64-mingw32/include/_mingw_off_t.h:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/timer_queue_ptime.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/buffer_resize_guard.hpp:
-
-/usr/x86_64-w64-mingw32/include/GLFW/glfw3.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/pstl_config.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/concept_check.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/allocated_ptr.h:
-
-/usr/x86_64-w64-mingw32/include/asio/read.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/timer_queue_set.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_float2_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x3.inl:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/codecvt.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/float.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstring:
-
-/usr/x86_64-w64-mingw32/include/corecrt_startup.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/alloc_traits.h:
-
-/usr/x86_64-w64-mingw32/include/asio/traits/require_member.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/stdlib.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/functional_hash.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/scalar_int_sized.hpp:
 
 /usr/x86_64-w64-mingw32/include/winerror.h:
 
@@ -4121,17 +4039,41 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/atomic_futex.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstring:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/fstream.tcc:
+/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_null_buffers_op.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_float3.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_map:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cerrno:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512bf16intrin.h:
 
-/usr/x86_64-w64-mingw32/include/asio/impl/any_completion_executor.ipp:
+/usr/x86_64-w64-mingw32/include/asio/ip/impl/network_v6.ipp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/allocator.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstdlib:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x4.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/postypes.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vp2intersectintrin.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/streambuf:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/v6_only.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_tempbuf.h:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_vec3.hpp:
+
+/usr/x86_64-w64-mingw32/include/pthread_time.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/ell_integral.tcc:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/aligned_buffer.h:
+
+/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/glad/gl.h:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/timer_scheduler_fwd.hpp:
 
@@ -4139,7 +4081,147 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/beta_function.tcc:
 
-/usr/x86_64-w64-mingw32/include/asio/basic_streambuf_fwd.hpp:
+/usr/x86_64-w64-mingw32/include/asio/impl/any_completion_executor.ipp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/allocator.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/compare:
+
+/usr/x86_64-w64-mingw32/include/ioapiset.h:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/icmp.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/defs.h:
+
+/usr/x86_64-w64-mingw32/include/asio/windows/stream_handle.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cctype:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/backward/binders.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/impl/handler_tracking.ipp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_quat.inl:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/compute_common.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/vector.tcc:
+
+/usr/x86_64-w64-mingw32/include/virtdisk.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/adxintrin.h:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/func_packing.inl:
+
+/usr/x86_64-w64-mingw32/include/glm/mat3x2.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator_args.h:
+
+/usr/x86_64-w64-mingw32/include/asio/buffer.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_set.h:
+
+/usr/x86_64-w64-mingw32/include/vadefs.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/lzcntintrin.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_double2_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/algorithm:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float4x4_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/_fixes.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/color4.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/concurrence.h:
+
+/usr/x86_64-w64-mingw32/include/assimp/vector3.inl:
+
+/usr/x86_64-w64-mingw32/include/asio/packaged_task.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/ctype_base.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/hashtable_policy.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_uint4.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/buffer_sequence_adapter.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/material.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/string_conversions.h:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/compute_vector_decl.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_iterator_base_types.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/impl/buffer_sequence_adapter.ipp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x4_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/matrix3x3.h:
+
+/usr/x86_64-w64-mingw32/include/asio/uses_executor.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/compose.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/nested_exception.h:
+
+/usr/x86_64-w64-mingw32/include/assimp/light.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/hashtable.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/rtmintrin.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/functional:
+
+/usr/x86_64-w64-mingw32/include/assimp/vector3.h:
+
+/usr/x86_64-w64-mingw32/include/asio/traits/equality_comparable.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/associated_allocator.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/camera.h:
+
+/home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.h:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/address_v4_range.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/legendre_function.tcc:
+
+/usr/x86_64-w64-mingw32/include/corecrt_wstdlib.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/cstdint.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/streambuf.tcc:
+
+/usr/x86_64-w64-mingw32/include/winapifamily.h:
+
+/usr/x86_64-w64-mingw32/include/asio/deferred.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/matrix4x4.inl:
+
+/usr/x86_64-w64-mingw32/include/glm/glm.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/func_integer.inl:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.inl:
+
+/usr/x86_64-w64-mingw32/include/glm/mat2x2.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/deque:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512fintrin.h:
+
+/usr/x86_64-w64-mingw32/include/assimp/types.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstddef:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_operation.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h:
 
 /usr/x86_64-w64-mingw32/include/asio/completion_condition.hpp:
 
@@ -4157,21 +4239,55 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x4.hpp:
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x3.inl:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512ifmavlintrin.h:
+/usr/x86_64-w64-mingw32/include/assimp/quaternion.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/impl/win_iocp_file_service.ipp:
+/usr/x86_64-w64-mingw32/include/glm/detail/_vectorize.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/istream.tcc:
+/usr/x86_64-w64-mingw32/include/mswsock.h:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h:
+/usr/x86_64-w64-mingw32/include/concurrencysal.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/glue_algorithm_defs.h:
+/usr/x86_64-w64-mingw32/include/asio/basic_deadline_timer.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/math.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xopintrin.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/allocated_ptr.h:
+
+/usr/x86_64-w64-mingw32/include/asio/read.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/timer_queue_set.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_float2_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/pstl_config.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/concept_check.h:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x4.inl:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/limits:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/clocale:
+
+/home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.cpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/handler_type_requirements.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_double1.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/type_traits.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_int2_sized.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_wait_op.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/string_view.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/glue_algorithm_defs.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/requires_hosted.h:
 
@@ -4179,51 +4295,57 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/basic_ios.h:
 
-/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/glad/gl.h:
+/usr/x86_64-w64-mingw32/include/asio/detail/timer_queue_ptime.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/ell_integral.tcc:
+/usr/x86_64-w64-mingw32/include/asio/detail/buffer_resize_guard.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/aligned_buffer.h:
+/usr/x86_64-w64-mingw32/include/GLFW/glfw3.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/algorithmfwd.h:
+/usr/x86_64-w64-mingw32/include/_mingw_off_t.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ostream:
+/usr/x86_64-w64-mingw32/include/assimp/metadata.h:
 
-/usr/x86_64-w64-mingw32/include/asio/local/detail/impl/endpoint.ipp:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/float.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/type_traits.h:
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x3.inl:
 
-/usr/x86_64-w64-mingw32/include/asio/associated_executor.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/codecvt.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/timer_scheduler.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_map.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/exception_ptr.h:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/fmaintrin.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/win_fd_set_adapter.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/erase_if.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/fenced_block.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/functional_hash.h:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat2x3.inl:
+/usr/x86_64-w64-mingw32/include/asio/basic_socket_iostream.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/execution/prefer_only.hpp:
+/usr/x86_64-w64-mingw32/include/asio/associated_immediate_executor.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxtileintrin.h:
+/usr/x86_64-w64-mingw32/include/assimp/matrix4x4.h:
 
-/home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.h:
+/usr/x86_64-w64-mingw32/include/asio/file_base.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/thread.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/execution_defs.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/basic_file.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/exception_defines.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/cpp_type_traits.h:
+/usr/x86_64-w64-mingw32/include/glm/mat2x4.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x3.hpp:
+/usr/x86_64-w64-mingw32/include/asio/handler_continuation_hook.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/operation.hpp:
+/usr/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/string:
+/usr/x86_64-w64-mingw32/include/glm/detail/compute_vector_relational.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h:
+/usr/x86_64-w64-mingw32/include/assimp/texture.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x2_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/sstream:
+
+/usr/x86_64-w64-mingw32/include/assimp/material.inl:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_facets.tcc:
 
@@ -4237,12 +4359,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/range_access.h:
 
-/usr/x86_64-w64-mingw32/include/asio/error_code.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/associator.hpp:
-
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/chrono:
 
 /usr/x86_64-w64-mingw32/include/ctype.h:
@@ -4255,129 +4371,23 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/detail/type_mat2x2.hpp:
 
+/usr/x86_64-w64-mingw32/include/asio/traits/require_member.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/stdlib.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/alloc_traits.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/handler_cont_helpers.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstdint:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/chrono.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x2_precision.hpp:
+
 /usr/x86_64-w64-mingw32/include/timezoneapi.h:
 
 /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/KHR/khrplatform.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/gthr-default.h:
-
-/usr/x86_64-w64-mingw32/include/asio/generic/detail/impl/endpoint.ipp:
-
-/usr/x86_64-w64-mingw32/include/glm/gtc/quaternion.inl:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/new:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/wait_op.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pkuintrin.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/backward/binders.h:
-
-/usr/x86_64-w64-mingw32/include/asio/windows/stream_handle.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cctype:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x2_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/impl/address_v6.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ostream.tcc:
-
-/usr/x86_64-w64-mingw32/include/windows.h:
-
-/usr/x86_64-w64-mingw32/include/_mingw_stat64.h:
-
-/usr/x86_64-w64-mingw32/include/asio/windows/basic_stream_handle.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_geometric.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/posix_thread.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/functexcept.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cwchar:
-
-/usr/x86_64-w64-mingw32/include/assert.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/hash_bytes.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/invoke.h:
-
-/usr/x86_64-w64-mingw32/include/glm/mat3x4.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/impl/strand_service.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/move.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_construct.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/uintrintrin.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/functional:
-
-/usr/x86_64-w64-mingw32/include/asio/read_at.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x3.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/func_trigonometric.inl:
-
-/usr/x86_64-w64-mingw32/include/time.h:
-
-/usr/x86_64-w64-mingw32/include/winnt.h:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/cstddef.hpp:
-
-/usr/x86_64-w64-mingw32/include/_mingw_mac.h:
-
-/usr/x86_64-w64-mingw32/include/asio/execution/relationship.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/type_traits:
-
-/usr/x86_64-w64-mingw32/include/apisetcconv.h:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_vec4.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x4_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/charconv.h:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x4.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/address_v4_range.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/legendre_function.tcc:
-
-/usr/x86_64-w64-mingw32/include/corecrt_wstdlib.h:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/cstdint.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/streambuf.tcc:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x2_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/scoped_ptr.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float4x2_precision.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/shaintrin.h:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/func_packing.inl:
-
-/usr/x86_64-w64-mingw32/include/glm/mat3x2.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator_args.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/localefwd.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/std_abs.h:
 
 /usr/x86_64-w64-mingw32/include/_timeval.h:
 
@@ -4393,9 +4403,51 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_bool2_precision.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x2.hpp:
+/usr/x86_64-w64-mingw32/include/asio/append.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cmath:
+/usr/x86_64-w64-mingw32/include/assimp/scene.h:
+
+/usr/x86_64-w64-mingw32/include/asio/traits/query_free.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/serial_port.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cassert:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/memoryfwd.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/buffered_stream_storage.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/any_completion_executor.hpp:
+
+/home/chiefkat/Documents/vscodeprojects/basket/logic/game.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/atomic_lockfree_defines.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512cdintrin.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/gthr-default.h:
+
+/usr/x86_64-w64-mingw32/include/asio/generic/detail/impl/endpoint.ipp:
+
+/usr/x86_64-w64-mingw32/include/glm/gtc/quaternion.inl:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/new:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/wait_op.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pkuintrin.h:
+
+/usr/x86_64-w64-mingw32/include/ws2tcpip.h:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/address_v4.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/clflushoptintrin.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/deque.tcc:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/basic_resolver_query.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/mesh.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/climits:
 
@@ -4405,19 +4457,207 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_iterator_base_funcs.h:
 
-/usr/x86_64-w64-mingw32/include/asio/uses_executor.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_int4.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/compose.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1_precision.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/nested_exception.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/atomic_futex.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/fstream.tcc:
+
+/usr/x86_64-w64-mingw32/include/assimp/Importer.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/windows/basic_stream_handle.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_geometric.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/matrix3x3.inl:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsaveintrin.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h:
+
+/usr/x86_64-w64-mingw32/include/psdk_inc/_ip_types.h:
+
+/usr/x86_64-w64-mingw32/include/asio/traits/prefer_free.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/vaesintrin.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/cpu_defines.h:
+
+/usr/x86_64-w64-mingw32/include/sec_api/stdlib_s.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/utility:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uses_allocator.h:
+
+/usr/x86_64-w64-mingw32/include/asio/any_completion_handler.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/exception.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ios_base.h:
+
+/usr/x86_64-w64-mingw32/include/winnt.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/cstddef.hpp:
+
+/usr/x86_64-w64-mingw32/include/_mingw_mac.h:
+
+/usr/x86_64-w64-mingw32/include/asio/execution/relationship.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/type_traits:
+
+/usr/x86_64-w64-mingw32/include/apisetcconv.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/impl/strand_service.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/move.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_construct.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/atomic_base.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/cxxabi_forced.h:
+
+/usr/x86_64-w64-mingw32/include/asio/buffered_read_stream.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxint8intrin.h:
+
+/usr/x86_64-w64-mingw32/include/asio/as_tuple.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ptr_traits.h:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x3.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_quat.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsavecintrin.h:
+
+/usr/x86_64-w64-mingw32/include/assimp/MathFunctions.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ostream:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/algorithmfwd.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/operation.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/string:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h:
+
+/usr/x86_64-w64-mingw32/include/corecrt_startup.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stream_iterator.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/tbmintrin.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_iterator.h:
+
+/usr/x86_64-w64-mingw32/include/asio/impl/buffered_write_stream.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_relational.inl:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ios:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/char_traits.h:
+
+/usr/x86_64-w64-mingw32/include/asio/buffered_stream.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/geometric.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/error_code.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/thread.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/basic_file.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/cpp_type_traits.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/os_defines.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/timer_scheduler.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/exception_ptr.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/win_fd_set_adapter.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/fenced_block.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat2x3.inl:
+
+/usr/x86_64-w64-mingw32/include/asio/execution/prefer_only.hpp:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxtileintrin.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/uintrintrin.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_float3.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cerrno:
+
+/usr/x86_64-w64-mingw32/include/assimp/Compiler/pushpack1.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cwchar:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/posix_thread.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/functexcept.h:
+
+/usr/x86_64-w64-mingw32/include/assert.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/hash_bytes.h:
+
+/usr/x86_64-w64-mingw32/include/asio/recycling_allocator.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/impl/append.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/streambuf_iterator.h:
+
+/home/chiefkat/Documents/vscodeprojects/basket/logic/events.h:
+
+/usr/x86_64-w64-mingw32/include/basetsd.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.inl:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vpopcntdqvlintrin.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/impl/win_iocp_file_service.ipp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/istream.tcc:
+
+/usr/x86_64-w64-mingw32/include/windows.h:
+
+/usr/x86_64-w64-mingw32/include/_mingw_stat64.h:
+
+/usr/x86_64-w64-mingw32/include/asio/ip/impl/address_v6.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ostream.tcc:
+
+/usr/x86_64-w64-mingw32/include/assimp/postprocess.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/localefwd.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_serial_port_service.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/common.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_vec4.inl:
+
+/usr/x86_64-w64-mingw32/include/asio/multiple_exceptions.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_int1.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/std_abs.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/specfun.h:
-
-/usr/x86_64-w64-mingw32/include/glm/vec4.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/scalar_uint_sized.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/waitpkgintrin.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_function.h:
 
@@ -4429,9 +4669,21 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/scalar_constants.inl:
 
+/usr/x86_64-w64-mingw32/include/qos.h:
+
+/usr/x86_64-w64-mingw32/include/assimp/Compiler/poppack1.h:
+
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/atomic_word.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ostream_insert.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/iostream:
+
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x4.inl:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_socket_service.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x4_precision.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/traits/static_require_concept.hpp:
 
@@ -4440,18 +4692,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/asio/ip/address.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/gtc/epsilon.inl:
-
-/usr/x86_64-w64-mingw32/include/datetimeapi.h:
-
-/usr/x86_64-w64-mingw32/include/asio/any_io_executor.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/postypes.h:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat4x4.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vp2intersectintrin.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h:
 
 /usr/x86_64-w64-mingw32/include/securitybaseapi.h:
 
@@ -4465,17 +4705,9 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_float3_precision.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/execution/blocking_adaptation.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/fstream:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/uniform_int_dist.h:
-
-/usr/x86_64-w64-mingw32/include/asio/traits/prefer_member.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/execution_context.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x3.hpp:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avxneconvertintrin.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_algo.h:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/impl/win_iocp_serial_port_service.ipp:
 
@@ -4499,29 +4731,23 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/locale.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/select_reactor.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/array:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x4.hpp:
+/usr/x86_64-w64-mingw32/include/asio/ip/bad_address_cast.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512fp16vlintrin.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x2.hpp:
+
+/usr/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h:
+
+/usr/x86_64-w64-mingw32/include/imm.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512erintrin.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_pair.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ctime:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x3_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_classes.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/keylockerintrin.h:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/impl/win_object_handle_service.ipp:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_uninitialized.h:
-
-/usr/x86_64-w64-mingw32/include/glm/mat4x2.hpp:
-
-/usr/x86_64-w64-mingw32/include/corecrt_stdio_config.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/utility.h:
 
@@ -4531,17 +4757,9 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/rdseedintrin.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/impl/handler_tracking.ipp:
+/usr/x86_64-w64-mingw32/include/glm/mat4x2.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/type_quat.inl:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/compute_common.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/vector.tcc:
-
-/usr/x86_64-w64-mingw32/include/virtdisk.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/adxintrin.h:
+/usr/x86_64-w64-mingw32/include/corecrt_stdio_config.h:
 
 /usr/x86_64-w64-mingw32/include/glm/detail/type_vec2.inl:
 
@@ -4551,87 +4769,117 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_float2.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_null_buffers_op.hpp:
+/usr/x86_64-w64-mingw32/include/asio/detail/deadline_timer_service.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_map:
+/usr/x86_64-w64-mingw32/include/glm/detail/type_vec3.inl:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512bf16intrin.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/ip/impl/network_v6.ipp:
+/usr/x86_64-w64-mingw32/include/pthread.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstdlib:
+/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.hpp:
 
-/home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.cpp:
+/usr/x86_64-w64-mingw32/include/glm/detail/type_vec4.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/handler_type_requirements.hpp:
+/usr/x86_64-w64-mingw32/include/stralign.h:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_double1.hpp:
+/usr/x86_64-w64-mingw32/include/asio/windows/basic_object_handle.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/type_traits.hpp:
+/usr/x86_64-w64-mingw32/include/math.h:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_int2_sized.hpp:
+/usr/x86_64-w64-mingw32/include/glm/exponential.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/handler_continuation_hook.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_uint4_sized.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/compute_vector_relational.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/typeinfo:
 
-/usr/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/bmi2intrin.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/clocale:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.inl:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/compare:
+/usr/x86_64-w64-mingw32/include/asio/read_at.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/detail/compute_vector_decl.hpp:
+/usr/x86_64-w64-mingw32/include/glm/detail/func_trigonometric.inl:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/ext/string_conversions.h:
+/usr/x86_64-w64-mingw32/include/time.h:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_operation.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x3.hpp:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x3_precision.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cstddef:
+/usr/x86_64-w64-mingw32/include/asio/detail/select_reactor.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x2_precision.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x4.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/exception:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512fp16vlintrin.h:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/scalar_int_sized.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cmath:
 
-/usr/x86_64-w64-mingw32/include/asio/basic_random_access_file.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x2.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/impl/buffer_sequence_adapter.ipp:
+/usr/x86_64-w64-mingw32/include/glm/ext/scalar_uint_sized.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x4_precision.hpp:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/waitpkgintrin.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_iterator_base_types.h:
+/usr/x86_64-w64-mingw32/include/glm/vec4.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/traits/query_free.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x2_precision.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/serial_port.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cassert:
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_float4.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/memoryfwd.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x3.hpp:
 
-/usr/x86_64-w64-mingw32/include/asio/detail/buffered_stream_storage.hpp:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/ctime:
 
-/usr/x86_64-w64-mingw32/include/asio/any_completion_executor.hpp:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x3_precision.hpp:
 
-/home/chiefkat/Documents/vscodeprojects/basket/logic/game.h:
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_classes.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/atomic_lockfree_defines.h:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/keylockerintrin.h:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512cdintrin.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x4.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stream_iterator.h:
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512ifmavlintrin.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_iterator.h:
+/usr/x86_64-w64-mingw32/include/winnetwk.h:
 
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/tbmintrin.h:
+/usr/x86_64-w64-mingw32/include/asio/strand.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_algo.h:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double4x4_precision.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/fstream:
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x2_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/scoped_ptr.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float4x2_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/vector2.h:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/shaintrin.h:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/config.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x3.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x3_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/detail/impl/win_event.ipp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_int3_sized.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/charconv.h:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x4_precision.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float2x4.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/vector2.inl:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float3x2.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float3x2_precision.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_float3x3.hpp:
 
@@ -4642,10 +4890,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512bf16vlintrin.h:
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avxvnniint8intrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/impl/signal_set_service.ipp:
-
-/usr/x86_64-w64-mingw32/include/asio/awaitable.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_float3x4.hpp:
 
@@ -4669,6 +4913,8 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_float4x3_precision.hpp:
 
+/usr/x86_64-w64-mingw32/include/assimp/anim.h:
+
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_float4x4.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/ip/impl/address.hpp:
@@ -4679,34 +4925,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitxintrin.h:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_float4x4_precision.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/erase_if.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_map.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/fmaintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/append.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/glm.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/func_integer.inl:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.inl:
-
-/usr/x86_64-w64-mingw32/include/glm/mat2x2.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/deque:
-
-/usr/x86_64-w64-mingw32/include/ws2tcpip.h:
-
-/usr/x86_64-w64-mingw32/include/asio/ip/address_v4.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/deque.tcc:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/clflushoptintrin.h:
-
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/this_thread_sleep.h:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_transform.hpp:
@@ -4716,6 +4934,10 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/stdint.h:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_float.hpp:
+
+/usr/x86_64-w64-mingw32/include/asio/basic_serial_port.hpp:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.inl:
 
 /usr/x86_64-w64-mingw32/include/pshpack1.h:
 
@@ -4730,12 +4952,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /home/chiefkat/Documents/vscodeprojects/basket/logic/events.cpp:
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/clwbintrin.h:
-
-/usr/x86_64-w64-mingw32/include/basetsd.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vpopcntdqvlintrin.h:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.inl:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/resolve_query_op.hpp:
 
@@ -4783,12 +4999,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_double2.hpp:
 
-/usr/x86_64-w64-mingw32/include/vadefs.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/lzcntintrin.h:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_double2_precision.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/ip/network_v6.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_handle_read_op.hpp:
@@ -4809,6 +5019,12 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/f16cintrin.h:
 
+/usr/x86_64-w64-mingw32/include/apiset.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/system_error:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_float1.hpp:
+
 /usr/x86_64-w64-mingw32/include/glm/gtc/vec1.hpp:
 
 /usr/x86_64-w64-mingw32/include/asio/bind_cancellation_slot.hpp:
@@ -4821,7 +5037,17 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_int1_sized.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_int4.hpp:
+/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x2.inl:
+
+/usr/x86_64-w64-mingw32/include/crtdefs.h:
+
+/usr/x86_64-w64-mingw32/include/glm/vector_relational.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/stdexcept:
+
+/usr/x86_64-w64-mingw32/include/glm/ext/vector_int2.hpp:
+
+/usr/x86_64-w64-mingw32/include/assimp/aabb.h:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_int4_sized.hpp:
 
@@ -4845,21 +5071,15 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/glm/ext/vector_uint3.hpp:
 
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_uint4.hpp:
+/usr/x86_64-w64-mingw32/include/asio/basic_writable_pipe.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/system_error:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_float1.hpp:
-
-/usr/x86_64-w64-mingw32/include/apiset.h:
+/usr/x86_64-w64-mingw32/include/glm/gtc/constants.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/gtc/constants.inl:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_bvector.h:
 
 /usr/x86_64-w64-mingw32/include/glm/gtc/epsilon.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_file.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_relational.inl:
 
@@ -4897,9 +5117,9 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/asio/thread.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_facets.h:
-
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/basic_string.h:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/locale_facets.h:
 
 /usr/x86_64-w64-mingw32/include/glm/packing.hpp:
 
@@ -4908,16 +5128,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/glm/detail/type_vec2.hpp:
 
 /usr/x86_64-w64-mingw32/include/glm/trigonometric.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/detail/type_mat3x2.inl:
-
-/usr/x86_64-w64-mingw32/include/crtdefs.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/stdexcept:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/vector_int2.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/vector_relational.hpp:
 
 /usr/x86_64-w64-mingw32/include/limits.h:
 
@@ -4930,10 +5140,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/asio/execution/occupancy.hpp:
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/cmpccxaddintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/local_free_on_block_exit.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_raw_socket.hpp:
 
 /usr/x86_64-w64-mingw32/include/pthread_signal.h:
 
@@ -4961,9 +5167,9 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/x86_64-w64-mingw32/include/asio/detail/win_iocp_file_service.hpp:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/cfloat:
-
 /usr/x86_64-w64-mingw32/include/asio/basic_socket.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/cfloat:
 
 /usr/x86_64-w64-mingw32/include/stddef.h:
 
@@ -5003,27 +5209,21 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.cpp:
 
-/usr/x86_64-w64-mingw32/include/asio/basic_socket_iostream.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/associated_immediate_executor.hpp:
-
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_double3x3.hpp:
 
 /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.h:
 
 /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_deque.h:
 
-/usr/x86_64-w64-mingw32/include/mswsock.h:
-
-/usr/x86_64-w64-mingw32/include/concurrencysal.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xopintrin.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/math.h:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_deadline_timer.hpp:
-
 /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.h:
+
+/usr/x86_64-w64-mingw32/include/asio/bind_executor.hpp:
+
+/usr/x86_64-w64-mingw32/include/c++/13.1.0/string_view:
+
+/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/fxsrintrin.h:
+
+/home/chiefkat/Documents/vscodeprojects/basket/logic/world.h:
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/limits.h:
 
@@ -5131,8 +5331,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/immintrin.h:
 
-/usr/x86_64-w64-mingw32/include/asio/associated_cancellation_slot.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/ip/impl/address_v6.ipp:
 
 /usr/x86_64-w64-mingw32/include/asio/detail/array.hpp:
@@ -5163,14 +5361,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/raointintrin.h:
 
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/hashtable.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/rtmintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/traits/equality_comparable.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/associated_allocator.hpp:
-
 /usr/x86_64-w64-mingw32/include/glm/ext/matrix_double2x2.hpp:
 
 /usr/x86_64-w64-mingw32/include/malloc.h:
@@ -5191,8 +5381,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/vpclmulqdqintrin.h:
 
-/usr/x86_64-w64-mingw32/include/asio/basic_stream_socket.hpp:
-
 /usr/x86_64-w64-mingw32/include/asio/execution/any_executor.hpp:
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/wbnoinvdintrin.h:
@@ -5204,8 +5392,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/in6addr.h:
 
 /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/x86intrin.h:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xsaveintrin.h:
 
 /usr/x86_64-w64-mingw32/include/wingdi.h:
 
@@ -5224,55 +5410,3 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeproj
 /usr/x86_64-w64-mingw32/include/windef.h:
 
 /usr/x86_64-w64-mingw32/include/_mingw_unicode.h:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/exception.h:
-
-/usr/x86_64-w64-mingw32/include/asio/any_completion_handler.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/ptr_traits.h:
-
-/usr/x86_64-w64-mingw32/include/asio/as_tuple.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/detail/array_fwd.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/async_result.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/windows/overlapped_handle.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/tr1/exp_integral.tcc:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_readable_pipe.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.inl:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_serial_port.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++allocator.h:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_signal_set.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_socket_acceptor.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_socket_streambuf.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_stream_file.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_waitable_timer.hpp:
-
-/usr/x86_64-w64-mingw32/include/glm/gtc/constants.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/basic_writable_pipe.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/bind_allocator.hpp:
-
-/usr/x86_64-w64-mingw32/include/c++/13.1.0/string_view:
-
-/usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/fxsrintrin.h:
-
-/usr/x86_64-w64-mingw32/include/asio/bind_executor.hpp:
-
-/usr/x86_64-w64-mingw32/include/winnls.h:
-
-/usr/x86_64-w64-mingw32/include/asio/bind_immediate_executor.hpp:
-
-/usr/x86_64-w64-mingw32/include/asio/buffer.hpp:

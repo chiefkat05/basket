@@ -1,5 +1,6 @@
 CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp \
+ /home/chiefkat/Documents/vscodeprojects/basket/logic/world.h \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/graphics.h \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/shader.h \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/fstream \
@@ -335,6 +336,93 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/../nms/glad/include/glad/gl.h \
  /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/KHR/khrplatform.h \
  /usr/x86_64-w64-mingw32/include/GLFW/glfw3.h \
+ /usr/x86_64-w64-mingw32/include/assimp/aabb.h \
+ /usr/x86_64-w64-mingw32/include/assimp/vector3.h \
+ /usr/x86_64-w64-mingw32/include/assimp/defs.h \
+ /usr/x86_64-w64-mingw32/include/assimp/config.h \
+ /usr/x86_64-w64-mingw32/include/assimp/Importer.hpp \
+ /usr/x86_64-w64-mingw32/include/assimp/types.h \
+ /usr/x86_64-w64-mingw32/include/string.h \
+ /usr/x86_64-w64-mingw32/include/sec_api/string_s.h \
+ /usr/x86_64-w64-mingw32/include/assimp/vector2.h \
+ /usr/x86_64-w64-mingw32/include/assimp/color4.h \
+ /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.h \
+ /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.h \
+ /usr/x86_64-w64-mingw32/include/assimp/quaternion.h \
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/cstring \
+ /usr/x86_64-w64-mingw32/include/assimp/vector2.inl \
+ /usr/x86_64-w64-mingw32/include/assimp/vector3.inl \
+ /usr/x86_64-w64-mingw32/include/assimp/color4.inl \
+ /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.inl \
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/algorithm \
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/glue_algorithm_defs.h \
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/execution_defs.h \
+ /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.inl \
+ /usr/x86_64-w64-mingw32/include/assimp/MathFunctions.h \
+ /usr/x86_64-w64-mingw32/include/assimp/quaternion.inl \
+ /usr/x86_64-w64-mingw32/include/assimp/scene.h \
+ /usr/x86_64-w64-mingw32/include/assimp/texture.h \
+ /usr/x86_64-w64-mingw32/include/assimp/Compiler/pushpack1.h \
+ /usr/x86_64-w64-mingw32/include/assimp/Compiler/poppack1.h \
+ /usr/x86_64-w64-mingw32/include/assimp/mesh.h \
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_set \
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_set.h \
+ /usr/x86_64-w64-mingw32/include/assimp/light.h \
+ /usr/x86_64-w64-mingw32/include/assimp/camera.h \
+ /usr/x86_64-w64-mingw32/include/assimp/material.h \
+ /usr/x86_64-w64-mingw32/include/assimp/material.inl \
+ /usr/x86_64-w64-mingw32/include/assimp/anim.h \
+ /usr/x86_64-w64-mingw32/include/assimp/metadata.h \
+ /usr/x86_64-w64-mingw32/include/assimp/postprocess.h \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/matrix_transform.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/constants.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/scalar_constants.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/scalar_constants.inl \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/constants.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/matrix_transform.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/matrix_transform.inl \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/matrix_transform.inl \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/type_ptr.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/quaternion.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_relational.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_relational.inl \
+ /usr/x86_64-w64-mingw32/include/glm/detail/type_float.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_common.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_geometric.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_geometric.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_common.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_float.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/detail/type_quat.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_relational.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_relational.inl \
+ /usr/x86_64-w64-mingw32/include/glm/detail/type_quat.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_float_precision.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_double.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_double_precision.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.inl \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.inl \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/quaternion.inl \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/epsilon.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/detail/setup.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/epsilon.inl \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/vec1.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1_precision.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_float1.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_float1_precision.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_double1.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_double1_precision.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_int1.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_int1_sized.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_uint1.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/ext/vector_uint1_sized.hpp \
+ /usr/x86_64-w64-mingw32/include/glm/gtc/type_ptr.inl \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/events.h \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/deque \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_deque.h \
@@ -379,7 +467,6 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/shared_ptr_atomic.h \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/backward/auto_ptr.h \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/glue_memory_defs.h \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/execution_defs.h \
  /usr/x86_64-w64-mingw32/include/asio/detail/cstdint.hpp \
  /usr/x86_64-w64-mingw32/include/asio/detail/throw_exception.hpp \
  /usr/x86_64-w64-mingw32/include/asio/detail/noncopyable.hpp \
@@ -408,8 +495,6 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /usr/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h \
  /usr/x86_64-w64-mingw32/include/basetsd.h \
  /usr/x86_64-w64-mingw32/include/guiddef.h \
- /usr/x86_64-w64-mingw32/include/string.h \
- /usr/x86_64-w64-mingw32/include/sec_api/string_s.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/x86intrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/x86gprintrin.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13.1.0/include/ia32intrin.h \
@@ -638,7 +723,6 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /usr/x86_64-w64-mingw32/include/asio/impl/any_completion_executor.ipp \
  /usr/x86_64-w64-mingw32/include/asio/any_completion_executor.hpp \
  /usr/x86_64-w64-mingw32/include/asio/any_completion_handler.hpp \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/cstring \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/utility \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_relops.h \
  /usr/x86_64-w64-mingw32/include/asio/any_io_executor.hpp \
@@ -835,8 +919,6 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /usr/x86_64-w64-mingw32/include/asio/basic_stream_file.hpp \
  /usr/x86_64-w64-mingw32/include/asio/basic_stream_socket.hpp \
  /usr/x86_64-w64-mingw32/include/asio/basic_streambuf.hpp \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/algorithm \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/pstl/glue_algorithm_defs.h \
  /usr/x86_64-w64-mingw32/include/asio/basic_streambuf_fwd.hpp \
  /usr/x86_64-w64-mingw32/include/asio/basic_waitable_timer.hpp \
  /usr/x86_64-w64-mingw32/include/asio/basic_writable_pipe.hpp \
@@ -1127,53 +1209,4 @@ CMakeFiles/engine.dir/logic/game.cpp.obj: \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/this_thread_sleep.h \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.h \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/game.h \
- /usr/x86_64-w64-mingw32/include/glm/gtc/matrix_transform.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.hpp \
- /usr/x86_64-w64-mingw32/include/glm/gtc/constants.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/scalar_constants.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/scalar_constants.inl \
- /usr/x86_64-w64-mingw32/include/glm/gtc/constants.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/matrix_clip_space.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/matrix_transform.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/matrix_transform.inl \
- /usr/x86_64-w64-mingw32/include/glm/gtc/matrix_transform.inl \
- /usr/x86_64-w64-mingw32/include/glm/gtc/type_ptr.hpp \
- /usr/x86_64-w64-mingw32/include/glm/gtc/quaternion.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_relational.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_relational.inl \
- /usr/x86_64-w64-mingw32/include/glm/detail/type_float.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_common.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_geometric.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_geometric.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_common.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_float.hpp \
- /usr/x86_64-w64-mingw32/include/glm/detail/type_quat.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_relational.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_relational.inl \
- /usr/x86_64-w64-mingw32/include/glm/detail/type_quat.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_float_precision.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_double.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_double_precision.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_trigonometric.inl \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/quaternion_transform.inl \
- /usr/x86_64-w64-mingw32/include/glm/gtc/quaternion.inl \
- /usr/x86_64-w64-mingw32/include/glm/gtc/epsilon.hpp \
- /usr/x86_64-w64-mingw32/include/glm/detail/setup.hpp \
- /usr/x86_64-w64-mingw32/include/glm/gtc/epsilon.inl \
- /usr/x86_64-w64-mingw32/include/glm/gtc/vec1.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_bool1_precision.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_float1.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_float1_precision.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_double1.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_double1_precision.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_int1.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_int1_sized.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_uint1.hpp \
- /usr/x86_64-w64-mingw32/include/glm/ext/vector_uint1_sized.hpp \
- /usr/x86_64-w64-mingw32/include/glm/gtc/type_ptr.inl \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/../nms/stb_image.h

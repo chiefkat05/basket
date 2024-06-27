@@ -5,14 +5,18 @@ include_directories("${CMAKE_SOURCE_DIR}/nms/glad/include/")
 
 add_executable(engine main.cpp multiplayer.cpp "${CMAKE_SOURCE_DIR}/logic/game.cpp" "${CMAKE_SOURCE_DIR}/gfx/graphics.cpp" "${CMAKE_SOURCE_DIR}/logic/events.cpp" "${CMAKE_SOURCE_DIR}/logic/collision.cpp" "${CMAKE_SOURCE_DIR}/gfx/shader.cpp" "${CMAKE_SOURCE_DIR}/nms/glad/src/gl.c")
 
-set(CMAKE_CXX_FLAGS "-O1 -Wall")
+set(CMAKE_CXX_FLAGS "-O1 -Wall -I${CMAKE_SOURCE_DIR}/gfx/backpack/")
+
+link_libraries("${CMAKE_SOURCE_DIR}/lib/*.dll")
 
 if (WIN32)
     set(CMAKE_CXX_FLAGS "--static -O1 -Wall")
 endif()
 
-target_link_libraries(engine glfw3)
+if (UNIX)
+    target_link_libraries(engine glfw3 assimp zlibstatic minizip)
+endif()
 
 if(WIN32)
-    target_link_libraries(engine gdi32 opengl32 dl ws2_32 wsock32)
+    target_link_libraries(engine glfw3 assimp zlibstatic minizip gdi32 opengl32 dl ws2_32 wsock32)
 endif()
