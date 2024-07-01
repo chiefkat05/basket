@@ -249,6 +249,30 @@ logic/game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/logic/game.cpp.s
 .PHONY : logic/game.cpp.s
 
+logic/world.obj: logic/world.cpp.obj
+.PHONY : logic/world.obj
+
+# target to build an object file
+logic/world.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/logic/world.cpp.obj
+.PHONY : logic/world.cpp.obj
+
+logic/world.i: logic/world.cpp.i
+.PHONY : logic/world.i
+
+# target to preprocess a source file
+logic/world.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/logic/world.cpp.i
+.PHONY : logic/world.cpp.i
+
+logic/world.s: logic/world.cpp.s
+.PHONY : logic/world.s
+
+# target to generate assembly for a file
+logic/world.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/engine.dir/build.make CMakeFiles/engine.dir/logic/world.cpp.s
+.PHONY : logic/world.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -345,6 +369,9 @@ help:
 	@echo "... logic/game.obj"
 	@echo "... logic/game.i"
 	@echo "... logic/game.s"
+	@echo "... logic/world.obj"
+	@echo "... logic/world.i"
+	@echo "... logic/world.s"
 	@echo "... main.obj"
 	@echo "... main.i"
 	@echo "... main.s"

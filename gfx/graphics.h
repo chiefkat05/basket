@@ -120,8 +120,9 @@ namespace gfx
 
         std::string fullPath;
 
-    private:
         std::vector<mesh> meshes;
+
+    private:
         std::string directory;
         std::vector<texture> loaded_textures;
 

@@ -348,6 +348,10 @@ client::~client()
 void client::Update(double delta_time)
 {
 }
+// bool client::queueEmpty()
+// {
+//     return msgIn_.empty();
+// }
 
 bool client::Connect(const std::string &host, const std::string port)
 {
@@ -371,23 +375,30 @@ bool client::Connect(const std::string &host, const std::string port)
     return true;
 }
 
-void client::UpdatePosition(glm::vec3 position, glm::vec3 rotation)
+void client::UpdatePlayer(glm::vec3 position, glm::vec3 rotation)
 {
     message msg;
     msg.header.id = 1;
 
-    // msg << x;
     msg << position << rotation;
 
     connection_->Send(msg);
 }
-void client::Annoy()
+void client::UpdateObject(unsigned int ID, glm::vec3 position, glm::vec3 rotation)
 {
     message msg;
-    msg.header.id = 4;
+    msg.header.id = 2;
 
-    float thing = 0.4f;
-    msg << thing << thing << thing;
+    msg << rotation << position << ID;
+
+    connection_->Send(msg);
+}
+void client::CancelObjectUpdates(unsigned int ID)
+{
+    message msg;
+    msg.header.id = 20;
+
+    msg << ID;
 
     connection_->Send(msg);
 }
@@ -500,7 +511,7 @@ void server::MessageClient(std::shared_ptr<connection> client, const message &ms
 
     client->Send(msg);
 }
-void server::MessageAllClients(const message &msg, std::shared_ptr<connection> cIgnore)
+void server::MessageAllClients(const message &msg, std::shared_ptr<connection> cIgnore, std::shared_ptr<connection> cIgnore2)
 {
     for (auto &client : connections_)
     {
@@ -511,7 +522,7 @@ void server::MessageAllClients(const message &msg, std::shared_ptr<connection> c
             continue;
         }
 
-        if (client == cIgnore)
+        if (client == cIgnore || client == cIgnore2)
             continue;
 
         client->Send(msg);
@@ -529,7 +540,7 @@ bool server::OnClientConnect(std::shared_ptr<connection> client)
 void server::OnClientDisconnect(std::shared_ptr<connection> client)
 {
 }
-void server::OnMessage(std::shared_ptr<connection> client, message &msg)
+void server::OnMessage(std::shared_ptr<connection> client, message &msg, world &level)
 {
     if (msg.header.id == 0)
     {
@@ -542,19 +553,8 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg)
         // newMsg << stupid << stupid << stupid;
         // MessageAllClients(newMsg);
     }
-    // if (msg.header.id == 4)
-    // {
-    //     std::cout << "weofihwefosdidjc\n"
-    //               << std::endl;
-    //     message newMsg;
-    //     newMsg.header.id = 0;
-    //     unsigned int stupid = 32929292;
-    //     newMsg << stupid << stupid << stupid;
-    //     MessageAllClients(newMsg);
-    // }
     if (msg.header.id == 1)
     {
-        // std::cout << "msg recieved " << msg.body.size() << "\n";
         message newMsg;
         newMsg.header.id = 1;
         glm::vec3 pos, rot;
@@ -565,30 +565,68 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg)
         newMsg << pos << rot << client->GetID();
 
         MessageAllClients(newMsg, client);
-        // MessageAllClients(newMsg);
     }
     if (msg.header.id == 2)
     {
-        message newMsg;
-        newMsg.header.id = 2;
-        float xD = 0.0f;
-        // float yD = 0.0f;
-        // float zD = 0.0f;
+        message_header temp;
+        msg >> temp;
+        unsigned int ID;
+        msg >> ID;
 
-        message_header msgtempheader;
-        msg >> msgtempheader;
-        // msg >> zD >> yD >> xD;
-        // newMsg << xD << yD << zD << client->GetID();
-        msg >> xD;
-        newMsg << xD << client->GetID();
+        msg >> level.objects[ID].position >> level.objects[ID].rotation;
 
-        MessageAllClients(newMsg, client);
+        int tID = 0;
+        for (unsigned int i = 0; i < connections_.size(); ++i)
+        {
+            if (connections_.at(i) == client)
+                tID = i;
+        }
+        level.objects[ID].beingHeld = tID;
+
+        // message newMsg;
+        // newMsg.header.id = 2;
+        // newMsg << level.objects[ID].beingHeld << level.objects[ID].rotation << level.objects[ID].position << ID;
+        // MessageClient(connections_.front(), newMsg);
+    }
+    if (msg.header.id == 20)
+    {
+        message_header temp;
+        msg >> temp;
+        unsigned int ID;
+        msg >> ID;
+
+        level.objects[ID].beingHeld = -1;
+
+        // message newMsg;
+        // newMsg.header.id = 2;
+        // newMsg << level.objects[ID].beingHeld << level.objects[ID].rotation << level.objects[ID].position << ID;
+        // MessageClient(connections_.front(), newMsg);
     }
 }
 
-void server::Update(size_t messageLimit, bool &doSomething, double delta_time)
+void server::Update(size_t messageLimit, bool &doSomething, double delta_time, world &level, float &msgUpdate)
 {
-    msgIn_.wait(doSomething);
+    bool what = msgIn_.empty();
+    // msgIn_.wait(doSomething);
+    if (msgUpdate < 0.0f)
+    {
+        for (unsigned int i = 0; i < level.objects.size(); ++i)
+        {
+            if (level.objects[i].beingHeld != -1)
+                std::cout << "object " << i << " is being held by " << level.objects[i].beingHeld << "\n";
+            if (!level.objects[i].obtainable || level.objects[i].position == level.objects[i].prevPosition)
+                continue;
+
+            message msg;
+            msg.header.id = 2;
+            msg << level.objects[i].beingHeld << level.objects[i].rotation << level.objects[i].position << i;
+
+            if (level.objects[i].beingHeld < 1)
+                MessageAllClients(msg, connections_.front());
+            else
+                MessageAllClients(msg, connections_.at(level.objects[i].beingHeld), connections_.front());
+        }
+    }
 
     size_t messageCount = 0;
 
@@ -596,7 +634,7 @@ void server::Update(size_t messageLimit, bool &doSomething, double delta_time)
     {
         auto msg = msgIn_.pop_front();
 
-        OnMessage(msg.remote, msg.msg);
+        OnMessage(msg.remote, msg.msg, level);
 
         ++messageCount;
     }

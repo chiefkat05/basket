@@ -56,19 +56,19 @@ build CMakeFiles/engine.dir/main.cpp.o: CXX_COMPILER__engine_unscanned_Debug /ho
   OBJECT_DIR = CMakeFiles/engine.dir
   OBJECT_FILE_DIR = CMakeFiles/engine.dir
 
-build CMakeFiles/engine.dir/multiplayer.cpp.o: CXX_COMPILER__engine_unscanned_Debug /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp || cmake_object_order_depends_target_engine
-  DEP_FILE = CMakeFiles/engine.dir/multiplayer.cpp.o.d
-  FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g
-  INCLUDES = -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include
-  OBJECT_DIR = CMakeFiles/engine.dir
-  OBJECT_FILE_DIR = CMakeFiles/engine.dir
-
 build CMakeFiles/engine.dir/logic/game.cpp.o: CXX_COMPILER__engine_unscanned_Debug /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp || cmake_object_order_depends_target_engine
   DEP_FILE = CMakeFiles/engine.dir/logic/game.cpp.o.d
   FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g
   INCLUDES = -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include
   OBJECT_DIR = CMakeFiles/engine.dir
   OBJECT_FILE_DIR = CMakeFiles/engine.dir/logic
+
+build CMakeFiles/engine.dir/multiplayer.cpp.o: CXX_COMPILER__engine_unscanned_Debug /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp || cmake_object_order_depends_target_engine
+  DEP_FILE = CMakeFiles/engine.dir/multiplayer.cpp.o.d
+  FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g
+  INCLUDES = -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include
+  OBJECT_DIR = CMakeFiles/engine.dir
+  OBJECT_FILE_DIR = CMakeFiles/engine.dir
 
 build CMakeFiles/engine.dir/gfx/graphics.cpp.o: CXX_COMPILER__engine_unscanned_Debug /home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.cpp || cmake_object_order_depends_target_engine
   DEP_FILE = CMakeFiles/engine.dir/gfx/graphics.cpp.o.d
@@ -79,6 +79,13 @@ build CMakeFiles/engine.dir/gfx/graphics.cpp.o: CXX_COMPILER__engine_unscanned_D
 
 build CMakeFiles/engine.dir/logic/events.cpp.o: CXX_COMPILER__engine_unscanned_Debug /home/chiefkat/Documents/vscodeprojects/basket/logic/events.cpp || cmake_object_order_depends_target_engine
   DEP_FILE = CMakeFiles/engine.dir/logic/events.cpp.o.d
+  FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g
+  INCLUDES = -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include
+  OBJECT_DIR = CMakeFiles/engine.dir
+  OBJECT_FILE_DIR = CMakeFiles/engine.dir/logic
+
+build CMakeFiles/engine.dir/logic/world.cpp.o: CXX_COMPILER__engine_unscanned_Debug /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp || cmake_object_order_depends_target_engine
+  DEP_FILE = CMakeFiles/engine.dir/logic/world.cpp.o.d
   FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g
   INCLUDES = -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include
   OBJECT_DIR = CMakeFiles/engine.dir
@@ -113,7 +120,7 @@ build CMakeFiles/engine.dir/nms/glad/src/gl.c.o: C_COMPILER__engine_unscanned_De
 #############################################
 # Link the executable engine
 
-build engine: CXX_EXECUTABLE_LINKER__engine_Debug CMakeFiles/engine.dir/main.cpp.o CMakeFiles/engine.dir/multiplayer.cpp.o CMakeFiles/engine.dir/logic/game.cpp.o CMakeFiles/engine.dir/gfx/graphics.cpp.o CMakeFiles/engine.dir/logic/events.cpp.o CMakeFiles/engine.dir/logic/collision.cpp.o CMakeFiles/engine.dir/gfx/shader.cpp.o CMakeFiles/engine.dir/nms/glad/src/gl.c.o
+build engine: CXX_EXECUTABLE_LINKER__engine_Debug CMakeFiles/engine.dir/main.cpp.o CMakeFiles/engine.dir/logic/game.cpp.o CMakeFiles/engine.dir/multiplayer.cpp.o CMakeFiles/engine.dir/gfx/graphics.cpp.o CMakeFiles/engine.dir/logic/events.cpp.o CMakeFiles/engine.dir/logic/world.cpp.o CMakeFiles/engine.dir/logic/collision.cpp.o CMakeFiles/engine.dir/gfx/shader.cpp.o CMakeFiles/engine.dir/nms/glad/src/gl.c.o
   FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g
   LINK_LIBRARIES = -lglfw3  -lassimp  -lzlibstatic  -lminizip
   OBJECT_DIR = CMakeFiles/engine.dir

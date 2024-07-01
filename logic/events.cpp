@@ -34,7 +34,7 @@ int event_handler::requestKeyState(int key)
     if (keyStates.empty())
         return 0;
 
-    for (int i = 0; i < keyStates.size(); ++i)
+    for (unsigned int i = 0; i < keyStates.size(); ++i)
     {
         if (keyStates[i] == key + 10000)
         {
@@ -53,7 +53,7 @@ int event_handler::requestKeyState(int key)
 void event_handler::key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
     int droppedKeyIndex = -1;
-    for (int i = 0; i < keyStates.size(); ++i)
+    for (unsigned int i = 0; i < keyStates.size(); ++i)
     {
         if (keyStates[i] == key + 10000)
         {
@@ -72,7 +72,7 @@ void event_handler::key_callback(GLFWwindow *window, int key, int scancode, int 
         return;
     }
 
-    for (int i = droppedKeyIndex; i < keyStates.size() - 1; ++i)
+    for (unsigned int i = droppedKeyIndex; i < keyStates.size() - 1; ++i)
     {
         keyStates[i] = keyStates[i + 1];
     }

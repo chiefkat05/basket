@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/engine.dir/logic/events.cpp.obj.d"
   "CMakeFiles/engine.dir/logic/game.cpp.obj"
   "CMakeFiles/engine.dir/logic/game.cpp.obj.d"
+  "CMakeFiles/engine.dir/logic/world.cpp.obj"
+  "CMakeFiles/engine.dir/logic/world.cpp.obj.d"
   "CMakeFiles/engine.dir/main.cpp.obj"
   "CMakeFiles/engine.dir/main.cpp.obj.d"
   "CMakeFiles/engine.dir/multiplayer.cpp.obj"

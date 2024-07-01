@@ -56,6 +56,9 @@ uniform PointLight pLights[pointLightCount];
 uniform SpotLight sLights[spotLightCount];
 
 uniform vec3 viewPos;
+uniform vec3 colorMultiple;
+uniform float near;
+uniform float far;
 
 in vec2 TexCoords;
 in vec3 fragmentPosition;
@@ -147,5 +150,9 @@ void main()
     // result = (((diffuse + specular) * intensity) + ambient + emission) * attenuation;
     // result += vec3(texture(material.emission, TexCoords));
 
-    gl_FragColor = vec4(result, 1.0);
+    float ndc = gl_FragCoord.z * 2.0 - 1.0;
+    float linearDepth = (2.0 * near * far) / (far + near - ndc * (far - near));
+    float fog = (1.0 - (linearDepth / far) * 0.1);
+    
+    gl_FragColor = vec4(result * colorMultiple * fog, 1.0);
 };

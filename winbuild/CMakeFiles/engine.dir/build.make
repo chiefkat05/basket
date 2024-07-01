@@ -84,26 +84,11 @@ CMakeFiles/engine.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/main.cpp.s"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chiefkat/Documents/vscodeprojects/basket/main.cpp -o CMakeFiles/engine.dir/main.cpp.s
 
-CMakeFiles/engine.dir/multiplayer.cpp.obj: CMakeFiles/engine.dir/flags.make
-CMakeFiles/engine.dir/multiplayer.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
-CMakeFiles/engine.dir/multiplayer.cpp.obj: /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp
-CMakeFiles/engine.dir/multiplayer.cpp.obj: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/engine.dir/multiplayer.cpp.obj"
-	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/multiplayer.cpp.obj -MF CMakeFiles/engine.dir/multiplayer.cpp.obj.d -o CMakeFiles/engine.dir/multiplayer.cpp.obj -c /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp
-
-CMakeFiles/engine.dir/multiplayer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/multiplayer.cpp.i"
-	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp > CMakeFiles/engine.dir/multiplayer.cpp.i
-
-CMakeFiles/engine.dir/multiplayer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/multiplayer.cpp.s"
-	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp -o CMakeFiles/engine.dir/multiplayer.cpp.s
-
 CMakeFiles/engine.dir/logic/game.cpp.obj: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/logic/game.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
 CMakeFiles/engine.dir/logic/game.cpp.obj: /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp
 CMakeFiles/engine.dir/logic/game.cpp.obj: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/engine.dir/logic/game.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/engine.dir/logic/game.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/logic/game.cpp.obj -MF CMakeFiles/engine.dir/logic/game.cpp.obj.d -o CMakeFiles/engine.dir/logic/game.cpp.obj -c /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp
 
 CMakeFiles/engine.dir/logic/game.cpp.i: cmake_force
@@ -113,6 +98,21 @@ CMakeFiles/engine.dir/logic/game.cpp.i: cmake_force
 CMakeFiles/engine.dir/logic/game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/logic/game.cpp.s"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp -o CMakeFiles/engine.dir/logic/game.cpp.s
+
+CMakeFiles/engine.dir/multiplayer.cpp.obj: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/multiplayer.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
+CMakeFiles/engine.dir/multiplayer.cpp.obj: /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp
+CMakeFiles/engine.dir/multiplayer.cpp.obj: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/engine.dir/multiplayer.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/multiplayer.cpp.obj -MF CMakeFiles/engine.dir/multiplayer.cpp.obj.d -o CMakeFiles/engine.dir/multiplayer.cpp.obj -c /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp
+
+CMakeFiles/engine.dir/multiplayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/multiplayer.cpp.i"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp > CMakeFiles/engine.dir/multiplayer.cpp.i
+
+CMakeFiles/engine.dir/multiplayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/multiplayer.cpp.s"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp -o CMakeFiles/engine.dir/multiplayer.cpp.s
 
 CMakeFiles/engine.dir/gfx/graphics.cpp.obj: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/gfx/graphics.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
@@ -144,11 +144,26 @@ CMakeFiles/engine.dir/logic/events.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/logic/events.cpp.s"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chiefkat/Documents/vscodeprojects/basket/logic/events.cpp -o CMakeFiles/engine.dir/logic/events.cpp.s
 
+CMakeFiles/engine.dir/logic/world.cpp.obj: CMakeFiles/engine.dir/flags.make
+CMakeFiles/engine.dir/logic/world.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
+CMakeFiles/engine.dir/logic/world.cpp.obj: /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp
+CMakeFiles/engine.dir/logic/world.cpp.obj: CMakeFiles/engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/engine.dir/logic/world.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/logic/world.cpp.obj -MF CMakeFiles/engine.dir/logic/world.cpp.obj.d -o CMakeFiles/engine.dir/logic/world.cpp.obj -c /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp
+
+CMakeFiles/engine.dir/logic/world.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/engine.dir/logic/world.cpp.i"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp > CMakeFiles/engine.dir/logic/world.cpp.i
+
+CMakeFiles/engine.dir/logic/world.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/engine.dir/logic/world.cpp.s"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp -o CMakeFiles/engine.dir/logic/world.cpp.s
+
 CMakeFiles/engine.dir/logic/collision.cpp.obj: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/logic/collision.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
 CMakeFiles/engine.dir/logic/collision.cpp.obj: /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.cpp
 CMakeFiles/engine.dir/logic/collision.cpp.obj: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/engine.dir/logic/collision.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/engine.dir/logic/collision.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/logic/collision.cpp.obj -MF CMakeFiles/engine.dir/logic/collision.cpp.obj.d -o CMakeFiles/engine.dir/logic/collision.cpp.obj -c /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.cpp
 
 CMakeFiles/engine.dir/logic/collision.cpp.i: cmake_force
@@ -163,7 +178,7 @@ CMakeFiles/engine.dir/gfx/shader.cpp.obj: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/gfx/shader.cpp.obj: CMakeFiles/engine.dir/includes_CXX.rsp
 CMakeFiles/engine.dir/gfx/shader.cpp.obj: /home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.cpp
 CMakeFiles/engine.dir/gfx/shader.cpp.obj: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/engine.dir/gfx/shader.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/engine.dir/gfx/shader.cpp.obj"
 	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/engine.dir/gfx/shader.cpp.obj -MF CMakeFiles/engine.dir/gfx/shader.cpp.obj.d -o CMakeFiles/engine.dir/gfx/shader.cpp.obj -c /home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.cpp
 
 CMakeFiles/engine.dir/gfx/shader.cpp.i: cmake_force
@@ -178,7 +193,7 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: CMakeFiles/engine.dir/flags.make
 CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: CMakeFiles/engine.dir/includes_C.rsp
 CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/src/gl.c
 CMakeFiles/engine.dir/nms/glad/src/gl.c.obj: CMakeFiles/engine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/engine.dir/nms/glad/src/gl.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/engine.dir/nms/glad/src/gl.c.obj"
 	/usr/bin/x86_64-w64-mingw32-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/engine.dir/nms/glad/src/gl.c.obj -MF CMakeFiles/engine.dir/nms/glad/src/gl.c.obj.d -o CMakeFiles/engine.dir/nms/glad/src/gl.c.obj -c /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/src/gl.c
 
 CMakeFiles/engine.dir/nms/glad/src/gl.c.i: cmake_force
@@ -192,10 +207,11 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.s: cmake_force
 # Object files for target engine
 engine_OBJECTS = \
 "CMakeFiles/engine.dir/main.cpp.obj" \
-"CMakeFiles/engine.dir/multiplayer.cpp.obj" \
 "CMakeFiles/engine.dir/logic/game.cpp.obj" \
+"CMakeFiles/engine.dir/multiplayer.cpp.obj" \
 "CMakeFiles/engine.dir/gfx/graphics.cpp.obj" \
 "CMakeFiles/engine.dir/logic/events.cpp.obj" \
+"CMakeFiles/engine.dir/logic/world.cpp.obj" \
 "CMakeFiles/engine.dir/logic/collision.cpp.obj" \
 "CMakeFiles/engine.dir/gfx/shader.cpp.obj" \
 "CMakeFiles/engine.dir/nms/glad/src/gl.c.obj"
@@ -204,10 +220,11 @@ engine_OBJECTS = \
 engine_EXTERNAL_OBJECTS =
 
 engine.exe: CMakeFiles/engine.dir/main.cpp.obj
-engine.exe: CMakeFiles/engine.dir/multiplayer.cpp.obj
 engine.exe: CMakeFiles/engine.dir/logic/game.cpp.obj
+engine.exe: CMakeFiles/engine.dir/multiplayer.cpp.obj
 engine.exe: CMakeFiles/engine.dir/gfx/graphics.cpp.obj
 engine.exe: CMakeFiles/engine.dir/logic/events.cpp.obj
+engine.exe: CMakeFiles/engine.dir/logic/world.cpp.obj
 engine.exe: CMakeFiles/engine.dir/logic/collision.cpp.obj
 engine.exe: CMakeFiles/engine.dir/gfx/shader.cpp.obj
 engine.exe: CMakeFiles/engine.dir/nms/glad/src/gl.c.obj
@@ -215,7 +232,7 @@ engine.exe: CMakeFiles/engine.dir/build.make
 engine.exe: CMakeFiles/engine.dir/linkLibs.rsp
 engine.exe: CMakeFiles/engine.dir/objects1.rsp
 engine.exe: CMakeFiles/engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable engine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/chiefkat/Documents/vscodeprojects/basket/winbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable engine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

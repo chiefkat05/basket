@@ -10,6 +10,7 @@
 #include <mutex>
 #include <deque>
 #include <glm/glm.hpp>
+#include "./logic/world.h"
 
 using asio::ip::tcp;
 
@@ -181,9 +182,9 @@ public:
 
     bool Connect(const std::string &host, const std::string port);
 
-    void UpdatePosition(glm::vec3 position, glm::vec3 rotation);
-    // void UpdateRotation(glm::vec3 camLook);
-    void Annoy();
+    void UpdatePlayer(glm::vec3 position, glm::vec3 rotation);
+    void UpdateObject(unsigned int ID, glm::vec3 position, glm::vec3 rotation);
+    void CancelObjectUpdates(unsigned int ID);
     void ConnectionGreeting();
 
     void Update(double delta_time);
@@ -191,6 +192,10 @@ public:
     uint32_t GetID()
     {
         return connection_->GetID();
+    }
+    bool queueEmpty()
+    {
+        return msgIn_.empty();
     }
 
     void Disconnect();
@@ -220,13 +225,13 @@ public:
     void WaitForClientConnection();
 
     void MessageClient(std::shared_ptr<connection> client, const message &msg);
-    void MessageAllClients(const message &msg, std::shared_ptr<connection> cIgnore = nullptr);
+    void MessageAllClients(const message &msg, std::shared_ptr<connection> cIgnore = nullptr, std::shared_ptr<connection> cIgnore2 = nullptr);
 
     bool OnClientConnect(std::shared_ptr<connection> client);
     void OnClientDisconnect(std::shared_ptr<connection> client);
-    void OnMessage(std::shared_ptr<connection> client, message &msg);
+    void OnMessage(std::shared_ptr<connection> client, message &msg, world &level);
 
-    void Update(size_t messageLimit, bool &doSomething, double delta_time);
+    void Update(size_t messageLimit, bool &doSomething, double delta_time, world &level, float &msgUpdate);
 
     void OnClientValidated(std::shared_ptr<connection> client);
 

@@ -68,7 +68,8 @@
 				3,
 				4,
 				5,
-				6
+				6,
+				7
 			]
 		},
 		{
@@ -88,7 +89,7 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				7
+				8
 			]
 		}
 	],
@@ -148,7 +149,8 @@
 				4,
 				5,
 				6,
-				7
+				7,
+				8
 			]
 		}
 	],
@@ -163,13 +165,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "multiplayer.cpp",
+			"path" : "logic/game.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "logic/game.cpp",
+			"path" : "multiplayer.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -182,6 +184,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "logic/events.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "logic/world.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

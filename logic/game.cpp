@@ -7,6 +7,8 @@
 
 #include "../nms/stb_image.h"
 
+#include <math.h>
+
 extern const float width;
 extern const float height;
 extern const float nearView;
@@ -21,6 +23,7 @@ extern glm::vec3 camFront;
 extern glm::vec3 prevCamFront;
 extern glm::vec3 camFrontAlign;
 extern glm::vec3 camRight;
+extern glm::vec3 camTrueRight;
 extern const glm::vec3 camUp;
 extern bool firstMouseInteraction;
 
@@ -37,7 +40,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 void gameInit()
 {
-    std::cout << "version alpha0.0\n\n";
+    std::cout << "version alpha0.1\n\n";
 }
 
 server *hostServer;
@@ -51,18 +54,22 @@ float clientvalidated = 0.0f, msgUpdate = 0.0f;
 float delta_time = 0.0f;
 std::thread serverThread, clientThread;
 float doubleTapTimer = 0.0f;
+object *objectLookingAt = nullptr, *objectHolding = nullptr;
+unsigned int objectHoldingID = 0;
+
+world level1;
 
 void playerInput()
 {
     if (ehandler.requestKeyState(GLFW_KEY_A))
     {
         playerVel.x = -1.5f;
-        playerPos -= 4.2f * camRight * delta_time;
+        playerPos -= 4.2f * camTrueRight * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_D))
     {
         playerVel.x = 1.5f;
-        playerPos += 4.2f * camRight * delta_time;
+        playerPos += 4.2f * camTrueRight * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_S))
     {
@@ -85,9 +92,6 @@ void playerInput()
     }
     else
         playerRunning = false;
-
-    // if (playerPos.y > 0.0f && clientonline)
-    //     mClient->UpdatePosition(playerPos.x, playerPos.y, playerPos.z);
 
     if (ehandler.requestKeyState(GLFW_KEY_1) == 2)
         serveronline = true;
@@ -134,6 +138,40 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_F) == 2)
         flashlight = !flashlight;
 
+    if (objectHolding != nullptr)
+    {
+        objectHolding->position = playerPos + camFront * 2.2f - camUp * 0.6f;
+        if (camFrontAlign.z < 0.0f)
+            objectHolding->rotation.y = glm::degrees(AI_MATH_PI - glm::asin(camFrontAlign.x)) - 90.0f;
+        else
+            objectHolding->rotation.y = glm::degrees(glm::asin(camFrontAlign.x)) - 90.0f;
+
+        objectHolding->rotation.z = -glm::degrees(glm::acos(camFront.y));
+
+        flashlight = false;
+        objectLookingAt = objectHolding;
+
+        if (clientonline && !serveronline && clientvalidated <= 0.0f && msgUpdate <= 0.0f)
+        {
+            mClient->UpdateObject(objectHoldingID, objectHolding->position, objectHolding->rotation);
+        }
+    }
+    if (objectLookingAt != nullptr && ehandler.requestKeyState(GLFW_KEY_E) == 2)
+    {
+        if (objectHolding == nullptr)
+        {
+            objectHolding = objectLookingAt;
+            objectHolding->beingHeld = 0;
+        }
+        else // think about how to make taking objects from other clients work
+        {
+            objectHolding->beingHeld = -1;
+            objectHolding = nullptr;
+            if (clientonline && clientvalidated <= 0.0f)
+                mClient->CancelObjectUpdates(objectHoldingID);
+        }
+    }
+
     if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
     {
         glfwSetWindowShouldClose(mainWindow, true);
@@ -150,14 +188,14 @@ void playerInput()
     {
         clientvalidated -= 10.0f * delta_time;
     }
+    if (clientonline && clientvalidated <= 0.0f && msgUpdate <= 0.0f) // multiplayer player update loop (what data gets sent)
+    {
+        mClient->UpdatePlayer(playerPos, camFrontAlign);
+        msgUpdate = 0.01f;
+    }
     if (clientonline && msgUpdate > 0.0f)
     {
         msgUpdate -= 1.0f * delta_time;
-    }
-    if (clientonline && clientvalidated <= 0.0f && msgUpdate <= 0.0f) // if in air or moving or looking
-    {
-        mClient->UpdatePosition(playerPos, camFrontAlign); // updates get sent too fast and confuse the server I think
-        msgUpdate = 0.01f;
     }
 }
 
@@ -172,6 +210,8 @@ int strangeCounter = 0; // for debug
 
 void mainLoop()
 {
+    srand(time(0));
+
     if (gfx::windowInit() != 0)
     {
         std::cerr << "There was an error, and the program could not be run." << std::endl;
@@ -192,7 +232,6 @@ void mainLoop()
 
     proj = glm::perspective(glm::radians(45.0f), width / height, nearView, farView);
 
-    // glm::vec3 lampPos(-5.0f, 0.5f, -5.0f);
     // std::vector<player> players;
 #define PLAYER_COUNT 5
     player players[PLAYER_COUNT] = {
@@ -209,13 +248,27 @@ void mainLoop()
 
     gfx::model playerModel("../gfx/models/player/player.obj");
 
-    world level1;
     level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, -2.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f));
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f, 160.0f, 0.0f));
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, -1.8f, 0.8f), glm::vec3(1.0f), glm::vec3(0.0f, 20.0f, 0.0f));
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f), glm::vec3(0.0f, -60.0f, 0.0f));
+    // too bloated
+    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f),
+                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
+    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, -1.8f, 0.8f), glm::vec3(1.0f),
+                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
+    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
+                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
+
+    glm::vec3 randPosition = glm::vec3(float(rand() % 13 + 3) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
+    for (int i = 0; i < 1; ++i)
+    {
+        // float yRot = 90.0f * (i % 4);
+        float yRot = 0.0f;
+        glm::vec3 pos = randPosition * glm::vec3(glm::sin(static_cast<float>(i)) * 2.0f, 1.0f, glm::cos(static_cast<float>(i))) * 2.0f;
+        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", pos, glm::vec3(1.0f),
+                           glm::vec3(0.0f, yRot, 0.0f), glm::vec2(1.0f), pos, glm::vec3(15.0f, 0.0f, 1.0f), false, true);
+    }
 
     glEnable(GL_DEPTH_TEST);
+    std::shared_ptr<connection> ptrClient;
 
     while (!glfwWindowShouldClose(mainWindow))
     {
@@ -248,9 +301,17 @@ void mainLoop()
                                             static server wizServer(4444);
                                             wizServer.Start();
                                             hostServer = &wizServer;
+
+                                            float serverUpdateMsg = 0.0f;
                                             while (serveronline)
                                             {
-                                                wizServer.Update(-1, serveronline, delta_time);
+                                                if (serverUpdateMsg < 0.0f)
+                                                {
+                                                    serverUpdateMsg = 0.04f;
+                                                }
+                                                serverUpdateMsg -= 1.0f * delta_time;
+
+                                                wizServer.Update(-1, serveronline, delta_time, level1, serverUpdateMsg);
                                             }
                                             wizServer.Stop(); });
 
@@ -260,21 +321,20 @@ void mainLoop()
         {
             clientThread = std::thread([&players]()
                                        {
-                        // bool playerExists = false;
                         static client cl;
                         mClient = &cl;
 
                         static std::string ipInput;
                         uint32_t playerMoved = 0;
+                        unsigned int objectMoved = 0;
                         std::cout << "please enter the ip you would like to connect to (in xxx.xxx.x.xxx format)\n";
                         std::cin >> ipInput;
 
                         cl.Connect(ipInput, "4444");
                         clientvalidated = 2.0f;
 
-                        while (clientonline) // positions might be set as vec3(posx, posy, -posz)???
-                        { // learnopengl -> engine planning
-                                // udemy speedrun
+                        while (clientonline)
+                        {
                             message_header eh;
                             if (!cl.Incoming().empty())
                             {
@@ -295,26 +355,20 @@ void mainLoop()
                                     break;
                                 case 1:
                                     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                                    msg >> playerMoved;
-                                    playerMoved -= 400; // new player additions should really happen on connection
+                                    msg >> playerMoved; // who cares
+                                    playerMoved -= 400;
 
                                     if (playerMoved >= PLAYER_COUNT)
                                         playerMoved = PLAYER_COUNT;
                                     msg >> players[playerMoved].rotation >> players[playerMoved].position;
 
                                     break;
-                                // case 2:
-                                //     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
-                                //     msg >> playerMoved;
-                                //     playerMoved -= 400; // new player additions should really happen on connection
+                                case 2:
+                                    msg >> eh;
+                                    msg >> objectMoved;
 
-                                //     if (playerMoved >= PLAYER_COUNT)
-                                //         playerMoved = PLAYER_COUNT;
-                                //     msg >> players[playerMoved].xzRotation;
-
-                                //     std::cout << playerMoved << " moved head to " << players[playerMoved].xzRotation;
-
-                                //     break;
+                                    msg >> level1.objects[objectMoved].position >> level1.objects[objectMoved].rotation >> level1.objects[objectMoved].beingHeld;
+                                    break;
                                 default:
                                     std::cout << "received unknown message type: " << msg.header.id << "\n";
                                     break;
@@ -327,11 +381,9 @@ void mainLoop()
             noclientduplicates = true;
         }
 
-        // std::cout << camFront.x << ", " << camFront.y << ", " << camFront.z << " huh\n";
-
         // graphics begin here
 
-        glm::vec3 disco = glm::vec3(0.5f, 0.5f, 0.5f);
+        glm::vec3 disco = glm::vec3(1.0f, 1.0f, 1.0f);
 
         glUseProgram(lightShader.ID);
         // lightShader.setInt("pointLightCount", 4);
@@ -358,9 +410,9 @@ void mainLoop()
         for (int i = 0; i < 4; ++i)
         {
             lightShader.setVec3("pLights[" + std::to_string(i) + "].position", pointLightPositions[i]);
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].specular", glm::vec3(1.0f));
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].diffuse", glm::vec3(0.5f));
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].ambient", glm::vec3(0.1f));
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].specular", glm::vec3(2.0f));
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].diffuse", glm::vec3(1.0f));
+            lightShader.setVec3("pLights[" + std::to_string(i) + "].ambient", glm::vec3(0.5f));
             lightShader.setDouble("pLights[" + std::to_string(i) + "].constant", 1.0f);
             lightShader.setDouble("pLights[" + std::to_string(i) + "].linear", 0.09f);
             lightShader.setDouble("pLights[" + std::to_string(i) + "].quadratic", 0.032f);
@@ -368,7 +420,7 @@ void mainLoop()
         lightShader.setDouble("material.shininess", 32.0);
         lightShader.setVec3("dLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
         lightShader.setVec3("dLight.specular", glm::vec3(1.0));
-        lightShader.setVec3("dLight.ambient", glm::vec3(0.1f));
+        lightShader.setVec3("dLight.ambient", glm::vec3(0.3f));
         lightShader.setVec3("dLight.diffuse", glm::vec3(0.5f));
 
         glClearColor(0.03, 0.03, 0.05, 1.0);
@@ -379,13 +431,15 @@ void mainLoop()
 
         lightShader.setMat4("view", view);
         lightShader.setMat4("projection", proj);
+        lightShader.setDouble("near", nearView);
+        lightShader.setDouble("far", farView);
 
         for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, players[i].position + glm::vec3(0.0f, -2.0f, 0.0f));
             if (players[i].rotation.z < 0.0f)
-                model = glm::rotate(model, 3.0f - glm::asin(players[i].rotation.x), glm::vec3(0.0f, 1.0f, 0.0f));
+                model = glm::rotate(model, static_cast<float>(AI_MATH_PI) - glm::asin(players[i].rotation.x), glm::vec3(0.0f, 1.0f, 0.0f));
             else
                 model = glm::rotate(model, glm::asin(players[i].rotation.x), glm::vec3(0.0f, 1.0f, 0.0f));
             lightShader.setMat4("model", model);
@@ -393,23 +447,12 @@ void mainLoop()
             playerModel.draw(lightShader);
         }
 
-        // lampShader.use();
-
-        // lampShader.setMat4("projection", proj);
-        // lampShader.setMat4("view", view);
-        // lampShader.setVec3("inColor", disco);
-
         for (int i = 0; i < 4; ++i)
         {
-            pointLightPositions[i] += glm::vec3(sin(glfwGetTime()) * (2.0f * i - 4.0f) * delta_time, 0.0f, cos(glfwGetTime()) * (2.0f * i - 4.0f) * delta_time);
-            // glm::mat4 model = glm::mat4(1.0f);
-            // model = glm::translate(model, pointLightPositions[i]);
-            // model = glm::scale(model, glm::vec3(0.2f));
-            // lampShader.setMat4("model", model);
-            // glDrawArrays(GL_TRIANGLES, 0, 36);
+            pointLightPositions[i] = level1.objects[i].position;
         }
 
-        level1.Render(lightShader, proj, view);
+        level1.Render(lightShader, proj, view, playerPos, camFront, objectLookingAt, objectHolding, objectHoldingID, -2.0f, delta_time);
 
         glfwSwapBuffers(mainWindow);
         glfwPollEvents();
