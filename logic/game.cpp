@@ -257,13 +257,14 @@ void mainLoop()
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
 
-    glm::vec3 randPosition = glm::vec3(float(rand() % 13 + 3) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
-    for (int i = 0; i < 1; ++i)
+    // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
+    glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, 0.0f);
+    for (int i = 0; i < 16; ++i)
     {
-        // float yRot = 90.0f * (i % 4);
-        float yRot = 0.0f;
-        glm::vec3 pos = randPosition * glm::vec3(glm::sin(static_cast<float>(i)) * 2.0f, 1.0f, glm::cos(static_cast<float>(i))) * 2.0f;
-        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", pos, glm::vec3(1.0f),
+        float yRot = (i % 4) * 90.0f;
+        glm::vec3 pos = randPosition * static_cast<float>(i + 1) * (sin(yRot) + cos(yRot));
+
+        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x, -2.0f, pos.z), glm::vec3(1.0f),
                            glm::vec3(0.0f, yRot, 0.0f), glm::vec2(1.0f), pos, glm::vec3(15.0f, 0.0f, 1.0f), false, true);
     }
 
@@ -275,6 +276,9 @@ void mainLoop()
         prev_time = time;
         time = glfwGetTime();
         delta_time = time - prev_time;
+
+        glClearColor(0.03, 0.03, 0.05, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         playerInput();
         ehandler.poll();
@@ -423,9 +427,6 @@ void mainLoop()
         lightShader.setVec3("dLight.ambient", glm::vec3(0.3f));
         lightShader.setVec3("dLight.diffuse", glm::vec3(0.5f));
 
-        glClearColor(0.03, 0.03, 0.05, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         glm::mat4 view = glm::mat4(1.0f);
         view = glm::lookAt(playerPos, playerPos + camFront, camUp);
 
@@ -447,10 +448,10 @@ void mainLoop()
             playerModel.draw(lightShader);
         }
 
-        for (int i = 0; i < 4; ++i)
-        {
-            pointLightPositions[i] = level1.objects[i].position;
-        }
+        // for (int i = 0; i < 4; ++i)
+        // {
+        //     pointLightPositions[i] = level1.objects[i].position;
+        // }
 
         level1.Render(lightShader, proj, view, playerPos, camFront, objectLookingAt, objectHolding, objectHoldingID, -2.0f, delta_time);
 
@@ -458,6 +459,7 @@ void mainLoop()
         glfwPollEvents();
     }
 
+    terminate();
     if (serveronline && serverThread.joinable())
         serverThread.join();
 }

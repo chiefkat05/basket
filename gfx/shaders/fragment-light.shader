@@ -152,7 +152,7 @@ void main()
 
     float ndc = gl_FragCoord.z * 2.0 - 1.0;
     float linearDepth = (2.0 * near * far) / (far + near - ndc * (far - near));
-    float fog = (1.0 - (linearDepth / far) * 0.1);
+    float fog = (1.0 - (linearDepth / far));
     
     gl_FragColor = vec4(result * colorMultiple * fog, 1.0);
 };

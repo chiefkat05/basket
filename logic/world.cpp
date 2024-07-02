@@ -5,16 +5,17 @@ void world::PlaceObject(std::string modelPath, glm::vec3 position, glm::vec3 sca
 {
     for (unsigned int i = 0; i < models.size(); ++i)
     {
+
         if (models[i].fullPath == modelPath)
         {
-            objects.push_back({&models[i], position, position, scale, glm::vec3(1.0f), rotation, tScale, hitPos, hitScale, obtainable, collidable, -1, weight});
+            objects.push_back({i, position, position, scale, glm::vec3(1.0f), rotation, tScale, hitPos, hitScale, obtainable, collidable, -1, weight});
             return;
         }
     }
     gfx::model nModel(modelPath);
 
     models.push_back(nModel);
-    objects.push_back({&models.back(), position, position, scale, glm::vec3(1.0f), rotation, tScale, hitPos, hitScale, obtainable, collidable, -1, weight});
+    objects.push_back({models.size() - 1, position, position, scale, glm::vec3(1.0f), rotation, tScale, hitPos, hitScale, obtainable, collidable, -1, weight});
 }
 void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 &playerPos, glm::vec3 &camFront, object *&objectLookingAt, object *&objectHolding,
                    unsigned int &objectHoldingID, float floorlevel, float delta_time)
@@ -33,14 +34,14 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
         {
 
             // rudimentary collision
-            for (unsigned int j = 0; j < objects.size(); ++j)
-            {
-                if (j == i || !objects[j].collidable)
-                    continue;
+            // for (unsigned int j = 0; j < objects.size(); ++j)
+            // {
+            //     if (j == i || !objects[j].collidable)
+            //         continue;
 
-                // collision time
-                std::vector<gfx::vertex> vertices = objects[j].model->meshes[0].vertices;
-            }
+            //     // collision time
+            //     // std::vector<gfx::vertex> vertices = objects[j].model->meshes[0].vertices;
+            // }
 
             // gravity
             if (objects[i].position.y > floorlevel && objects[i].beingHeld == -1)
@@ -77,7 +78,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
         model = glm::rotate(model, glm::radians(objects[i].rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
         s.setVec2("textureScale", objects[i].tScale);
         s.setMat4("model", model);
-        objects[i].model->draw(s);
+        models[objects[i].modelID].draw(s);
         s.setVec3("colorMultiple", glm::vec3(1.0f, 1.0f, 1.0f));
 
         objects[i].prevPosition = objects[i].position;

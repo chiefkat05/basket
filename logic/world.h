@@ -7,7 +7,7 @@
 
 struct object
 {
-    gfx::model *model;
+    size_t modelID;
     glm::vec3 position, prevPosition, scale, internalScale, rotation;
     glm::vec2 tScale;
 
