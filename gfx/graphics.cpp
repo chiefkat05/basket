@@ -230,6 +230,7 @@ gfx::mesh gfx::model::processMesh(aiMesh *_mesh, const aiScene *_scene)
     std::vector<vertex> vertices;
     std::vector<unsigned int> indices;
     std::vector<texture> textures;
+    std::vector<aiFace> faces;
 
     for (unsigned int i = 0; i < _mesh->mNumVertices; ++i)
     {
@@ -259,6 +260,7 @@ gfx::mesh gfx::model::processMesh(aiMesh *_mesh, const aiScene *_scene)
     for (unsigned int i = 0; i < _mesh->mNumFaces; ++i)
     {
         aiFace face = _mesh->mFaces[i];
+
         for (unsigned int j = 0; j < face.mNumIndices; ++j)
             indices.push_back(face.mIndices[j]);
     }

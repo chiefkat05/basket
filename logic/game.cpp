@@ -45,8 +45,6 @@ void gameInit()
 
 server *hostServer;
 client *mClient;
-glm::vec3 playerPos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 playerVel = glm::vec3(0.0f, 0.0f, 0.0f);
 bool playerRunning = false, flashlight = true;
 
 bool clientonline = false, serveronline = false, noserverduplicates = false, noclientduplicates = false;
@@ -56,6 +54,19 @@ std::thread serverThread, clientThread;
 float doubleTapTimer = 0.0f;
 object *objectLookingAt = nullptr, *objectHolding = nullptr;
 unsigned int objectHoldingID = 0;
+glm::vec3 playerVel = glm::vec3(0.0f);
+
+struct player
+{
+    // glm::vec3 position;
+    // glm::vec3 rotation;
+    // object *obj;
+    uint32_t id = 0;
+    unsigned int objID;
+};
+#define PLAYER_COUNT 5
+player players[PLAYER_COUNT];
+unsigned int playerObjIndex = 5;
 
 world level1;
 
@@ -64,17 +75,17 @@ void playerInput()
     if (ehandler.requestKeyState(GLFW_KEY_A))
     {
         playerVel.x = -1.5f;
-        playerPos -= 4.2f * camTrueRight * delta_time;
+        level1.objects[players[0].objID].position -= 4.2f * camTrueRight * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_D))
     {
         playerVel.x = 1.5f;
-        playerPos += 4.2f * camTrueRight * delta_time;
+        level1.objects[players[0].objID].position += 4.2f * camTrueRight * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_S))
     {
         playerVel.z = 1.5f;
-        playerPos -= 4.2f * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
+        level1.objects[players[0].objID].position -= 4.2f * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_W) == 2 || ehandler.requestKeyState(GLFW_KEY_LEFT_CONTROL))
     {
@@ -88,7 +99,7 @@ void playerInput()
     {
         playerVel.z = -1.5f;
 
-        playerPos += (4.2f + (8.4f * playerRunning)) * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
+        level1.objects[players[0].objID].position += (4.2f + (8.4f * playerRunning)) * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
     }
     else
         playerRunning = false;
@@ -130,7 +141,7 @@ void playerInput()
         doubleTapTimer -= 4.0f * delta_time;
     }
 
-    if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && playerPos.y == 0.0f)
+    if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && level1.objects[players[0].objID].position.y == 0.0f)
     {
         playerVel.y = 10.0f;
     }
@@ -140,7 +151,7 @@ void playerInput()
 
     if (objectHolding != nullptr)
     {
-        objectHolding->position = playerPos + camFront * 2.2f - camUp * 0.6f;
+        objectHolding->position = level1.objects[players[0].objID].position + camFront * 2.2f - camUp * 0.6f;
         if (camFrontAlign.z < 0.0f)
             objectHolding->rotation.y = glm::degrees(AI_MATH_PI - glm::asin(camFrontAlign.x)) - 90.0f;
         else
@@ -190,7 +201,7 @@ void playerInput()
     }
     if (clientonline && clientvalidated <= 0.0f && msgUpdate <= 0.0f) // multiplayer player update loop (what data gets sent)
     {
-        mClient->UpdatePlayer(playerPos, camFrontAlign);
+        mClient->UpdatePlayer(level1.objects[players[0].objID].position, camFrontAlign);
         msgUpdate = 0.01f;
     }
     if (clientonline && msgUpdate > 0.0f)
@@ -198,13 +209,6 @@ void playerInput()
         msgUpdate -= 1.0f * delta_time;
     }
 }
-
-struct player
-{
-    glm::vec3 position;
-    glm::vec3 rotation;
-    uint32_t id;
-};
 
 int strangeCounter = 0; // for debug
 
@@ -233,13 +237,13 @@ void mainLoop()
     proj = glm::perspective(glm::radians(45.0f), width / height, nearView, farView);
 
     // std::vector<player> players;
-#define PLAYER_COUNT 5
-    player players[PLAYER_COUNT] = {
-        {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-        {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-        {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-        {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-        {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0}};
+    // player players[PLAYER_COUNT] = {
+    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
+    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
+    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
+    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
+    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0}};
+
     glm::vec3 pointLightPositions[] = {
         glm::vec3(0.7f, 0.2f, 2.0f),
         glm::vec3(4.3f, 0.0f, -28.0f),
@@ -249,23 +253,40 @@ void mainLoop()
     gfx::model playerModel("../gfx/models/player/player.obj");
 
     level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, -2.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f));
+    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f));
     // too bloated
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
+                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, 32.0f);
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, -1.8f, 0.8f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
+                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, 32.0f);
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), glm::vec3(0.0f), glm::vec3(0.0f), true, false, 32.0f);
+                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, 32.0f);
 
     // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
     glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, 0.0f);
-    for (int i = 0; i < 16; ++i)
+    for (int i = 0; i < 1; ++i)
     {
-        float yRot = (i % 4) * 90.0f;
-        glm::vec3 pos = randPosition * static_cast<float>(i + 1) * (sin(yRot) + cos(yRot));
+        // float yRot = (i % 4) * 90.0f;
+        // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * (sin(yRot) + cos(yRot));
+        glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
+        // glm::vec3 pos = glm::vec3(0.0f);
 
         level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x, -2.0f, pos.z), glm::vec3(1.0f),
-                           glm::vec3(0.0f, yRot, 0.0f), glm::vec2(1.0f), pos, glm::vec3(15.0f, 0.0f, 1.0f), false, true);
+                           glm::vec3(0.0f), glm::vec2(1.0f), false, true);
+        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(1.0f),
+        //                    glm::vec3(0.0f), glm::vec2(1.0f), false, true);
+    }
+
+    // level1.objects[players[0].objID].obtainable = true;
+    for (int i = 0; i < PLAYER_COUNT; ++i)
+    {
+        level1.PlaceObject("../gfx/models/player/player.obj",
+                           glm::vec3(-3.0f, -100.0f, -5.0f), glm::vec3(1.0f),
+                           glm::vec3(1.0f), glm::vec2(1.0f),
+                           false, true, 18.0f);
+
+        players[i].objID = level1.objects.size() - 1;
+        level1.objects[players[i].objID].invisible = true;
     }
 
     glEnable(GL_DEPTH_TEST);
@@ -289,14 +310,14 @@ void mainLoop()
 
         prevCamFront = camFront;
 
-        if (playerPos.y > 0.0f)
+        if (level1.objects[players[0].objID].position.y > 0.0f)
             playerVel.y -= 40.0f * delta_time;
-        if (playerPos.y < 0.0f)
+        if (level1.objects[players[0].objID].position.y < 0.0f)
         {
-            playerPos.y = 0.0f;
+            level1.objects[players[0].objID].position.y = 0.0f;
             playerVel.y = 0.0f;
         }
-        playerPos += playerVel * delta_time;
+        level1.objects[players[0].objID].position += playerVel * delta_time;
 
         if (serveronline && !noserverduplicates)
         {
@@ -323,7 +344,7 @@ void mainLoop()
         }
         if (clientonline && !noclientduplicates)
         {
-            clientThread = std::thread([&players]()
+            clientThread = std::thread([]()
                                        {
                         static client cl;
                         mClient = &cl;
@@ -360,11 +381,13 @@ void mainLoop()
                                 case 1:
                                     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
                                     msg >> playerMoved; // who cares
-                                    playerMoved -= 400;
+                                    playerMoved -= 399; // + 1 since self client is first player
 
                                     if (playerMoved >= PLAYER_COUNT)
                                         playerMoved = PLAYER_COUNT;
-                                    msg >> players[playerMoved].rotation >> players[playerMoved].position;
+                                    msg >> level1.objects[players[playerMoved].objID].rotation >> level1.objects[players[playerMoved].objID].position;
+
+                                    std::cout << playerMoved << ", " << level1.objects[players[playerMoved].objID].position.z << "\n";
 
                                     break;
                                 case 2:
@@ -395,7 +418,7 @@ void mainLoop()
         if (flashlight)
         {
             lightShader.setVec3("sLights[0].specular", 1.0, 1.0, 1.0);
-            lightShader.setVec3("sLights[0].position", playerPos + camRight * 0.3f);
+            lightShader.setVec3("sLights[0].position", level1.objects[players[0].objID].position + camRight * 0.3f);
             lightShader.setVec3("sLights[0].direction", camFront + camRight * -0.05f);
             lightShader.setDouble("sLights[0].constant", 1.0f);
             lightShader.setDouble("sLights[0].linear", 0.09f);
@@ -428,32 +451,39 @@ void mainLoop()
         lightShader.setVec3("dLight.diffuse", glm::vec3(0.5f));
 
         glm::mat4 view = glm::mat4(1.0f);
-        view = glm::lookAt(playerPos, playerPos + camFront, camUp);
+        glm::vec3 plPos = level1.objects[players[0].objID].position;
+        view = glm::lookAt(plPos, plPos + camFront, camUp);
 
         lightShader.setMat4("view", view);
         lightShader.setMat4("projection", proj);
         lightShader.setDouble("near", nearView);
         lightShader.setDouble("far", farView);
 
+        // std::cout << players[0].objID << ", " << level1.objects[6].position.z << " 0\n";
+        // std::cout << players[1].objID << ", " << level1.objects[7].position.z << " 1\n"; figure out how to make the world model update with the client players
         for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
         {
+            plPos = level1.objects[players[i].objID].position + glm::vec3(0.0f, -2.0f, 0.0f);
+            glm::vec3 plRot = level1.objects[players[i].objID].rotation;
+
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, players[i].position + glm::vec3(0.0f, -2.0f, 0.0f));
-            if (players[i].rotation.z < 0.0f)
-                model = glm::rotate(model, static_cast<float>(AI_MATH_PI) - glm::asin(players[i].rotation.x), glm::vec3(0.0f, 1.0f, 0.0f));
+            model = glm::translate(model, plPos);
+            if (level1.objects[players[i].objID].rotation.z < 0.0f)
+                model = glm::rotate(model, static_cast<float>(AI_MATH_PI) - glm::asin(plRot.x), glm::vec3(0.0f, 1.0f, 0.0f));
             else
-                model = glm::rotate(model, glm::asin(players[i].rotation.x), glm::vec3(0.0f, 1.0f, 0.0f));
+                model = glm::rotate(model, glm::asin(plRot.x), glm::vec3(0.0f, 1.0f, 0.0f));
             lightShader.setMat4("model", model);
 
-            playerModel.draw(lightShader);
+            if (i > 0)
+                playerModel.draw(lightShader);
         }
 
-        // for (int i = 0; i < 4; ++i)
-        // {
-        //     pointLightPositions[i] = level1.objects[i].position;
-        // }
+        for (int i = 0; i < 4; ++i)
+        {
+            pointLightPositions[i] = level1.objects[i].position;
+        }
 
-        level1.Render(lightShader, proj, view, playerPos, camFront, objectLookingAt, objectHolding, objectHoldingID, -2.0f, delta_time);
+        level1.Render(lightShader, proj, view, level1.objects[players[0].objID].position, camFront, objectLookingAt, objectHolding, objectHoldingID, -2.0f, delta_time);
 
         glfwSwapBuffers(mainWindow);
         glfwPollEvents();

@@ -48,6 +48,7 @@ namespace gfx
         std::vector<vertex> vertices;
         std::vector<unsigned int> indices;
         std::vector<texture> textures;
+        bool thing;
 
         mesh(std::vector<vertex> _vertices, std::vector<unsigned int> _indices, std::vector<texture> _textures)
         {

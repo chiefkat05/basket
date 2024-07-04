@@ -606,14 +606,12 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg, world &
 
 void server::Update(size_t messageLimit, bool &doSomething, double delta_time, world &level, float &msgUpdate)
 {
-    bool what = msgIn_.empty();
+    msgIn_.empty();
     // msgIn_.wait(doSomething);
     if (msgUpdate < 0.0f)
     {
         for (unsigned int i = 0; i < level.objects.size(); ++i)
         {
-            if (level.objects[i].beingHeld != -1)
-                std::cout << "object " << i << " is being held by " << level.objects[i].beingHeld << "\n";
             if (!level.objects[i].obtainable || level.objects[i].position == level.objects[i].prevPosition)
                 continue;
 
