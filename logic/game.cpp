@@ -256,11 +256,11 @@ void mainLoop()
     level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f));
     // too bloated
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, 32.0f);
+                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, -1.8f, 0.8f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, 32.0f);
+                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, 32.0f);
+                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
 
     // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
     glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, 0.0f);
@@ -271,8 +271,8 @@ void mainLoop()
         glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
         // glm::vec3 pos = glm::vec3(0.0f);
 
-        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x, -2.0f, pos.z), glm::vec3(1.0f),
-                           glm::vec3(0.0f), glm::vec2(1.0f), false, true);
+        level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x, 0.0f, pos.z), glm::vec3(1.0f),
+                           glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
         // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(1.0f),
         //                    glm::vec3(0.0f), glm::vec2(1.0f), false, true);
     }
@@ -283,7 +283,7 @@ void mainLoop()
         level1.PlaceObject("../gfx/models/player/player.obj",
                            glm::vec3(-3.0f, -100.0f, -5.0f), glm::vec3(1.0f),
                            glm::vec3(1.0f), glm::vec2(1.0f),
-                           false, true, 18.0f);
+                           false, true, false, 18.0f);
 
         players[i].objID = level1.objects.size() - 1;
         level1.objects[players[i].objID].invisible = true;
@@ -459,6 +459,8 @@ void mainLoop()
         lightShader.setDouble("near", nearView);
         lightShader.setDouble("far", farView);
 
+        // glm::vec3 playPos = level1.objects[players[0].objID].position;
+        // std::cout << playPos.x << ", " << playPos.y << ", " << playPos.z << "\n";
         // std::cout << players[0].objID << ", " << level1.objects[6].position.z << " 0\n";
         // std::cout << players[1].objID << ", " << level1.objects[7].position.z << " 1\n"; figure out how to make the world model update with the client players
         for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
