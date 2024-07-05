@@ -388,8 +388,7 @@ bool world::collisionDetection(object &obj1, object &obj2)
             // add broadphase as a simple pre-collision test
             if (!obj2.solid)
             {
-                std::cout << col.normal.x << ", " << col.normal.y << ", " << col.normal.z << "\n";
-                obj2.position += col.normal * (col.penetrationDepth + 0.001f);
+                obj2.position += glm::vec3(col.normal.x, 0.0f, col.normal.z) * (col.penetrationDepth + 0.001f);
             }
             return true;
         }

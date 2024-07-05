@@ -183,6 +183,33 @@ void playerInput()
         }
     }
 
+    if (ehandler.requestKeyState(GLFW_KEY_I) == 2)
+    {
+        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj",
+                           glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
+                                     level1.objects[players[0].objID].position.z) +
+                               camFrontAlign * 8.0f,
+                           glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(asin(camFrontAlign.x)), 0.0f), glm::vec2(1.0f), false, true, true);
+    }
+    if (ehandler.requestKeyState(GLFW_KEY_O) == 2)
+    {
+        level1.PlaceObject("../gfx/models/items/carrot.obj",
+                           glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
+                                     level1.objects[players[0].objID].position.z) +
+                               camFrontAlign * 8.0f,
+                           glm::vec3(1.0f),
+                           glm::vec3(0.0f, glm::degrees(asin(camFrontAlign.x)), 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
+    }
+    if (ehandler.requestKeyState(GLFW_KEY_P) == 2)
+    {
+        level1.PlaceObject("../gfx/models/walls/cube/cube.obj",
+                           glm::vec3(level1.objects[players[0].objID].position.x,
+                                     0.0f, level1.objects[players[0].objID].position.z) +
+                               camFrontAlign * 8.0f,
+                           glm::vec3(1.0f),
+                           glm::vec3(0.0f, glm::degrees(asin(camFrontAlign.x)), 0.0f), glm::vec2(1.0f), false, true, true);
+    }
+
     if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
     {
         glfwSetWindowShouldClose(mainWindow, true);
@@ -271,10 +298,10 @@ void mainLoop()
         glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
         // glm::vec3 pos = glm::vec3(0.0f);
 
-        level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x, 0.0f, pos.z), glm::vec3(1.0f),
-                           glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(1.0f),
-        //                    glm::vec3(0.0f), glm::vec2(1.0f), false, true);
+        // level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x, 0.0f, pos.z), glm::vec3(1.0f),
+        //    glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(1.0f),
+                           glm::vec3(0.0f), glm::vec2(1.0f), false, true);
     }
 
     // level1.objects[players[0].objID].obtainable = true;
@@ -387,7 +414,6 @@ void mainLoop()
                                         playerMoved = PLAYER_COUNT;
                                     msg >> level1.objects[players[playerMoved].objID].rotation >> level1.objects[players[playerMoved].objID].position;
 
-                                    std::cout << playerMoved << ", " << level1.objects[players[playerMoved].objID].position.z << "\n";
 
                                     break;
                                 case 2:
