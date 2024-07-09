@@ -289,6 +289,13 @@ void mainLoop()
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
 
+    for (int i = 0; i < 32; ++i)
+    {
+        float randX = static_cast<float>(rand() % 640 - 320) * 0.1f;
+        float randZ = static_cast<float>(rand() % 640 - 320) * 0.1f;
+        level1.PlaceObject("../gfx/models/terrain/bush-1/bush.obj", glm::vec3(randX, -2.0f, randZ));
+    }
+
     // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
     glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, 0.0f);
     for (int i = 0; i < 1; ++i)

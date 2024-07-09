@@ -388,7 +388,7 @@ bool world::collisionDetection(object &obj1, object &obj2)
             // add broadphase as a simple pre-collision test
             if (!obj2.solid)
             {
-                obj2.position += glm::vec3(col.normal.x, 0.0f, col.normal.z) * (col.penetrationDepth + 0.001f);
+                obj2.position += glm::vec3(col.normal.x, col.normal.y, col.normal.z) * (col.penetrationDepth);
             }
             return true;
         }
@@ -510,7 +510,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
                 if (distance.y < 0.1f && distance.x < 0.1f && distance.z < 0.1f && toObjectVector.x < 3.0f && toObjectVector.y < 3.0f && toObjectVector.z < 3.0f)
                 {
                     objects[i].internalScale = glm::vec3(0.87f);
-                    s.setVec3("colorMultiple", glm::vec3(0.4f, 0.7f, 0.6f));
+                    s.setVec4("colorMultiple", glm::vec4(0.4f, 0.7f, 0.6f, 1.0f));
                     objectLookingAt = &objects[i];
                 }
                 else
@@ -527,7 +527,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
                     continue;
                 if (collisionDetection(objects[i], objects[j]))
                 {
-                    s.setVec3("colorMultiple", glm::vec3(0.3f));
+                    s.setVec4("colorMultiple", glm::vec4(0.3f));
                 }
             }
         }
@@ -544,7 +544,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
             s.setMat4("model", model);
             models[objects[i].modelID].draw(s);
         }
-        s.setVec3("colorMultiple", glm::vec3(1.0f, 1.0f, 1.0f));
+        s.setVec4("colorMultiple", glm::vec4(1.0f));
 
         objects[i].prevPosition = objects[i].position;
     }

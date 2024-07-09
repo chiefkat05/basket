@@ -56,7 +56,7 @@ uniform PointLight pLights[pointLightCount];
 uniform SpotLight sLights[spotLightCount];
 
 uniform vec3 viewPos;
-uniform vec3 colorMultiple;
+uniform vec4 colorMultiple;
 uniform float near;
 uniform float far;
 
@@ -64,7 +64,7 @@ in vec2 TexCoords;
 in vec3 fragmentPosition;
 in vec3 normal;
 
-vec3 dirLightCalculation(DirectionalLight light, vec3 normal, vec3 viewDir)
+vec4 dirLightCalculation(DirectionalLight light, vec3 normal, vec3 viewDir)
 {
     vec3 lightDir = normalize(-light.direction);
 
@@ -73,9 +73,9 @@ vec3 dirLightCalculation(DirectionalLight light, vec3 normal, vec3 viewDir)
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
 
-    vec3 ambient  = light.ambient  * vec3(texture(material.diffuse, TexCoords));
-    vec3 diffuse = diff * vec3(texture(material.diffuse, TexCoords)) * light.diffuse;
-    vec3 specular = vec3(texture(material.specular, TexCoords)) * spec * light.specular;
+    vec4 ambient  = vec4(light.ambient, 1.0) * texture(material.diffuse, TexCoords);
+    vec4 diffuse = diff * texture(material.diffuse, TexCoords) * vec4(light.diffuse, 1.0);
+    vec4 specular = texture(material.specular, TexCoords) * spec * vec4(light.specular, 1.0);
 
     return ambient + diffuse + specular;
 }
@@ -124,7 +124,7 @@ vec3 spotLightCalculation(SpotLight light, vec3 normal, vec3 viewDir)
 
 void main()
 {
-    vec3 result;
+    vec4 result;
     vec3 norm = normalize(normal);
     vec3 viewDir = normalize(viewPos - fragmentPosition);
 
@@ -133,11 +133,11 @@ void main()
 
     for (int i = 0; i < pointLightCount; ++i)
     {
-        result += pointLightCalculation(pLights[i], norm, viewDir);
+        result.xyz += pointLightCalculation(pLights[i], norm, viewDir);
     }
     for (int i = 0; i < spotLightCount; ++i)
     {
-        result += spotLightCalculation(sLights[i], norm, viewDir);
+        result.xyz += spotLightCalculation(sLights[i], norm, viewDir);
     }
     // diffuse.x = fragmentPosition.y * -0.9;
     // diffuse.y = fragmentPosition.y * -0.9;
@@ -153,6 +153,9 @@ void main()
     float ndc = gl_FragCoord.z * 2.0 - 1.0;
     float linearDepth = (2.0 * near * far) / (far + near - ndc * (far - near));
     float fog = (1.0 - (linearDepth / far));
+
+    if (result.w < 0.1)
+        discard;
     
-    gl_FragColor = vec4(result * colorMultiple * fog, 1.0);
+    gl_FragColor = result * colorMultiple * fog;
 };
