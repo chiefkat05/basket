@@ -191,7 +191,7 @@ void playerInput()
                            glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
                                      level1.objects[players[0].objID].position.z) +
                                camFrontAlign * 8.0f,
-                           glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(asin(camFrontAlign.x)), 0.0f), glm::vec2(1.0f), false, true, true);
+                           glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
     }
     if (ehandler.requestKeyState(GLFW_KEY_O) == 2)
     {
@@ -200,7 +200,7 @@ void playerInput()
                                      level1.objects[players[0].objID].position.z) +
                                camFrontAlign * 8.0f,
                            glm::vec3(1.0f),
-                           glm::vec3(0.0f, glm::degrees(asin(camFrontAlign.x)), 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
+                           glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
     }
     if (ehandler.requestKeyState(GLFW_KEY_P) == 2)
     {
@@ -209,7 +209,7 @@ void playerInput()
                                      0.0f, level1.objects[players[0].objID].position.z) +
                                camFrontAlign * 8.0f,
                            glm::vec3(1.0f),
-                           glm::vec3(0.0f, glm::degrees(asin(camFrontAlign.x)), 0.0f), glm::vec2(1.0f), false, true, true);
+                           glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
     }
 
     if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
