@@ -413,7 +413,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
                     continue;
                 if (collisionDetection(objects[i], objects[j]))
                 {
-                    s.setVec4("colorMultiple", glm::vec4(0.3f));
+                    s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
                 }
             }
         }

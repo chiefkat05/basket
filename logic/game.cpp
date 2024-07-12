@@ -282,7 +282,7 @@ void mainLoop()
     gfx::model playerModel("../gfx/models/player/player.obj");
 
     level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, -2.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), true, true, true);
-    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f), true, true, true);
+    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f), false, true, true);
     // too bloated
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
