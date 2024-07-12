@@ -152,12 +152,14 @@ void playerInput()
     if (objectHolding != nullptr)
     {
         objectHolding->position = level1.objects[players[0].objID].position + camFront * 2.2f - camUp * 0.6f;
-        if (camFrontAlign.z < 0.0f)
-            objectHolding->rotation.y = glm::degrees(AI_MATH_PI - glm::asin(camFrontAlign.x)) - 90.0f;
-        else
-            objectHolding->rotation.y = glm::degrees(glm::asin(camFrontAlign.x)) - 90.0f;
+        // if (camFrontAlign.z < 0.0f)
+        //     objectHolding->rotation.y = glm::degrees(AI_MATH_PI - glm::asin(camFrontAlign.x)) - 90.0f;
+        // else
+        //     objectHolding->rotation.y = glm::degrees(glm::asin(camFrontAlign.x)) - 90.0f;
+        objectHolding->rotation.y = glm::degrees(atan2f(camFrontAlign.x, camFrontAlign.z)) - 90.0f;
 
         objectHolding->rotation.z = -glm::degrees(glm::acos(camFront.y));
+        // objectHolding->rotation.z = glm::degrees(atan2f(camFront.y, camFront.z));
 
         flashlight = false;
         objectLookingAt = objectHolding;
@@ -279,8 +281,8 @@ void mainLoop()
 
     gfx::model playerModel("../gfx/models/player/player.obj");
 
-    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, -2.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f));
-    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f));
+    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, -2.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), true, true, true);
+    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f), true, true, true);
     // too bloated
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
@@ -289,26 +291,30 @@ void mainLoop()
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
 
-    for (int i = 0; i < 32; ++i)
+    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, -2.0f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), true, true, true);
+    unsigned int deathCubeID = level1.objects.size() - 1;
+
+    for (int i = 0; i < 128; ++i)
     {
-        float randX = static_cast<float>(rand() % 640 - 320) * 0.1f;
-        float randZ = static_cast<float>(rand() % 640 - 320) * 0.1f;
+        float randX = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
+        float randZ = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
         level1.PlaceObject("../gfx/models/terrain/bush-1/bush.obj", glm::vec3(randX, -2.0f, randZ));
+        level1.objects.back().includesTransparency = true;
     }
 
     // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
-    glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, 0.0f);
-    for (int i = 0; i < 1; ++i)
+    glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, -8.0f);
+    for (int i = 0; i < 24; ++i)
     {
-        // float yRot = (i % 4) * 90.0f;
-        // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * (sin(yRot) + cos(yRot));
-        glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
+        float yRot = (rand() % 8) * 45.0f;
+        glm::vec3 pos = randPosition + (static_cast<float>(i + 1) * 4.0f) + (sin(yRot) + cos(yRot));
+        // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
         // glm::vec3 pos = glm::vec3(0.0f);
 
-        // level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x, 0.0f, pos.z), glm::vec3(1.0f),
-        //    glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-        level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(5.0f, 0.0f, 0.0f), glm::vec3(1.0f),
-                           glm::vec3(0.0f), glm::vec2(1.0f), false, true);
+        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x * (i % 4 - 1), -2.0f, pos.z), glm::vec3(1.0f),
+                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f), true, true, true);
+        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x * (i % 4 - 1), -1.0f, pos.z), glm::vec3(1.0f),
+        //                    glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true);
     }
 
     // level1.objects[players[0].objID].obtainable = true;
@@ -321,9 +327,14 @@ void mainLoop()
 
         players[i].objID = level1.objects.size() - 1;
         level1.objects[players[i].objID].invisible = true;
+        level1.objects[players[i].objID].collisionMeshID = 0;
+        level1.objects[players[i].objID].obtainable = true;
     }
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glEnable(GL_CULL_FACE);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     std::shared_ptr<connection> ptrClient;
 
     while (!glfwWindowShouldClose(mainWindow))
@@ -343,6 +354,14 @@ void mainLoop()
         playerVel.z = 0.0f;
 
         prevCamFront = camFront;
+
+        glm::vec3 distToPlayer = glm::vec3(level1.objects[deathCubeID].position.x - level1.objects[players[0].objID].position.x,
+                                           0.0f, level1.objects[deathCubeID].position.z - level1.objects[players[0].objID].position.z);
+        glm::vec3 normDistToPlayer = glm::normalize(distToPlayer);
+        if (std::abs(distToPlayer.x * distToPlayer.z) > 1.0f && std::abs(distToPlayer.x * distToPlayer.z) < 45.0f)
+            level1.objects[deathCubeID].position -= delta_time * 3.0f * normDistToPlayer;
+
+        // level1.objects[deathCubeID].rotation.y = atan2()
 
         if (level1.objects[players[0].objID].position.y > 0.0f)
             playerVel.y -= 40.0f * delta_time;
@@ -503,10 +522,7 @@ void mainLoop()
 
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, plPos);
-            if (level1.objects[players[i].objID].rotation.z < 0.0f)
-                model = glm::rotate(model, static_cast<float>(AI_MATH_PI) - glm::asin(plRot.x), glm::vec3(0.0f, 1.0f, 0.0f));
-            else
-                model = glm::rotate(model, glm::asin(plRot.x), glm::vec3(0.0f, 1.0f, 0.0f));
+            model = glm::rotate(model, atan2f(plRot.x, plRot.z), glm::vec3(0.0f, 1.0f, 0.0f));
             lightShader.setMat4("model", model);
 
             if (i > 0)

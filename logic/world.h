@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <map>
+
 struct object
 {
     size_t modelID = 0;
@@ -18,7 +20,7 @@ struct object
     bool obtainable = false, collidable = false, solid = true;
     int beingHeld = -1;
     float weight = 9.81f;
-    bool invisible = false;
+    bool invisible = false, includesTransparency = false;
 
     glm::vec3 velocity = glm::vec3(0.0f);
 

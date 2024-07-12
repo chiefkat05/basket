@@ -41,61 +41,13 @@ void world::AddObject(object &obj, std::string modelPath)
 
     objects.push_back(obj);
 }
-static bool intersectRaySegmentSphere(glm::vec3 origin, glm::vec3 d, glm::vec3 sphereOrigin, float radius2, glm::vec3 &ip)
-{
-    float length = d.length();
-    d /= 1;
-
-    glm::vec3 m = origin - sphereOrigin;
-    float b = glm::dot(m, d);
-    float c = glm::dot(m, m) - radius2;
-
-    if (c > 0.0f && b > 0.0f)
-        return false;
-    float discr = b * b - c;
-
-    if (discr < 0.0f)
-        return false;
-
-    float t = -b - sqrtf(discr);
-
-    if (t < 0.0f)
-        t = 0.0f;
-    ip = origin + (d * t);
-
-    if (t > 1)
-        return false;
-
-    return true;
-}
-static bool leftOf(const glm::vec2 &a, const glm::vec2 &b, const glm::vec2 &p)
-{
-    float area = 0.5f * (a.x * (b.y - p.y)) +
-                 b.x * (p.y - a.y) +
-                 p.x * (a.y - b.y);
-    return (area > 0.0f);
-}
-static bool pointInside(const glm::vec2 poly[], int pcount, const glm::vec2 &v)
-{
-    for (int i = 0; i < pcount; ++i)
-    {
-        int next = i;
-        ++next;
-        if (next == pcount)
-            next = 0;
-
-        if (!leftOf(poly[i], poly[next], v))
-            return false;
-    }
-    return true;
-}
 
 glm::vec3 world::FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &vertices, glm::vec3 objPosition)
 {
     glm::vec3 maxPoint;
     float maxDistance = -FLT_MAX;
 
-    for (int i = 0; i < vertices.size(); ++i)
+    for (unsigned int i = 0; i < vertices.size(); ++i)
     {
         glm::vec3 checkPosition = vertices[i].position + objPosition;
         float distance = glm::dot(checkPosition, direction);
@@ -260,9 +212,9 @@ void world::EPA_AddIfUniqueEdge(std::vector<std::pair<size_t, size_t>> &edges, c
         edges.emplace_back(faces[a], faces[b]);
     }
 }
-CollisionData world::EPA(const simplex &points, object &obj1, object &obj2)
+CollisionData world::EPA(const simplex &simplex, object &obj1, object &obj2)
 {
-    std::vector<glm::vec3> polytope(points.begin(), points.end());
+    std::vector<glm::vec3> polytope(simplex.begin(), simplex.end());
     std::vector<size_t> faces = {
         0, 1, 2,
         0, 3, 1,
@@ -288,35 +240,35 @@ CollisionData world::EPA(const simplex &points, object &obj1, object &obj2)
 
             std::vector<std::pair<size_t, size_t>> unique_edges;
 
-            for (size_t i = 0; i < normals.size(); ++i)
+            for (size_t i = 0; i < normals.size(); i++)
             {
-                if (!SameDirection(normals[i], support))
-                    continue;
+                if (SameDirection(normals[i], support))
+                {
+                    size_t f = i * 3;
 
-                size_t f = i * 3;
+                    EPA_AddIfUniqueEdge(unique_edges, faces, f, f + 1);
+                    EPA_AddIfUniqueEdge(unique_edges, faces, f + 1, f + 2);
+                    EPA_AddIfUniqueEdge(unique_edges, faces, f + 2, f);
 
-                EPA_AddIfUniqueEdge(unique_edges, faces, f, f + 1);
-                EPA_AddIfUniqueEdge(unique_edges, faces, f + 1, f + 2);
-                EPA_AddIfUniqueEdge(unique_edges, faces, f + 2, f);
+                    faces[f + 2] = faces.back();
+                    faces.pop_back();
+                    faces[f + 1] = faces.back();
+                    faces.pop_back();
+                    faces[f] = faces.back();
+                    faces.pop_back();
 
-                faces[f + 2] = faces.back();
-                faces.pop_back();
-                faces[f + 1] = faces.back();
-                faces.pop_back();
-                faces[f] = faces.back();
-                faces.pop_back();
+                    normals[i] = normals.back();
+                    normals.pop_back();
 
-                normals[i] = normals.back();
-                normals.pop_back();
-
-                --i;
+                    i--;
+                }
             }
 
             std::vector<size_t> newFaces;
             for (auto [edgeIndex1, edgeIndex2] : unique_edges)
             {
                 newFaces.push_back(edgeIndex1);
-                newFaces.push_back(edgeIndex1);
+                newFaces.push_back(edgeIndex2);
                 newFaces.push_back(polytope.size());
             }
 
@@ -357,8 +309,6 @@ bool world::collisionDetection(object &obj1, object &obj2)
 {
     // rudimentary collision
 
-    // std::vector<unsigned int> indices = models[obj2.modelID].meshes[obj2.collisionMeshID].indices;
-
     glm::vec3 support = GJK_Support(glm::vec3(1.0f, 0.0f, 0.0f), obj1, obj2);
 
     simplex points;
@@ -386,88 +336,13 @@ bool world::collisionDetection(object &obj1, object &obj2)
 
             // figure out why there is nan output sometimes (seems to have something to do with corners)
             // add broadphase as a simple pre-collision test
-            if (!obj2.solid)
+            if (!obj1.solid)
             {
-                obj2.position += glm::vec3(col.normal.x, col.normal.y, col.normal.z) * (col.penetrationDepth);
+                obj1.position -= glm::vec3(col.normal.x, col.normal.y, col.normal.z) * (col.penetrationDepth);
             }
             return true;
         }
     }
-
-    // unsigned int iCount = indices.size() / 3;
-    // for (unsigned int k = 0; k < indices.size(); k += 3)
-    // {
-    //     bool outsidePlane = false;
-    //     bool outsideAllEdges = false;
-    //     bool outsideAllVerts = false;
-    //     bool fullyInsidePlane = false;
-
-    //     glm::vec3 v1 = vertices[indices[k]].position + obj2.position;
-    //     glm::vec3 v2 = vertices[indices[k + 1]].position + obj2.position;
-    //     glm::vec3 v3 = vertices[indices[k + 2]].position + obj2.position;
-
-    //     glm::vec3 pN = glm::normalize(vertices[indices[k]].normal);
-
-    //     if (fabs(pN.y) > 0.1f)
-    //         continue;
-
-    //     float objSphereSubtraction = 25.0f;
-    //     float distance = glm::dot(-((v1 + v2 + v3) / 3.0f), pN) - objSphereSubtraction;
-
-    //     float point2plane = glm::dot(pN, obj1.position) + distance;
-
-    //     float objSphereSize = 1.0f;
-    //     if (point2plane > objSphereSize - objSphereSubtraction)
-    //     {
-    //         outsidePlane = true;
-    //         continue;
-    //     }
-
-    //     bool outsideV1 = (std::sqrt((v1 - objSphereSize).length()) > objSphereSize * objSphereSize - objSphereSubtraction);
-    //     bool outsideV2 = (std::sqrt((v2 - objSphereSize).length()) > objSphereSize * objSphereSize - objSphereSubtraction);
-    //     bool outsideV3 = (std::sqrt((v3 - objSphereSize).length()) > objSphereSize * objSphereSize - objSphereSubtraction);
-
-    //     if (outsideV1 && outsideV2 && outsideV3)
-    //     {
-    //         outsideAllVerts = true;
-    //     }
-
-    //     glm::vec3 a = v2 - v1;
-    //     glm::vec3 b = v3 - v2;
-    //     glm::vec3 c = v1 - v3;
-
-    //     // this is for if objectis too big
-    //     // glm::vec3 planeX = glm::normalize(a);
-    //     // glm::vec3 planeY = glm::normalize(glm::cross(pN, a));
-
-    //     // auto project2D = [&](const glm::vec3 &p)
-    //     // { return glm::vec2(glm::dot(p, planeX), glm::dot(p, planeY)); };
-
-    //     // glm::vec2 planePos2D = project2D(obj1.position);
-    //     // glm::vec2 triangle2D[3] = {project2D(v1), project2D(v2), project2D(v3)};
-
-    //     // if (pointInside(triangle2D, 3, planePos2D))
-    //     // {
-    //     //     fullyInsidePlane = true;
-    //     // }
-
-    //     glm::vec3 ip;
-
-    //     if (!intersectRaySegmentSphere(v1, a, obj1.position, objSphereSize - objSphereSubtraction, ip) &&
-    //         !intersectRaySegmentSphere(v2, b, obj1.position, objSphereSize - objSphereSubtraction, ip) &&
-    //         !intersectRaySegmentSphere(v3, c, obj1.position, objSphereSize - objSphereSubtraction, ip))
-    //     {
-    //         outsideAllEdges = true;
-    //     }
-
-    //     if (outsideAllEdges && outsideAllVerts)
-    //     {
-    //         continue;
-    //     }
-
-    //     obj1.position = obj1.prevPosition;
-    //     return true;
-    // }
 
     return false;
 }
@@ -477,7 +352,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
 {
     objectLookingAt = nullptr;
     s.use();
-    s.setMat4("projection", projection);
+    s.setMat4("projection", projection); // collision mesh does not get rotated!!! // okay yea EPA is absolutely broken // also add quadtree
     s.setMat4("view", view);
     // for (unsigned int i = 4; i < objects.size() - 3; ++i)
     // {
@@ -485,6 +360,17 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
     //     std::cout << objects[i].position.x << ", " << objects[i].position.y << ", " << objects[i].position.z << "\n";
     //     std::cout << objects[i].collidable << "\n";
     // }
+    // std::map<float, unsigned int> sorted;
+    // for (unsigned int i = 0; i < objects.size(); ++i)
+    // {
+    //     float distance = glm::length(playerPos - objects[i].position);
+    //     // float distance = i;
+    //     sorted[distance] = i;
+
+    //     // objects.erase(objects.begin() + i);
+    //     // objects.swap()
+    // }
+
     for (unsigned int i = 0; i < objects.size(); ++i)
     {
         if (objectHolding == &objects[i])
