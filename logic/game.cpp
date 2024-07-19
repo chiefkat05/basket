@@ -384,44 +384,44 @@ void mainLoop()
 
     level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(800.0f, 1.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), false, true, true);
     // too bloated
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, 2.5f, -3.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false);
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, 2.5f, -3.8f), glm::vec3(1.5f),
-                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, false);
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, 2.5f, -6.0f), glm::vec3(2.0f),
-                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false);
+    // level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, 2.5f, -3.0f), glm::vec3(1.0f),
+    //                    glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false);
+    // level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, 2.5f, -3.8f), glm::vec3(1.5f),
+    //                    glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, false);
+    // level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, 2.5f, -6.0f), glm::vec3(2.0f),
+    //                    glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false);
 
-    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
-    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(0.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
-    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
+    // level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
+    // level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(0.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
+    // level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
     unsigned int deathCubeID = level1.objects.size() - 1;
 
-    for (int i = 0; i < 128; ++i)
-    {
-        float randX = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
-        float randZ = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
-        float randRot = static_cast<float>(rand() % 900) * 0.1f;
-        level1.PlaceObject("../gfx/models/terrain/bush-1/bush.obj", glm::vec3(randX, 0.0f, randZ), glm::vec3(1.0f), glm::vec3(0.0f, randRot, 0.0f));
-    }
-    level1.PlaceObject("../gfx/models/structures/badstairs/badstairs.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-    level1.PlaceObject("../gfx/models/structures/what/what.obj", glm::vec3(-15.0f, 0.0f, -25.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-    level1.PlaceObject("../gfx/models/structures/badarch/badarch.obj", glm::vec3(15.0f, 0.0f, -25.0f), glm::vec3(5.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    // for (int i = 0; i < 128; ++i)
+    // {
+    //     float randX = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
+    //     float randZ = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
+    //     float randRot = static_cast<float>(rand() % 900) * 0.1f;
+    //     level1.PlaceObject("../gfx/models/terrain/bush-1/bush.obj", glm::vec3(randX, 0.0f, randZ), glm::vec3(1.0f), glm::vec3(0.0f, randRot, 0.0f));
+    // }
+    // level1.PlaceObject("../gfx/models/structures/badstairs/badstairs.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    // level1.PlaceObject("../gfx/models/structures/what/what.obj", glm::vec3(-15.0f, 0.0f, -25.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    // level1.PlaceObject("../gfx/models/structures/badarch/badarch.obj", glm::vec3(15.0f, 0.0f, -25.0f), glm::vec3(5.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
 
     // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
-    glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, -8.0f);
-    for (int i = 0; i < 10; ++i)
-    {
-        // float yRot = (rand() % 8) * 45.0f;
-        float yRot = 0.0f;
-        glm::vec3 pos = randPosition + (static_cast<float>(i + 1) * 4.0f) + (sin(yRot) + cos(yRot));
-        // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
-        // glm::vec3 pos = glm::vec3(0.0f);
+    // glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, -8.0f);
+    // for (int i = 0; i < 10; ++i)
+    // {
+    //     // float yRot = (rand() % 8) * 45.0f;
+    //     float yRot = 0.0f;
+    //     glm::vec3 pos = randPosition + (static_cast<float>(i + 1) * 4.0f) + (sin(yRot) + cos(yRot));
+    //     // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
+    //     // glm::vec3 pos = glm::vec3(0.0f);
 
-        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x * (i % 4 - 1), -.0f, pos.z), glm::vec3(1.0f - i * 0.1f),
-                           glm::vec3(0.0f, yRot, 0.0f), glm::vec3(1.0f), false, true, true);
-        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x * (i % 4 - 1), -1.0f, pos.z), glm::vec3(1.0f),
-        //                    glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true);
-    }
+    //     level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x * (i % 4 - 1), -.0f, pos.z), glm::vec3(1.0f - i * 0.1f),
+    //                        glm::vec3(0.0f, yRot, 0.0f), glm::vec3(1.0f), false, true, true);
+    //     // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x * (i % 4 - 1), -1.0f, pos.z), glm::vec3(1.0f),
+    //     //                    glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true);
+    // }
 
     // level1.objects[players[0].objID].obtainable = true;
     for (int i = 0; i < PLAYER_COUNT; ++i)
