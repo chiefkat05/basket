@@ -1,10 +1,8 @@
 CMakeFiles/engine.dir/logic/world.cpp.o: \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp \
  /usr/include/stdc-predef.h \
- /home/chiefkat/Documents/vscodeprojects/basket/logic/world.h \
- /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/graphics.h \
- /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/shader.h \
- /usr/include/c++/14.1.1/fstream \
+ /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.h \
+ /usr/include/c++/14.1.1/iostream \
  /usr/include/c++/14.1.1/bits/requires_hosted.h \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -14,7 +12,7 @@ CMakeFiles/engine.dir/logic/world.cpp.o: \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
  /usr/include/c++/14.1.1/pstl/pstl_config.h \
- /usr/include/c++/14.1.1/istream /usr/include/c++/14.1.1/ios \
+ /usr/include/c++/14.1.1/ostream /usr/include/c++/14.1.1/ios \
  /usr/include/c++/14.1.1/iosfwd /usr/include/c++/14.1.1/bits/stringfwd.h \
  /usr/include/c++/14.1.1/bits/memoryfwd.h \
  /usr/include/c++/14.1.1/bits/postypes.h /usr/include/c++/14.1.1/cwchar \
@@ -140,13 +138,19 @@ CMakeFiles/engine.dir/logic/world.cpp.o: \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
  /usr/include/c++/14.1.1/bits/locale_facets.tcc \
  /usr/include/c++/14.1.1/bits/basic_ios.tcc \
- /usr/include/c++/14.1.1/ostream /usr/include/c++/14.1.1/bits/ostream.tcc \
- /usr/include/c++/14.1.1/bits/istream.tcc \
- /usr/include/c++/14.1.1/bits/codecvt.h \
+ /usr/include/c++/14.1.1/bits/ostream.tcc /usr/include/c++/14.1.1/istream \
+ /usr/include/c++/14.1.1/bits/istream.tcc /usr/include/c++/14.1.1/vector \
+ /usr/include/c++/14.1.1/bits/stl_uninitialized.h \
+ /usr/include/c++/14.1.1/bits/stl_vector.h \
+ /usr/include/c++/14.1.1/bits/stl_bvector.h \
+ /usr/include/c++/14.1.1/bits/vector.tcc \
+ /home/chiefkat/Documents/vscodeprojects/basket/logic/world.h \
+ /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/graphics.h \
+ /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/shader.h \
+ /usr/include/c++/14.1.1/fstream /usr/include/c++/14.1.1/bits/codecvt.h \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
- /usr/include/c++/14.1.1/bits/fstream.tcc \
- /usr/include/c++/14.1.1/iostream /usr/local/include/glm/glm.hpp \
+ /usr/include/c++/14.1.1/bits/fstream.tcc /usr/local/include/glm/glm.hpp \
  /usr/local/include/glm/detail/_fixes.hpp /usr/include/c++/14.1.1/cmath \
  /usr/include/math.h /usr/include/bits/math-vector.h \
  /usr/include/bits/libm-simd-decl-stubs.h \
@@ -213,11 +217,7 @@ CMakeFiles/engine.dir/logic/world.cpp.o: \
  /usr/include/c++/14.1.1/ext/aligned_buffer.h \
  /usr/include/c++/14.1.1/bits/enable_special_members.h \
  /usr/include/c++/14.1.1/bits/node_handle.h \
- /usr/include/c++/14.1.1/bits/erase_if.h /usr/include/c++/14.1.1/vector \
- /usr/include/c++/14.1.1/bits/stl_uninitialized.h \
- /usr/include/c++/14.1.1/bits/stl_vector.h \
- /usr/include/c++/14.1.1/bits/stl_bvector.h \
- /usr/include/c++/14.1.1/bits/vector.tcc /usr/include/c++/14.1.1/array \
+ /usr/include/c++/14.1.1/bits/erase_if.h /usr/include/c++/14.1.1/array \
  /usr/include/c++/14.1.1/compare \
  /usr/local/include/glm/detail/_vectorize.hpp \
  /usr/local/include/glm/ext/vector_bool3_precision.hpp \

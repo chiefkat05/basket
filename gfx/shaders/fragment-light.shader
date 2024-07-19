@@ -159,4 +159,5 @@ void main()
         discard;
 
     gl_FragColor = result;
+    // gl_FragColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 };

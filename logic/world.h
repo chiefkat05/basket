@@ -26,12 +26,29 @@ struct object
 
     // collision stuff
     int collisionMeshID = 0;
+
+    object create(glm::vec3 position, glm::vec3 scale, glm::vec3 rotation,
+                  glm::vec2 tScale, bool obtainable, bool collidable, bool solid)
+    {
+        object temp;
+        temp.position = position;
+        temp.scale = scale;
+        temp.prevPosition = position;
+        temp.internalScale = scale;
+        temp.rotation = rotation;
+        temp.tScale = tScale;
+        temp.obtainable = obtainable;
+        temp.collidable = collidable;
+        temp.solid = solid;
+
+        return temp;
+    }
 };
 struct simplex
 {
 private:
-    std::array<glm::vec3, 4> m_points;
-    unsigned m_size;
+    std::array<glm::vec3, 4> m_points = {glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(0.0f)};
+    unsigned m_size = 0;
 
 public:
     simplex() : m_points({glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(0.0f)}), m_size(0) {}
@@ -72,6 +89,7 @@ struct world
     std::vector<object> objects;
     std::vector<gfx::model> models;
 
+    // please optimize all of this, I think thw world functions are a bottleneck
     void PlaceObject(std::string modelPath, glm::vec3 position = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f), glm::vec3 rotation = glm::vec3(1.0f),
                      glm::vec2 tScale = glm::vec2(1.0f), bool obtainable = false,
                      bool collidable = false, bool solid = true);

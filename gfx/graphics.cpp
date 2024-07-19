@@ -251,7 +251,7 @@ gfx::mesh gfx::model::processMesh(aiMesh *_mesh, const aiScene *_scene)
         }
         else
         {
-            _vertex.textureCoordinates = glm::vec2(0.0f, 0.0f); // write simple container/caller for models
+            _vertex.textureCoordinates = glm::vec2(0.0f, 0.0f);
         }
 
         vertices.push_back(_vertex);

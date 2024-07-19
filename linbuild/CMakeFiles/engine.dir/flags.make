@@ -13,5 +13,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include
 
-CXX_FLAGS = -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/
+CXX_FLAGS = -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/
 

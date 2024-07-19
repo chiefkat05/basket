@@ -24,12 +24,12 @@ void queue<T>::push_front(const T &input)
     cvB_.notify_one();
 }
 
-template <typename T>
-bool queue<T>::empty()
-{
-    std::scoped_lock lock(mux_);
-    return deq_.empty();
-}
+// template <typename T>
+// bool queue<T>::empty()
+// {
+//     std::scoped_lock lock(mux_);
+//     return deq_.empty();
+// }
 
 template <typename T>
 size_t queue<T>::length()
@@ -45,14 +45,14 @@ void queue<T>::clear()
     deq_.clear();
 }
 
-template <typename T>
-T queue<T>::pop_front()
-{
-    std::scoped_lock lock(mux_);
-    auto t = std::move(deq_.front());
-    deq_.pop_front();
-    return t;
-}
+// template <typename T>
+// T queue<T>::pop_front()
+// {
+//     std::scoped_lock lock(mux_);
+//     auto t = std::move(deq_.front());
+//     deq_.pop_front();
+//     return t;
+// }
 template <typename T>
 T queue<T>::pop_back()
 {

@@ -101,13 +101,23 @@ public:
     void push_back(const T &input);
     void push_front(const T &input);
 
-    bool empty();
+    bool empty()
+    {
+        std::scoped_lock lock(mux_);
+        return deq_.empty();
+    }
 
     size_t length();
 
     void clear();
 
-    T pop_front();
+    T pop_front()
+    {
+        std::scoped_lock lock(mux_);
+        auto t = std::move(deq_.front());
+        deq_.pop_front();
+        return t;
+    }
     T pop_back();
 
     void wait(bool doSomething);

@@ -1,4 +1,6 @@
-#include "world.h"
+#include "collision.h" // includes world.h
+
+// oct_tree tree(0.0f, 0.0f, 0.0f, 400.0f, 400.0f, 400.0f);
 
 void world::PlaceObject(std::string modelPath, glm::vec3 position, glm::vec3 scale, glm::vec3 rotation,
                         glm::vec2 tScale, bool obtainable, bool collidable, bool solid)
@@ -7,14 +9,34 @@ void world::PlaceObject(std::string modelPath, glm::vec3 position, glm::vec3 sca
     {
         if (models[i].fullPath == modelPath)
         {
-            objects.push_back({i, position, position, scale, glm::vec3(1.0f), rotation, tScale, obtainable, collidable, solid, -1});
+            object tmp;
+            unsigned int tmpLoc = objects.size();
+            objects.push_back(tmp);
+
+            objects[tmpLoc].modelID = i;
+            objects[tmpLoc].position = position;
+            objects[tmpLoc].scale = scale;
+            objects[tmpLoc].prevPosition = position;
+            objects[tmpLoc].internalScale = scale;
+            objects[tmpLoc].rotation = rotation;
+            objects[tmpLoc].tScale = tScale;
+            objects[tmpLoc].obtainable = obtainable;
+            objects[tmpLoc].collidable = collidable;
+            objects[tmpLoc].solid = solid;
+
             return;
         }
     }
     gfx::model nModel(modelPath);
 
     models.push_back(nModel);
-    objects.push_back({models.size() - 1, position, position, scale, glm::vec3(1.0f), rotation, tScale, obtainable, collidable, solid, -1});
+
+    object tmp = tmp.create(position, scale, rotation, tScale, obtainable, collidable, solid);
+    tmp.modelID = models.size() - 1;
+    tmp.internalScale = glm::vec3(1.0f);
+
+    objects.push_back(tmp);
+    // tree.insert(objects.size() - 1);
 }
 void world::AddObject(object &obj, std::string modelPath)
 {
@@ -39,6 +61,7 @@ void world::AddObject(object &obj, std::string modelPath)
     }
 
     objects.push_back(obj);
+    // tree.insert(objects.size() - 1);
 }
 
 glm::vec3 world::FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &vertices, glm::vec3 objPosition, glm::vec3 objScale, glm::vec3 objRotation)
@@ -311,6 +334,13 @@ CollisionData world::EPA(const simplex &simplex, object &obj1, object &obj2)
 bool world::collisionDetection(object &obj1, object &obj2)
 {
     // rudimentary collision
+    // float distance = std::abs((obj1.position.x - obj2.position.x) * (obj1.position.y - obj2.position.y) * (obj1.position.z - obj2.position.z));
+    // if (distance > 4.0f)
+    //     return false;
+    // float distance = glm::distance(obj1.position, obj2.position);
+
+    // if (distance > 40.0f)
+    //     return false;
 
     glm::vec3 support = GJK_Support(glm::vec3(1.0f, 0.0f, 0.0f), obj1, obj2);
 
@@ -333,7 +363,6 @@ bool world::collisionDetection(object &obj1, object &obj2)
 
         if (GJK_NextSimplex(points, direction))
         {
-
             obj1.colliding = true;
             obj2.colliding = true;
             // collision response
@@ -341,8 +370,6 @@ bool world::collisionDetection(object &obj1, object &obj2)
 
             // add broadphase as a simple pre-collision test
 
-            if (col.normal.y > 0.7f && obj2.velocity.y <= 0.0f)
-                obj2.onGround = true;
             if (col.normal.y < -0.7f && obj1.velocity.y <= 0.0f)
                 obj1.onGround = true;
 
@@ -364,26 +391,11 @@ bool world::collisionDetection(object &obj1, object &obj2)
 void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 &playerPos, glm::vec3 &camFront, object *&objectLookingAt, object *&objectHolding,
                    unsigned int &objectHoldingID, float floorlevel, float delta_time)
 {
+    // std::cout << "at least here\n";
     objectLookingAt = nullptr;
     s.use();
     s.setMat4("projection", projection); // collision mesh does not get rotated!!! // okay yea EPA is absolutely broken // also add quadtree
     s.setMat4("view", view);
-    // for (unsigned int i = 4; i < objects.size() - 3; ++i)
-    // {
-    //     std::cout << i << ", " << models[objects[i].modelID].fullPath << "\n";
-    //     std::cout << objects[i].position.x << ", " << objects[i].position.y << ", " << objects[i].position.z << "\n";
-    //     std::cout << objects[i].collidable << "\n";
-    // }
-    // std::map<float, unsigned int> sorted;
-    // for (unsigned int i = 0; i < objects.size(); ++i)
-    // {
-    //     float distance = glm::length(playerPos - objects[i].position);
-    //     // float distance = i;
-    //     sorted[distance] = i;
-
-    //     // objects.erase(objects.begin() + i);
-    //     // objects.swap()
-    // }
 
     for (unsigned int i = 0; i < objects.size(); ++i)
     {
@@ -434,6 +446,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
             {
                 if (j == i || !objects[j].collidable)
                     continue;
+
                 if (collisionDetection(objects[i], objects[j]))
                 {
                     // s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
@@ -458,4 +471,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
         objects[i].prevPosition = objects[i].position;
         objects[i].colliding = false;
     }
+    // for (auto i : tree)
+    // {
+    // }
 }

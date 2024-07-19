@@ -1,5 +1,4 @@
 // #include "../gfx/graphics.h"
-#include "world.h"
 #include "events.h"
 #include "../multiplayer.h"
 #include "collision.h"
@@ -62,7 +61,6 @@ struct player
 };
 #define PLAYER_COUNT 5
 player players[PLAYER_COUNT];
-unsigned int playerObjIndex = 5;
 
 world level1;
 
@@ -382,10 +380,9 @@ void mainLoop()
         glm::vec3(-4.0f, 2.0f, -12.0f),
         glm::vec3(0.0f, 0.0f, -3.0f)};
 
-    gfx::model playerModel("../gfx/models/player/player.obj");
+    gfx::model playerModel("../gfx/models/player/player.obj"); // this is the origin of the problem with the player textures
 
-    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), false, true, true);
-    // level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(800.0f, 1.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), false, true, true);
     // too bloated
     level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, 2.5f, -3.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false);
@@ -432,13 +429,14 @@ void mainLoop()
         level1.PlaceObject("../gfx/models/player/player.obj",
                            glm::vec3(-3.0f, -100.0f, -5.0f), glm::vec3(1.0f),
                            glm::vec3(1.0f), glm::vec2(1.0f),
-                           false, true, false);
+                           false, false, false);
 
         players[i].objID = level1.objects.size() - 1;
         level1.objects[players[i].objID].invisible = true;
         level1.objects[players[i].objID].collisionMeshID = 0;
     }
     level1.objects[players[0].objID].position.y = 2.0f;
+    level1.objects[players[0].objID].collidable = true;
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
@@ -460,18 +458,16 @@ void mainLoop()
 
         playerInput();
 
-        // std::cout << level1.objects[players[0].objID].velocity.y << " why\n";
-
         level1.objects[players[0].objID].velocity.x = 0.0f;
         level1.objects[players[0].objID].velocity.z = 0.0f;
 
         prevCamFront = camFront;
 
-        glm::vec3 distToPlayer = glm::vec3(level1.objects[deathCubeID].position.x - level1.objects[players[0].objID].position.x,
-                                           0.0f, level1.objects[deathCubeID].position.z - level1.objects[players[0].objID].position.z);
-        glm::vec3 normDistToPlayer = glm::normalize(distToPlayer);
-        if (std::abs(distToPlayer.x * distToPlayer.z) > 1.0f && std::abs(distToPlayer.x * distToPlayer.z) < 45.0f)
-            level1.objects[deathCubeID].position -= delta_time * 3.0f * normDistToPlayer;
+        // glm::vec3 distToPlayer = glm::vec3(level1.objects[deathCubeID].position.x - level1.objects[players[0].objID].position.x,
+        //                                    0.0f, level1.objects[deathCubeID].position.z - level1.objects[players[0].objID].position.z);
+        // glm::vec3 normDistToPlayer = glm::normalize(distToPlayer);
+        // if (std::abs(distToPlayer.x * distToPlayer.z) > 1.0f && std::abs(distToPlayer.x * distToPlayer.z) < 45.0f)
+        //     level1.objects[deathCubeID].position -= delta_time * 3.0f * normDistToPlayer;
 
         // level1.objects[deathCubeID].rotation.y = atan2()
 
@@ -519,7 +515,7 @@ void mainLoop()
                         while (clientonline)
                         {
                             message_header eh;
-                            if (!cl.Incoming().empty())
+                            if (!cl.queueEmpty())
                             {
                                 auto msg = cl.Incoming().pop_front().msg;
 
@@ -620,10 +616,6 @@ void mainLoop()
         lightShader.setDouble("near", nearView);
         lightShader.setDouble("far", farView);
 
-        // glm::vec3 playPos = level1.objects[players[0].objID].position;
-        // std::cout << playPos.x << ", " << playPos.y << ", " << playPos.z << "\n";
-        // std::cout << players[0].objID << ", " << level1.objects[6].position.z << " 0\n";
-        // std::cout << players[1].objID << ", " << level1.objects[7].position.z << " 1\n"; figure out how to make the world model update with the client players
         for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
         {
             plPos = level1.objects[players[i].objID].position;
