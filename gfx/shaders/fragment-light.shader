@@ -158,5 +158,5 @@ void main()
     if (result.w < 0.01)
         discard;
 
-    gl_FragColor = result * colorMultiple * fog;
+    gl_FragColor = result;
 };

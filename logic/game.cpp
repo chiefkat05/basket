@@ -54,13 +54,9 @@ std::thread serverThread, clientThread;
 float doubleTapTimer = 0.0f;
 object *objectLookingAt = nullptr, *objectHolding = nullptr;
 unsigned int objectHoldingID = 0;
-glm::vec3 playerVel = glm::vec3(0.0f);
 
 struct player
 {
-    // glm::vec3 position;
-    // glm::vec3 rotation;
-    // object *obj;
     uint32_t id = 0;
     unsigned int objID;
 };
@@ -74,17 +70,17 @@ void playerInput()
 {
     if (ehandler.requestKeyState(GLFW_KEY_A))
     {
-        playerVel.x = -1.5f;
+        // level1.objects[players[0].objID].velocity.x = -1.5f;
         level1.objects[players[0].objID].position -= 4.2f * camTrueRight * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_D))
     {
-        playerVel.x = 1.5f;
+        // level1.objects[players[0].objID].velocity.x = 1.5f;
         level1.objects[players[0].objID].position += 4.2f * camTrueRight * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_S))
     {
-        playerVel.z = 1.5f;
+        // level1.objects[players[0].objID].velocity.z = 1.5f;
         level1.objects[players[0].objID].position -= 4.2f * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
     }
     if (ehandler.requestKeyState(GLFW_KEY_W) == 2 || ehandler.requestKeyState(GLFW_KEY_LEFT_CONTROL))
@@ -97,8 +93,7 @@ void playerInput()
     }
     if (ehandler.requestKeyState(GLFW_KEY_W))
     {
-        playerVel.z = -1.5f;
-
+        // level1.objects[players[0].objID].velocity.z = -1.5f;
         level1.objects[players[0].objID].position += (4.2f + (8.4f * playerRunning)) * glm::vec3(camFrontAlign.x, 0.0f, camFrontAlign.z) * delta_time;
     }
     else
@@ -141,9 +136,10 @@ void playerInput()
         doubleTapTimer -= 4.0f * delta_time;
     }
 
-    if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && level1.objects[players[0].objID].position.y == 0.0f)
+    if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && level1.objects[players[0].objID].onGround)
     {
-        playerVel.y = 10.0f;
+        level1.objects[players[0].objID].velocity.y = 8.0f;
+        level1.objects[players[0].objID].onGround = false;
     }
 
     if (ehandler.requestKeyState(GLFW_KEY_F) == 2)
@@ -185,39 +181,156 @@ void playerInput()
         }
     }
 
+    if (ehandler.requestKeyState(GLFW_KEY_Y) == 2)
+    {
+        // level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
+        //                              level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[1].fullPath,
+                           level1.objects[players[0].objID].position + camFront * 8.0f,
+                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 1);
+        }
+    }
+    if (ehandler.requestKeyState(GLFW_KEY_U) == 2)
+    {
+        // level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
+        //                              level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[0].fullPath,
+                           level1.objects[players[0].objID].position + camFront * 8.0f,
+                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 0);
+        }
+    }
     if (ehandler.requestKeyState(GLFW_KEY_I) == 2)
     {
-        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj",
-                           glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
-                                     level1.objects[players[0].objID].position.z) +
-                               camFrontAlign * 8.0f,
-                           glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        // level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
+        //                              level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f), glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[2].fullPath,
+                           level1.objects[players[0].objID].position + camFront * 8.0f,
+                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 2);
+        }
     }
     if (ehandler.requestKeyState(GLFW_KEY_O) == 2)
     {
-        level1.PlaceObject("../gfx/models/items/carrot.obj",
-                           glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
-                                     level1.objects[players[0].objID].position.z) +
-                               camFrontAlign * 8.0f,
+        // level1.PlaceObject("../gfx/models/items/carrot.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x, -2.0f,
+        //                              level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f),
+        //                    glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), true, true, false);
+        level1.PlaceObject(level1.models[3].fullPath,
+                           level1.objects[players[0].objID].position + camFront * 8.0f,
                            glm::vec3(1.0f),
-                           glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
+                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), true, true, false);
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 3);
+        }
     }
     if (ehandler.requestKeyState(GLFW_KEY_P) == 2)
     {
-        level1.PlaceObject("../gfx/models/walls/cube/cube.obj",
-                           glm::vec3(level1.objects[players[0].objID].position.x,
-                                     0.0f, level1.objects[players[0].objID].position.z) +
-                               camFrontAlign * 8.0f,
+        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x,
+        //                              0.0f, level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f),
+        //                    glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[4].fullPath,
+                           level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
                            glm::vec3(1.0f),
-                           glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 4);
+        }
+    }
+    if (ehandler.requestKeyState(GLFW_KEY_J) == 2)
+    {
+        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x,
+        //                              0.0f, level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f),
+        //                    glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[5].fullPath,
+                           level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
+                           glm::vec3(1.0f),
+                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 5);
+        }
+    }
+    if (ehandler.requestKeyState(GLFW_KEY_K) == 2)
+    {
+        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x,
+        //                              0.0f, level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f),
+        //                    glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[6].fullPath,
+                           level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
+                           glm::vec3(1.0f),
+                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 6);
+        }
+    }
+    if (ehandler.requestKeyState(GLFW_KEY_L) == 2)
+    {
+        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj",
+        //                    glm::vec3(level1.objects[players[0].objID].position.x,
+        //                              0.0f, level1.objects[players[0].objID].position.z) +
+        //                        camFrontAlign * 8.0f,
+        //                    glm::vec3(1.0f),
+        //                    glm::vec3(0.0f, glm::degrees(atan2(camFrontAlign.x, camFrontAlign.z)), 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject(level1.models[7].fullPath,
+                           level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
+                           glm::vec3(1.0f),
+                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+        if (clientonline && clientvalidated <= 0.0f)
+        {
+            unsigned int lastObj = level1.objects.size() - 1;
+            mClient->SendObject(level1.objects[lastObj], 7);
+        }
     }
 
     if (ehandler.requestKeyState(GLFW_KEY_ESCAPE) == 2)
     {
         glfwSetWindowShouldClose(mainWindow, true);
 
+        if (serveronline)
+            hostServer->Stop();
+
         serveronline = false;
-        hostServer->Stop();
         noserverduplicates = false;
 
         if (serverThread.joinable())
@@ -238,8 +351,6 @@ void playerInput()
         msgUpdate -= 1.0f * delta_time;
     }
 }
-
-int strangeCounter = 0; // for debug
 
 void mainLoop()
 {
@@ -265,14 +376,6 @@ void mainLoop()
 
     proj = glm::perspective(glm::radians(45.0f), width / height, nearView, farView);
 
-    // std::vector<player> players;
-    // player players[PLAYER_COUNT] = {
-    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0},
-    //     {glm::vec3(0.0f, -100.0f, 0.0f), glm::vec3(0.0f), 0}};
-
     glm::vec3 pointLightPositions[] = {
         glm::vec3(0.7f, 0.2f, 2.0f),
         glm::vec3(4.3f, 0.0f, -28.0f),
@@ -281,38 +384,44 @@ void mainLoop()
 
     gfx::model playerModel("../gfx/models/player/player.obj");
 
-    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, -2.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), false, true, true);
-    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), false, true, true);
+    // level1.PlaceObject("../gfx/models/terrain/simple/plane.obj", glm::vec3(0.0f, 5.0f, 0.0f), glm::vec3(800.0f, 0.0f, 800.0f), glm::vec3(1.0f, 1.0f, 180.0f), glm::vec2(160.0f, 160.0f), false, true, true);
     // too bloated
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, -1.8f, 0.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, -1.8f, 0.8f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
-    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, -1.8f, 3.0f), glm::vec3(1.0f),
-                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false, 32.0f);
+    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.8f, 2.5f, -3.0f), glm::vec3(1.0f),
+                       glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false);
+    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(-0.4f, 2.5f, -3.8f), glm::vec3(1.5f),
+                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, false);
+    level1.PlaceObject("../gfx/models/items/carrot.obj", glm::vec3(0.5f, 2.5f, -6.0f), glm::vec3(2.0f),
+                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false);
 
-    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, -2.0f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), true, true, true);
+    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
+    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(0.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
+    level1.PlaceObject("../gfx/models/enemies/smoosh/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
     unsigned int deathCubeID = level1.objects.size() - 1;
 
     for (int i = 0; i < 128; ++i)
     {
         float randX = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
         float randZ = static_cast<float>(rand() % 2400 - 1200) * 0.1f;
-        level1.PlaceObject("../gfx/models/terrain/bush-1/bush.obj", glm::vec3(randX, -2.0f, randZ));
-        level1.objects.back().includesTransparency = true;
+        float randRot = static_cast<float>(rand() % 900) * 0.1f;
+        level1.PlaceObject("../gfx/models/terrain/bush-1/bush.obj", glm::vec3(randX, 0.0f, randZ), glm::vec3(1.0f), glm::vec3(0.0f, randRot, 0.0f));
     }
+    level1.PlaceObject("../gfx/models/structures/badstairs/badstairs.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/structures/what/what.obj", glm::vec3(-15.0f, 0.0f, -25.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/structures/badarch/badarch.obj", glm::vec3(15.0f, 0.0f, -25.0f), glm::vec3(5.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
 
     // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
     glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, -8.0f);
-    for (int i = 0; i < 24; ++i)
+    for (int i = 0; i < 10; ++i)
     {
-        float yRot = (rand() % 8) * 45.0f;
+        // float yRot = (rand() % 8) * 45.0f;
+        float yRot = 0.0f;
         glm::vec3 pos = randPosition + (static_cast<float>(i + 1) * 4.0f) + (sin(yRot) + cos(yRot));
         // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
         // glm::vec3 pos = glm::vec3(0.0f);
 
-        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x * (i % 4 - 1), -2.0f, pos.z), glm::vec3(1.0f),
-                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f), true, true, true);
+        level1.PlaceObject("../gfx/models/walls/W-o1/w-01.obj", glm::vec3(pos.x * (i % 4 - 1), -.0f, pos.z), glm::vec3(1.0f - i * 0.1f),
+                           glm::vec3(0.0f, yRot, 0.0f), glm::vec3(1.0f), false, true, true);
         // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x * (i % 4 - 1), -1.0f, pos.z), glm::vec3(1.0f),
         //                    glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true);
     }
@@ -323,12 +432,13 @@ void mainLoop()
         level1.PlaceObject("../gfx/models/player/player.obj",
                            glm::vec3(-3.0f, -100.0f, -5.0f), glm::vec3(1.0f),
                            glm::vec3(1.0f), glm::vec2(1.0f),
-                           false, true, false, 18.0f);
+                           false, true, false);
 
         players[i].objID = level1.objects.size() - 1;
         level1.objects[players[i].objID].invisible = true;
         level1.objects[players[i].objID].collisionMeshID = 0;
     }
+    level1.objects[players[0].objID].position.y = 2.0f;
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
@@ -345,12 +455,15 @@ void mainLoop()
         glClearColor(0.03, 0.03, 0.05, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        playerInput();
         ehandler.poll();
         glfwPollEvents();
 
-        playerVel.x = 0.0f;
-        playerVel.z = 0.0f;
+        playerInput();
+
+        // std::cout << level1.objects[players[0].objID].velocity.y << " why\n";
+
+        level1.objects[players[0].objID].velocity.x = 0.0f;
+        level1.objects[players[0].objID].velocity.z = 0.0f;
 
         prevCamFront = camFront;
 
@@ -361,15 +474,6 @@ void mainLoop()
             level1.objects[deathCubeID].position -= delta_time * 3.0f * normDistToPlayer;
 
         // level1.objects[deathCubeID].rotation.y = atan2()
-
-        if (level1.objects[players[0].objID].position.y > 0.0f)
-            playerVel.y -= 40.0f * delta_time;
-        if (level1.objects[players[0].objID].position.y < 0.0f)
-        {
-            level1.objects[players[0].objID].position.y = 0.0f;
-            playerVel.y = 0.0f;
-        }
-        level1.objects[players[0].objID].position += playerVel * delta_time;
 
         if (serveronline && !noserverduplicates)
         {
@@ -401,6 +505,8 @@ void mainLoop()
                         static client cl;
                         mClient = &cl;
 
+                        object temp;
+                        unsigned int objModelID;
                         static std::string ipInput;
                         uint32_t playerMoved = 0;
                         unsigned int objectMoved = 0;
@@ -438,14 +544,18 @@ void mainLoop()
                                     if (playerMoved >= PLAYER_COUNT)
                                         playerMoved = PLAYER_COUNT;
                                     msg >> level1.objects[players[playerMoved].objID].rotation >> level1.objects[players[playerMoved].objID].position;
-
-
                                     break;
                                 case 2:
                                     msg >> eh;
                                     msg >> objectMoved;
 
                                     msg >> level1.objects[objectMoved].position >> level1.objects[objectMoved].rotation >> level1.objects[objectMoved].beingHeld;
+                                    break;
+                                case 3:
+                                    msg >> eh;
+                                    msg >> objModelID >> temp.position >> temp.scale >> temp.rotation >> temp.tScale >> temp.obtainable >> temp.collidable >> temp.solid;
+
+                                    level1.PlaceObject(level1.models[objModelID].fullPath, temp.position, temp.scale, temp.rotation, temp.tScale, temp.obtainable, temp.collidable, temp.solid);
                                     break;
                                 default:
                                     std::cout << "received unknown message type: " << msg.header.id << "\n";
@@ -461,7 +571,7 @@ void mainLoop()
 
         // graphics begin here
 
-        glm::vec3 disco = glm::vec3(1.0f, 1.0f, 1.0f);
+        glm::vec3 disco = glm::vec3(10.0f, 10.0f, 10.0f);
 
         glUseProgram(lightShader.ID);
         // lightShader.setInt("pointLightCount", 4);
@@ -469,13 +579,13 @@ void mainLoop()
         if (flashlight)
         {
             lightShader.setVec3("sLights[0].specular", 1.0, 1.0, 1.0);
-            lightShader.setVec3("sLights[0].position", level1.objects[players[0].objID].position + camRight * 0.3f);
+            lightShader.setVec3("sLights[0].position", level1.objects[players[0].objID].position + camRight * 0.3f + camUp * 1.5f);
             lightShader.setVec3("sLights[0].direction", camFront + camRight * -0.05f);
             lightShader.setDouble("sLights[0].constant", 1.0f);
-            lightShader.setDouble("sLights[0].linear", 0.09f);
-            lightShader.setDouble("sLights[0].quadratic", 0.032f);
-            lightShader.setDouble("sLights[0].cutOff", glm::cos(glm::radians(12.5f)));
-            lightShader.setDouble("sLights[0].outerCutOff", glm::cos(glm::radians(14.5f)));
+            lightShader.setDouble("sLights[0].linear", 0.24f);
+            lightShader.setDouble("sLights[0].quadratic", 0.008f);
+            lightShader.setDouble("sLights[0].cutOff", glm::cos(glm::radians(25.0f)));
+            lightShader.setDouble("sLights[0].outerCutOff", glm::cos(glm::radians(29.0f)));
             lightShader.setVec3("sLights[0].diffuse", disco);
             lightShader.setVec3("sLights[0].ambient", disco * 0.2f);
         }
@@ -502,7 +612,7 @@ void mainLoop()
         lightShader.setVec3("dLight.diffuse", glm::vec3(0.5f));
 
         glm::mat4 view = glm::mat4(1.0f);
-        glm::vec3 plPos = level1.objects[players[0].objID].position;
+        glm::vec3 plPos = level1.objects[players[0].objID].position + glm::vec3(0.0f, 2.0f, 0.0f);
         view = glm::lookAt(plPos, plPos + camFront, camUp);
 
         lightShader.setMat4("view", view);
@@ -516,7 +626,7 @@ void mainLoop()
         // std::cout << players[1].objID << ", " << level1.objects[7].position.z << " 1\n"; figure out how to make the world model update with the client players
         for (unsigned int i = 0; i < PLAYER_COUNT; ++i)
         {
-            plPos = level1.objects[players[i].objID].position + glm::vec3(0.0f, -2.0f, 0.0f);
+            plPos = level1.objects[players[i].objID].position;
             glm::vec3 plRot = level1.objects[players[i].objID].rotation;
 
             glm::mat4 model = glm::mat4(1.0f);

@@ -185,6 +185,8 @@ public:
     void UpdatePlayer(glm::vec3 position, glm::vec3 rotation);
     void UpdateObject(unsigned int ID, glm::vec3 position, glm::vec3 rotation);
     void CancelObjectUpdates(unsigned int ID);
+    void SendObject(object obj, const unsigned int objModelID);
+    void RequestLevelDownload();
     void ConnectionGreeting();
 
     void Update(double delta_time);

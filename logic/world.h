@@ -19,10 +19,10 @@ struct object
 
     bool obtainable = false, collidable = false, solid = true;
     int beingHeld = -1;
-    float weight = 9.81f;
-    bool invisible = false, includesTransparency = false;
+    bool invisible = false;
 
     glm::vec3 velocity = glm::vec3(0.0f);
+    bool colliding = false, onGround = false;
 
     // collision stuff
     int collisionMeshID = 0;
@@ -74,12 +74,12 @@ struct world
 
     void PlaceObject(std::string modelPath, glm::vec3 position = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f), glm::vec3 rotation = glm::vec3(1.0f),
                      glm::vec2 tScale = glm::vec2(1.0f), bool obtainable = false,
-                     bool collidable = false, bool solid = true, float weight = 9.81f);
+                     bool collidable = false, bool solid = true);
     void AddObject(object &obj, std::string modelPath);
     void Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 &playerPos, glm::vec3 &camFront, object *&objectLookingAt, object *&objectHolding,
                 unsigned int &objectHoldingID, float floorlevel, float delta_time);
     bool collisionDetection(object &obj1, object &obj2);
-    glm::vec3 FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &vertices, glm::vec3 objPosition);
+    glm::vec3 FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &vertices, glm::vec3 objPosition, glm::vec3 objScale, glm::vec3 objRotation);
     glm::vec3 GJK_Support(glm::vec3 direction, object &obj1, object &obj2);
     bool GJK_Line(simplex &points, glm::vec3 &direction);
     bool GJK_Triangle(simplex &points, glm::vec3 &direction);

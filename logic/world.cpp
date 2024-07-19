@@ -1,21 +1,20 @@
 #include "world.h"
 
 void world::PlaceObject(std::string modelPath, glm::vec3 position, glm::vec3 scale, glm::vec3 rotation,
-                        glm::vec2 tScale, bool obtainable, bool collidable, bool solid, float weight)
+                        glm::vec2 tScale, bool obtainable, bool collidable, bool solid)
 {
     for (unsigned int i = 0; i < models.size(); ++i)
     {
-
         if (models[i].fullPath == modelPath)
         {
-            objects.push_back({i, position, position, scale, glm::vec3(1.0f), rotation, tScale, obtainable, collidable, solid, -1, weight});
+            objects.push_back({i, position, position, scale, glm::vec3(1.0f), rotation, tScale, obtainable, collidable, solid, -1});
             return;
         }
     }
     gfx::model nModel(modelPath);
 
     models.push_back(nModel);
-    objects.push_back({models.size() - 1, position, position, scale, glm::vec3(1.0f), rotation, tScale, obtainable, collidable, solid, -1, weight});
+    objects.push_back({models.size() - 1, position, position, scale, glm::vec3(1.0f), rotation, tScale, obtainable, collidable, solid, -1});
 }
 void world::AddObject(object &obj, std::string modelPath)
 {
@@ -42,14 +41,14 @@ void world::AddObject(object &obj, std::string modelPath)
     objects.push_back(obj);
 }
 
-glm::vec3 world::FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &vertices, glm::vec3 objPosition)
-{
+glm::vec3 world::FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &vertices, glm::vec3 objPosition, glm::vec3 objScale, glm::vec3 objRotation)
+{ // implement rotation please
     glm::vec3 maxPoint;
     float maxDistance = -FLT_MAX;
 
     for (unsigned int i = 0; i < vertices.size(); ++i)
     {
-        glm::vec3 checkPosition = vertices[i].position + objPosition;
+        glm::vec3 checkPosition = ((vertices[i].position) * objScale) + objPosition;
         float distance = glm::dot(checkPosition, direction);
         if (distance > maxDistance)
         {
@@ -62,8 +61,12 @@ glm::vec3 world::FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &ve
 }
 glm::vec3 world::GJK_Support(glm::vec3 direction, object &obj1, object &obj2)
 {
-    return FurthestPoint(direction, models[obj1.modelID].meshes[obj1.collisionMeshID].vertices, obj1.position) -
-           FurthestPoint(-direction, models[obj2.modelID].meshes[obj2.collisionMeshID].vertices, obj2.position);
+    // rotation add here
+    // return FurthestPoint(direction, models[obj1.modelID].meshes[obj1.collisionMeshID].vertices, obj1.position) -
+    //        FurthestPoint(-direction, models[obj2.modelID].meshes[obj2.collisionMeshID].vertices, obj2.position);
+
+    return FurthestPoint(direction, models[obj1.modelID].meshes[obj1.collisionMeshID].vertices, obj1.position, obj1.scale, obj1.rotation) -
+           FurthestPoint(-direction, models[obj2.modelID].meshes[obj2.collisionMeshID].vertices, obj2.position, obj2.scale, obj2.rotation);
 }
 bool SameDirection(const glm::vec3 &direction, const glm::vec3 &ao)
 {
@@ -330,15 +333,26 @@ bool world::collisionDetection(object &obj1, object &obj2)
 
         if (GJK_NextSimplex(points, direction))
         {
-            // collision
-            CollisionData col = EPA(points, obj1, obj2);
-            // if (!obj1.solid)
 
-            // figure out why there is nan output sometimes (seems to have something to do with corners)
+            obj1.colliding = true;
+            obj2.colliding = true;
+            // collision response
+            CollisionData col = EPA(points, obj1, obj2);
+
             // add broadphase as a simple pre-collision test
+
+            if (col.normal.y > 0.7f && obj2.velocity.y <= 0.0f)
+                obj2.onGround = true;
+            if (col.normal.y < -0.7f && obj1.velocity.y <= 0.0f)
+                obj1.onGround = true;
+
             if (!obj1.solid)
             {
-                obj1.position -= glm::vec3(col.normal.x, col.normal.y, col.normal.z) * (col.penetrationDepth);
+                obj1.position -= glm::vec3(col.normal.x, col.normal.y, col.normal.z) * col.penetrationDepth;
+            }
+            if (!obj2.solid)
+            {
+                obj2.position += glm::vec3(col.normal.x, col.normal.y, col.normal.z) * col.penetrationDepth;
             }
             return true;
         }
@@ -377,18 +391,18 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
             objectHoldingID = i;
         if (objectHolding == nullptr)
             objectHoldingID = -1;
-        if (objects[i].obtainable)
+        if (!objects[i].solid)
         {
             // gravity
-            if (objects[i].position.y > floorlevel && objects[i].beingHeld == -1)
+            if (objects[i].beingHeld == -1 || !objects[i].obtainable)
             {
-                objects[i].position.y -= objects[i].weight * delta_time;
+                objects[i].velocity.y -= 30.0f * delta_time;
             }
-            if (objects[i].position.y < floorlevel)
-                objects[i].position.y = floorlevel;
+            // if (objects[i].prevPosition.y == objects[i].position.y)
+            //     objects[i].velocity.y = 0.0f;
 
             // player pickup
-            if (objectHolding == nullptr)
+            if (objects[i].obtainable && objectHolding == nullptr)
             {
                 glm::vec3 toObjectVector = playerPos - objects[i].position;
 
@@ -404,7 +418,16 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
                     objects[i].internalScale = glm::vec3(1.0f);
                 }
             }
+
+            objects[i].position += objects[i].velocity * delta_time;
+
+            if (objects[i].onGround)
+                objects[i].velocity.y = 0.0f;
+
+            objects[i].onGround = false;
         }
+
+        // collision
         if (objects[i].collidable)
         {
             for (unsigned int j = 0; j < objects.size(); ++j)
@@ -413,7 +436,7 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
                     continue;
                 if (collisionDetection(objects[i], objects[j]))
                 {
-                    s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
+                    // s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
                 }
             }
         }
@@ -430,8 +453,9 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
             s.setMat4("model", model);
             models[objects[i].modelID].draw(s);
         }
-        s.setVec4("colorMultiple", glm::vec4(1.0f));
+        s.setVec4("colorMultiple", glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 
         objects[i].prevPosition = objects[i].position;
+        objects[i].colliding = false;
     }
 }

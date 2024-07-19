@@ -393,6 +393,22 @@ void client::UpdateObject(unsigned int ID, glm::vec3 position, glm::vec3 rotatio
 
     connection_->Send(msg);
 }
+void client::SendObject(object obj, const unsigned int objModelID)
+{
+    message msg;
+    msg.header.id = 3;
+
+    msg << obj.solid << obj.collidable << obj.obtainable << obj.tScale << obj.rotation << obj.scale << obj.position << objModelID;
+
+    connection_->Send(msg);
+}
+void client::RequestLevelDownload()
+{
+    message msg;
+    msg.header.id = 4;
+
+    connection_->Send(msg);
+}
 void client::CancelObjectUpdates(unsigned int ID)
 {
     message msg;
@@ -588,6 +604,20 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg, world &
         // newMsg << level.objects[ID].beingHeld << level.objects[ID].rotation << level.objects[ID].position << ID;
         // MessageClient(connections_.front(), newMsg);
     }
+    if (msg.header.id == 3)
+    {
+        message_header temp;
+        msg >> temp;
+        object tempObj; // add object msg output
+        unsigned int objModelID;
+        msg >> objModelID >> tempObj.position >> tempObj.scale >> tempObj.rotation >> tempObj.tScale >> tempObj.obtainable >> tempObj.collidable >> tempObj.solid;
+
+        message newMsg;
+        newMsg.header.id = 3;
+        newMsg << tempObj.solid << tempObj.collidable << tempObj.obtainable << tempObj.tScale << tempObj.rotation << tempObj.scale << tempObj.position << objModelID;
+
+        MessageAllClients(newMsg, client);
+    }
     if (msg.header.id == 20)
     {
         message_header temp;
@@ -624,6 +654,11 @@ void server::Update(size_t messageLimit, bool &doSomething, double delta_time, w
             else
                 MessageAllClients(msg, connections_.at(level.objects[i].beingHeld), connections_.front());
         }
+
+        // if (level.objects.size() == prevLevelObjCount)
+        //     return; // add server and client updates for placing objects
+
+        // MessageAllClients(msg, connections_.front());
     }
 
     size_t messageCount = 0;
