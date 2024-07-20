@@ -327,40 +327,7 @@ CMakeFiles/engine.dir/logic/world.cpp.o: \
  /usr/local/include/glm/detail/func_integer.inl \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/../gfx/../nms/glad/include/glad/gl.h \
  /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/KHR/khrplatform.h \
- /usr/include/GLFW/glfw3.h /usr/local/include/assimp/aabb.h \
- /usr/local/include/assimp/vector3.h /usr/local/include/assimp/defs.h \
- /usr/local/include/assimp/config.h \
- /usr/local/include/assimp/Importer.hpp /usr/local/include/assimp/types.h \
- /usr/include/string.h /usr/include/strings.h \
- /usr/local/include/assimp/vector2.h /usr/local/include/assimp/color4.h \
- /usr/local/include/assimp/matrix3x3.h \
- /usr/local/include/assimp/matrix4x4.h \
- /usr/local/include/assimp/quaternion.h /usr/include/c++/14.1.1/cstring \
- /usr/local/include/assimp/vector2.inl \
- /usr/local/include/assimp/vector3.inl \
- /usr/local/include/assimp/color4.inl \
- /usr/local/include/assimp/matrix3x3.inl \
- /usr/include/c++/14.1.1/algorithm \
- /usr/include/c++/14.1.1/bits/stl_algo.h \
- /usr/include/c++/14.1.1/bits/algorithmfwd.h \
- /usr/include/c++/14.1.1/bits/stl_heap.h \
- /usr/include/c++/14.1.1/bits/uniform_int_dist.h \
- /usr/include/c++/14.1.1/bits/stl_tempbuf.h \
- /usr/include/c++/14.1.1/pstl/glue_algorithm_defs.h \
- /usr/include/c++/14.1.1/pstl/execution_defs.h \
- /usr/local/include/assimp/matrix4x4.inl \
- /usr/local/include/assimp/MathFunctions.h \
- /usr/local/include/assimp/quaternion.inl \
- /usr/local/include/assimp/scene.h /usr/local/include/assimp/texture.h \
- /usr/local/include/assimp/Compiler/pushpack1.h \
- /usr/local/include/assimp/Compiler/poppack1.h \
- /usr/local/include/assimp/mesh.h /usr/include/c++/14.1.1/unordered_set \
- /usr/include/c++/14.1.1/bits/unordered_set.h \
- /usr/local/include/assimp/light.h /usr/local/include/assimp/camera.h \
- /usr/local/include/assimp/material.h \
- /usr/local/include/assimp/material.inl /usr/local/include/assimp/anim.h \
- /usr/local/include/assimp/metadata.h \
- /usr/local/include/assimp/postprocess.h \
+ /usr/include/GLFW/glfw3.h \
  /usr/local/include/glm/gtc/matrix_transform.hpp \
  /usr/local/include/glm/ext/matrix_projection.hpp \
  /usr/local/include/glm/gtc/constants.hpp \
@@ -409,7 +376,16 @@ CMakeFiles/engine.dir/logic/world.cpp.o: \
  /usr/local/include/glm/ext/vector_int1_sized.hpp \
  /usr/local/include/glm/ext/vector_uint1.hpp \
  /usr/local/include/glm/ext/vector_uint1_sized.hpp \
- /usr/local/include/glm/gtc/type_ptr.inl /usr/include/c++/14.1.1/map \
- /usr/include/c++/14.1.1/bits/stl_tree.h \
+ /usr/include/c++/14.1.1/cstring /usr/include/string.h \
+ /usr/include/strings.h /usr/local/include/glm/gtc/type_ptr.inl \
+ /usr/include/c++/14.1.1/map /usr/include/c++/14.1.1/bits/stl_tree.h \
  /usr/include/c++/14.1.1/bits/stl_map.h \
- /usr/include/c++/14.1.1/bits/stl_multimap.h
+ /usr/include/c++/14.1.1/bits/stl_multimap.h \
+ /usr/include/c++/14.1.1/algorithm \
+ /usr/include/c++/14.1.1/bits/stl_algo.h \
+ /usr/include/c++/14.1.1/bits/algorithmfwd.h \
+ /usr/include/c++/14.1.1/bits/stl_heap.h \
+ /usr/include/c++/14.1.1/bits/uniform_int_dist.h \
+ /usr/include/c++/14.1.1/bits/stl_tempbuf.h \
+ /usr/include/c++/14.1.1/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/14.1.1/pstl/execution_defs.h

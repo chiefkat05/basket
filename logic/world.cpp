@@ -1,33 +1,26 @@
 #include "collision.h" // includes world.h
+#include <algorithm>
 
 // oct_tree tree(0.0f, 0.0f, 0.0f, 400.0f, 400.0f, 400.0f);
 
-void world::PlaceObject(std::string modelPath, glm::vec3 position, glm::vec3 scale, glm::vec3 rotation,
+void world::PlaceObject(std::string modelDir, std::string modelPath, glm::vec3 position, glm::vec3 scale, glm::vec3 rotation,
                         glm::vec2 tScale, bool obtainable, bool collidable, bool solid)
 {
     for (unsigned int i = 0; i < models.size(); ++i)
     {
-        if (models[i].fullPath == modelPath)
+        // std::cout << models[i].directory << ", " << modelPath << "\n";
+        if (models[i].directory == modelPath)
         {
-            object tmp;
-            unsigned int tmpLoc = objects.size();
+            object tmp = tmp.create(position, scale, rotation, tScale, obtainable, collidable, solid);
+            tmp.modelID = i;
+            tmp.internalScale = glm::vec3(1.0f);
             objects.push_back(tmp);
-
-            objects[tmpLoc].modelID = i;
-            objects[tmpLoc].position = position;
-            objects[tmpLoc].scale = scale;
-            objects[tmpLoc].prevPosition = position;
-            objects[tmpLoc].internalScale = scale;
-            objects[tmpLoc].rotation = rotation;
-            objects[tmpLoc].tScale = tScale;
-            objects[tmpLoc].obtainable = obtainable;
-            objects[tmpLoc].collidable = collidable;
-            objects[tmpLoc].solid = solid;
 
             return;
         }
     }
-    gfx::model nModel(modelPath);
+    // gfx::model nModel(modelPath);
+    gfx::mesh nModel(modelDir, modelPath);
 
     models.push_back(nModel);
 
@@ -38,12 +31,12 @@ void world::PlaceObject(std::string modelPath, glm::vec3 position, glm::vec3 sca
     objects.push_back(tmp);
     // tree.insert(objects.size() - 1);
 }
-void world::AddObject(object &obj, std::string modelPath)
+void world::AddObject(object &obj, std::string modelDir, std::string modelPath)
 {
     bool modelFound = false;
     for (unsigned int i = 0; i < models.size(); ++i)
     {
-        if (models[i].fullPath == modelPath)
+        if (models[i].directory == modelPath)
         {
             obj.modelID = i;
             modelFound = true;
@@ -53,7 +46,7 @@ void world::AddObject(object &obj, std::string modelPath)
 
     if (!modelFound)
     {
-        gfx::model nModel(modelPath);
+        gfx::mesh nModel(modelDir, modelPath);
 
         models.push_back(nModel);
 
@@ -88,8 +81,8 @@ glm::vec3 world::GJK_Support(glm::vec3 direction, object &obj1, object &obj2)
     // return FurthestPoint(direction, models[obj1.modelID].meshes[obj1.collisionMeshID].vertices, obj1.position) -
     //        FurthestPoint(-direction, models[obj2.modelID].meshes[obj2.collisionMeshID].vertices, obj2.position);
 
-    return FurthestPoint(direction, models[obj1.modelID].meshes[obj1.collisionMeshID].vertices, obj1.position, obj1.scale, obj1.rotation) -
-           FurthestPoint(-direction, models[obj2.modelID].meshes[obj2.collisionMeshID].vertices, obj2.position, obj2.scale, obj2.rotation);
+    return FurthestPoint(direction, models[obj1.modelID].vertices, obj1.position, obj1.scale, obj1.rotation) -
+           FurthestPoint(-direction, models[obj2.modelID].vertices, obj2.position, obj2.scale, obj2.rotation);
 }
 bool SameDirection(const glm::vec3 &direction, const glm::vec3 &ao)
 {
@@ -370,6 +363,8 @@ bool world::collisionDetection(object &obj1, object &obj2)
 
             // add broadphase as a simple pre-collision test
 
+            if (col.normal.y > 0.7f && obj2.velocity.y <= 0.0f)
+                obj2.onGround = true;
             if (col.normal.y < -0.7f && obj1.velocity.y <= 0.0f)
                 obj1.onGround = true;
 
@@ -403,57 +398,57 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
             objectHoldingID = i;
         if (objectHolding == nullptr)
             objectHoldingID = -1;
-        if (!objects[i].solid)
-        {
-            // gravity
-            if (objects[i].beingHeld == -1 || !objects[i].obtainable)
-            {
-                objects[i].velocity.y -= 30.0f * delta_time;
-            }
-            // if (objects[i].prevPosition.y == objects[i].position.y)
-            //     objects[i].velocity.y = 0.0f;
+        // if (!objects[i].solid)
+        // {
+        //     // gravity
+        //     if (objects[i].beingHeld == -1 || !objects[i].obtainable)
+        //     {
+        //         objects[i].velocity.y -= 30.0f * delta_time;
+        //     }
+        //     // if (objects[i].prevPosition.y == objects[i].position.y)
+        //     //     objects[i].velocity.y = 0.0f;
 
-            // player pickup
-            if (objects[i].obtainable && objectHolding == nullptr)
-            {
-                glm::vec3 toObjectVector = playerPos - objects[i].position;
+        //     // player pickup
+        //     if (objects[i].obtainable && objectHolding == nullptr)
+        //     {
+        //         glm::vec3 toObjectVector = playerPos - objects[i].position;
 
-                glm::vec3 distance = glm::cross(camFront, toObjectVector);
-                if (distance.y < 0.1f && distance.x < 0.1f && distance.z < 0.1f && toObjectVector.x < 3.0f && toObjectVector.y < 3.0f && toObjectVector.z < 3.0f)
-                {
-                    objects[i].internalScale = glm::vec3(0.87f);
-                    s.setVec4("colorMultiple", glm::vec4(0.4f, 0.7f, 0.6f, 1.0f));
-                    objectLookingAt = &objects[i];
-                }
-                else
-                {
-                    objects[i].internalScale = glm::vec3(1.0f);
-                }
-            }
+        //         glm::vec3 distance = glm::cross(camFront, toObjectVector);
+        //         if (distance.y < 0.1f && distance.x < 0.1f && distance.z < 0.1f && toObjectVector.x < 3.0f && toObjectVector.y < 3.0f && toObjectVector.z < 3.0f)
+        //         {
+        //             objects[i].internalScale = glm::vec3(0.87f);
+        //             s.setVec4("colorMultiple", glm::vec4(0.4f, 0.7f, 0.6f, 1.0f));
+        //             objectLookingAt = &objects[i];
+        //         }
+        //         else
+        //         {
+        //             objects[i].internalScale = glm::vec3(1.0f);
+        //         }
+        //     }
 
-            objects[i].position += objects[i].velocity * delta_time;
+        //     objects[i].position += objects[i].velocity * delta_time;
 
-            if (objects[i].onGround)
-                objects[i].velocity.y = 0.0f;
+        //     if (objects[i].onGround)
+        //         objects[i].velocity.y = 0.0f;
 
-            objects[i].onGround = false;
-        }
+        //     objects[i].onGround = false;
+        // }
 
         // collision
-        if (objects[i].collidable)
-        {
-            for (unsigned int j = 0; j < objects.size(); ++j)
-            {
-                if (j == i || !objects[j].collidable)
-                    continue;
+        // if (objects[i].collidable)
+        // {
+        //     for (unsigned int j = 0; j < objects.size(); ++j)
+        //     {
+        //         if (j == i || !objects[j].collidable)
+        //             continue;
 
-                if (collisionDetection(objects[i], objects[j]))
-                {
-                    // s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
-                }
-            }
-        }
-
+        //         if (collisionDetection(objects[i], objects[j]))
+        //         {
+        //             // s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
+        //         }
+        //     }
+        // }
+        // std::cout << objects[i].position.x << ", " << objects[i].position.y << ", " << objects[i].position.z << ", " << models[objects[i].modelID].name << "\n";
         if (!objects[i].invisible)
         {
             glm::mat4 model = glm::mat4(1.0f);
@@ -471,7 +466,4 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
         objects[i].prevPosition = objects[i].position;
         objects[i].colliding = false;
     }
-    // for (auto i : tree)
-    // {
-    // }
 }

@@ -7,16 +7,14 @@ add_executable(engine main.cpp "${CMAKE_SOURCE_DIR}/logic/game.cpp" multiplayer.
 
 set(CMAKE_CXX_FLAGS "-O2 -Wall -I${CMAKE_SOURCE_DIR}/gfx/backpack/")
 
-link_libraries("${CMAKE_SOURCE_DIR}/lib/*.dll")
-
 if (WIN32)
     set(CMAKE_CXX_FLAGS "--static -O2 -Wall")
 endif()
 
 if (UNIX)
-    target_link_libraries(engine glfw3 assimp zlibstatic minizip)
+    target_link_libraries(engine glfw3 tinyobjloader)
 endif()
 
 if(WIN32)
-    target_link_libraries(engine glfw3 assimp zlibstatic minizip gdi32 opengl32 dl ws2_32 wsock32)
-endif()
+    target_link_libraries(engine glfw3 tinyobjloader gdi32 opengl32 dl ws2_32 wsock32)
+endif()                  

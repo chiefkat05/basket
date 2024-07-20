@@ -87,13 +87,13 @@ struct CollisionData
 struct world
 {
     std::vector<object> objects;
-    std::vector<gfx::model> models;
+    std::vector<gfx::mesh> models;
 
     // please optimize all of this, I think thw world functions are a bottleneck
-    void PlaceObject(std::string modelPath, glm::vec3 position = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f), glm::vec3 rotation = glm::vec3(1.0f),
+    void PlaceObject(std::string modelDir, std::string modelPath, glm::vec3 position = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f), glm::vec3 rotation = glm::vec3(1.0f),
                      glm::vec2 tScale = glm::vec2(1.0f), bool obtainable = false,
                      bool collidable = false, bool solid = true);
-    void AddObject(object &obj, std::string modelPath);
+    void AddObject(object &obj, std::string modelDir, std::string modelPath);
     void Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 &playerPos, glm::vec3 &camFront, object *&objectLookingAt, object *&objectHolding,
                 unsigned int &objectHoldingID, float floorlevel, float delta_time);
     bool collisionDetection(object &obj1, object &obj2);

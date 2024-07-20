@@ -873,30 +873,6 @@ CMakeFiles/engine.dir/logic/game.cpp.o: \
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
  /usr/include/c++/14.1.1/bits/fstream.tcc \
  /home/chiefkat/Documents/vscodeprojects/basket/logic/.././logic/../gfx/../nms/glad/include/glad/gl.h \
- /usr/local/include/assimp/aabb.h /usr/local/include/assimp/vector3.h \
- /usr/local/include/assimp/defs.h /usr/local/include/assimp/config.h \
- /usr/local/include/assimp/Importer.hpp /usr/local/include/assimp/types.h \
- /usr/local/include/assimp/vector2.h /usr/local/include/assimp/color4.h \
- /usr/local/include/assimp/matrix3x3.h \
- /usr/local/include/assimp/matrix4x4.h \
- /usr/local/include/assimp/quaternion.h \
- /usr/local/include/assimp/vector2.inl \
- /usr/local/include/assimp/vector3.inl \
- /usr/local/include/assimp/color4.inl \
- /usr/local/include/assimp/matrix3x3.inl \
- /usr/local/include/assimp/matrix4x4.inl \
- /usr/local/include/assimp/MathFunctions.h \
- /usr/local/include/assimp/quaternion.inl \
- /usr/local/include/assimp/scene.h /usr/local/include/assimp/texture.h \
- /usr/local/include/assimp/Compiler/pushpack1.h \
- /usr/local/include/assimp/Compiler/poppack1.h \
- /usr/local/include/assimp/mesh.h /usr/include/c++/14.1.1/unordered_set \
- /usr/include/c++/14.1.1/bits/unordered_set.h \
- /usr/local/include/assimp/light.h /usr/local/include/assimp/camera.h \
- /usr/local/include/assimp/material.h \
- /usr/local/include/assimp/material.inl /usr/local/include/assimp/anim.h \
- /usr/local/include/assimp/metadata.h \
- /usr/local/include/assimp/postprocess.h \
  /usr/local/include/glm/gtc/matrix_transform.hpp \
  /usr/local/include/glm/ext/matrix_projection.hpp \
  /usr/local/include/glm/gtc/constants.hpp \

@@ -91,11 +91,9 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o
  /usr/include/bits/wctype-wchar.h
  /usr/include/bits/wordsize.h
  /usr/include/bits/xopen_lim.h
- /usr/include/c++/14.1.1/algorithm
  /usr/include/c++/14.1.1/array
  /usr/include/c++/14.1.1/backward/binders.h
  /usr/include/c++/14.1.1/bit
- /usr/include/c++/14.1.1/bits/algorithmfwd.h
  /usr/include/c++/14.1.1/bits/alloc_traits.h
  /usr/include/c++/14.1.1/bits/allocator.h
  /usr/include/c++/14.1.1/bits/basic_ios.h
@@ -143,28 +141,30 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o
  /usr/include/c++/14.1.1/bits/refwrap.h
  /usr/include/c++/14.1.1/bits/requires_hosted.h
  /usr/include/c++/14.1.1/bits/specfun.h
+ /usr/include/c++/14.1.1/bits/sstream.tcc
  /usr/include/c++/14.1.1/bits/std_abs.h
  /usr/include/c++/14.1.1/bits/std_function.h
- /usr/include/c++/14.1.1/bits/stl_algo.h
  /usr/include/c++/14.1.1/bits/stl_algobase.h
  /usr/include/c++/14.1.1/bits/stl_bvector.h
  /usr/include/c++/14.1.1/bits/stl_construct.h
  /usr/include/c++/14.1.1/bits/stl_function.h
- /usr/include/c++/14.1.1/bits/stl_heap.h
  /usr/include/c++/14.1.1/bits/stl_iterator.h
  /usr/include/c++/14.1.1/bits/stl_iterator_base_funcs.h
  /usr/include/c++/14.1.1/bits/stl_iterator_base_types.h
+ /usr/include/c++/14.1.1/bits/stl_map.h
+ /usr/include/c++/14.1.1/bits/stl_multimap.h
+ /usr/include/c++/14.1.1/bits/stl_multiset.h
  /usr/include/c++/14.1.1/bits/stl_pair.h
- /usr/include/c++/14.1.1/bits/stl_tempbuf.h
+ /usr/include/c++/14.1.1/bits/stl_relops.h
+ /usr/include/c++/14.1.1/bits/stl_set.h
+ /usr/include/c++/14.1.1/bits/stl_tree.h
  /usr/include/c++/14.1.1/bits/stl_uninitialized.h
  /usr/include/c++/14.1.1/bits/stl_vector.h
  /usr/include/c++/14.1.1/bits/streambuf.tcc
  /usr/include/c++/14.1.1/bits/streambuf_iterator.h
  /usr/include/c++/14.1.1/bits/string_view.tcc
  /usr/include/c++/14.1.1/bits/stringfwd.h
- /usr/include/c++/14.1.1/bits/uniform_int_dist.h
  /usr/include/c++/14.1.1/bits/unordered_map.h
- /usr/include/c++/14.1.1/bits/unordered_set.h
  /usr/include/c++/14.1.1/bits/uses_allocator.h
  /usr/include/c++/14.1.1/bits/uses_allocator_args.h
  /usr/include/c++/14.1.1/bits/utility.h
@@ -203,12 +203,13 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o
  /usr/include/c++/14.1.1/iostream
  /usr/include/c++/14.1.1/istream
  /usr/include/c++/14.1.1/limits
+ /usr/include/c++/14.1.1/map
  /usr/include/c++/14.1.1/math.h
  /usr/include/c++/14.1.1/new
  /usr/include/c++/14.1.1/ostream
- /usr/include/c++/14.1.1/pstl/execution_defs.h
- /usr/include/c++/14.1.1/pstl/glue_algorithm_defs.h
  /usr/include/c++/14.1.1/pstl/pstl_config.h
+ /usr/include/c++/14.1.1/set
+ /usr/include/c++/14.1.1/sstream
  /usr/include/c++/14.1.1/stdexcept
  /usr/include/c++/14.1.1/stdlib.h
  /usr/include/c++/14.1.1/streambuf
@@ -231,7 +232,7 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o
  /usr/include/c++/14.1.1/type_traits
  /usr/include/c++/14.1.1/typeinfo
  /usr/include/c++/14.1.1/unordered_map
- /usr/include/c++/14.1.1/unordered_set
+ /usr/include/c++/14.1.1/utility
  /usr/include/c++/14.1.1/vector
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/basic_file.h
@@ -283,36 +284,6 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stdint.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/syslimits.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/xmmintrin.h
- /usr/local/include/assimp/Compiler/poppack1.h
- /usr/local/include/assimp/Compiler/pushpack1.h
- /usr/local/include/assimp/Importer.hpp
- /usr/local/include/assimp/MathFunctions.h
- /usr/local/include/assimp/aabb.h
- /usr/local/include/assimp/anim.h
- /usr/local/include/assimp/camera.h
- /usr/local/include/assimp/color4.h
- /usr/local/include/assimp/color4.inl
- /usr/local/include/assimp/config.h
- /usr/local/include/assimp/defs.h
- /usr/local/include/assimp/light.h
- /usr/local/include/assimp/material.h
- /usr/local/include/assimp/material.inl
- /usr/local/include/assimp/matrix3x3.h
- /usr/local/include/assimp/matrix3x3.inl
- /usr/local/include/assimp/matrix4x4.h
- /usr/local/include/assimp/matrix4x4.inl
- /usr/local/include/assimp/mesh.h
- /usr/local/include/assimp/metadata.h
- /usr/local/include/assimp/postprocess.h
- /usr/local/include/assimp/quaternion.h
- /usr/local/include/assimp/quaternion.inl
- /usr/local/include/assimp/scene.h
- /usr/local/include/assimp/texture.h
- /usr/local/include/assimp/types.h
- /usr/local/include/assimp/vector2.h
- /usr/local/include/assimp/vector2.inl
- /usr/local/include/assimp/vector3.h
- /usr/local/include/assimp/vector3.inl
  /usr/local/include/glm/common.hpp
  /usr/local/include/glm/detail/_fixes.hpp
  /usr/local/include/glm/detail/_vectorize.hpp
@@ -495,6 +466,7 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o
  /usr/local/include/glm/vec3.hpp
  /usr/local/include/glm/vec4.hpp
  /usr/local/include/glm/vector_relational.hpp
+ /usr/local/include/tiny_obj_loader.h
 
 CMakeFiles/engine.dir/gfx/shader.cpp.o
  /home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.cpp
@@ -983,11 +955,9 @@ CMakeFiles/engine.dir/logic/collision.cpp.o
  /usr/include/bits/wctype-wchar.h
  /usr/include/bits/wordsize.h
  /usr/include/bits/xopen_lim.h
- /usr/include/c++/14.1.1/algorithm
  /usr/include/c++/14.1.1/array
  /usr/include/c++/14.1.1/backward/binders.h
  /usr/include/c++/14.1.1/bit
- /usr/include/c++/14.1.1/bits/algorithmfwd.h
  /usr/include/c++/14.1.1/bits/alloc_traits.h
  /usr/include/c++/14.1.1/bits/allocator.h
  /usr/include/c++/14.1.1/bits/basic_ios.h
@@ -1037,19 +1007,16 @@ CMakeFiles/engine.dir/logic/collision.cpp.o
  /usr/include/c++/14.1.1/bits/specfun.h
  /usr/include/c++/14.1.1/bits/std_abs.h
  /usr/include/c++/14.1.1/bits/std_function.h
- /usr/include/c++/14.1.1/bits/stl_algo.h
  /usr/include/c++/14.1.1/bits/stl_algobase.h
  /usr/include/c++/14.1.1/bits/stl_bvector.h
  /usr/include/c++/14.1.1/bits/stl_construct.h
  /usr/include/c++/14.1.1/bits/stl_function.h
- /usr/include/c++/14.1.1/bits/stl_heap.h
  /usr/include/c++/14.1.1/bits/stl_iterator.h
  /usr/include/c++/14.1.1/bits/stl_iterator_base_funcs.h
  /usr/include/c++/14.1.1/bits/stl_iterator_base_types.h
  /usr/include/c++/14.1.1/bits/stl_map.h
  /usr/include/c++/14.1.1/bits/stl_multimap.h
  /usr/include/c++/14.1.1/bits/stl_pair.h
- /usr/include/c++/14.1.1/bits/stl_tempbuf.h
  /usr/include/c++/14.1.1/bits/stl_tree.h
  /usr/include/c++/14.1.1/bits/stl_uninitialized.h
  /usr/include/c++/14.1.1/bits/stl_vector.h
@@ -1057,9 +1024,7 @@ CMakeFiles/engine.dir/logic/collision.cpp.o
  /usr/include/c++/14.1.1/bits/streambuf_iterator.h
  /usr/include/c++/14.1.1/bits/string_view.tcc
  /usr/include/c++/14.1.1/bits/stringfwd.h
- /usr/include/c++/14.1.1/bits/uniform_int_dist.h
  /usr/include/c++/14.1.1/bits/unordered_map.h
- /usr/include/c++/14.1.1/bits/unordered_set.h
  /usr/include/c++/14.1.1/bits/uses_allocator.h
  /usr/include/c++/14.1.1/bits/uses_allocator_args.h
  /usr/include/c++/14.1.1/bits/utility.h
@@ -1101,8 +1066,6 @@ CMakeFiles/engine.dir/logic/collision.cpp.o
  /usr/include/c++/14.1.1/map
  /usr/include/c++/14.1.1/new
  /usr/include/c++/14.1.1/ostream
- /usr/include/c++/14.1.1/pstl/execution_defs.h
- /usr/include/c++/14.1.1/pstl/glue_algorithm_defs.h
  /usr/include/c++/14.1.1/pstl/pstl_config.h
  /usr/include/c++/14.1.1/stdexcept
  /usr/include/c++/14.1.1/streambuf
@@ -1125,7 +1088,6 @@ CMakeFiles/engine.dir/logic/collision.cpp.o
  /usr/include/c++/14.1.1/type_traits
  /usr/include/c++/14.1.1/typeinfo
  /usr/include/c++/14.1.1/unordered_map
- /usr/include/c++/14.1.1/unordered_set
  /usr/include/c++/14.1.1/vector
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/basic_file.h
@@ -1173,36 +1135,6 @@ CMakeFiles/engine.dir/logic/collision.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stddef.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stdint.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/syslimits.h
- /usr/local/include/assimp/Compiler/poppack1.h
- /usr/local/include/assimp/Compiler/pushpack1.h
- /usr/local/include/assimp/Importer.hpp
- /usr/local/include/assimp/MathFunctions.h
- /usr/local/include/assimp/aabb.h
- /usr/local/include/assimp/anim.h
- /usr/local/include/assimp/camera.h
- /usr/local/include/assimp/color4.h
- /usr/local/include/assimp/color4.inl
- /usr/local/include/assimp/config.h
- /usr/local/include/assimp/defs.h
- /usr/local/include/assimp/light.h
- /usr/local/include/assimp/material.h
- /usr/local/include/assimp/material.inl
- /usr/local/include/assimp/matrix3x3.h
- /usr/local/include/assimp/matrix3x3.inl
- /usr/local/include/assimp/matrix4x4.h
- /usr/local/include/assimp/matrix4x4.inl
- /usr/local/include/assimp/mesh.h
- /usr/local/include/assimp/metadata.h
- /usr/local/include/assimp/postprocess.h
- /usr/local/include/assimp/quaternion.h
- /usr/local/include/assimp/quaternion.inl
- /usr/local/include/assimp/scene.h
- /usr/local/include/assimp/texture.h
- /usr/local/include/assimp/types.h
- /usr/local/include/assimp/vector2.h
- /usr/local/include/assimp/vector2.inl
- /usr/local/include/assimp/vector3.h
- /usr/local/include/assimp/vector3.inl
  /usr/local/include/glm/common.hpp
  /usr/local/include/glm/detail/_fixes.hpp
  /usr/local/include/glm/detail/_vectorize.hpp
@@ -2280,7 +2212,6 @@ CMakeFiles/engine.dir/logic/game.cpp.o
  /usr/include/c++/14.1.1/bits/unique_lock.h
  /usr/include/c++/14.1.1/bits/unique_ptr.h
  /usr/include/c++/14.1.1/bits/unordered_map.h
- /usr/include/c++/14.1.1/bits/unordered_set.h
  /usr/include/c++/14.1.1/bits/uses_allocator.h
  /usr/include/c++/14.1.1/bits/uses_allocator_args.h
  /usr/include/c++/14.1.1/bits/utility.h
@@ -2362,7 +2293,6 @@ CMakeFiles/engine.dir/logic/game.cpp.o
  /usr/include/c++/14.1.1/type_traits
  /usr/include/c++/14.1.1/typeinfo
  /usr/include/c++/14.1.1/unordered_map
- /usr/include/c++/14.1.1/unordered_set
  /usr/include/c++/14.1.1/utility
  /usr/include/c++/14.1.1/vector
  /usr/include/c++/14.1.1/version
@@ -2441,36 +2371,6 @@ CMakeFiles/engine.dir/logic/game.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stddef.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stdint.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/syslimits.h
- /usr/local/include/assimp/Compiler/poppack1.h
- /usr/local/include/assimp/Compiler/pushpack1.h
- /usr/local/include/assimp/Importer.hpp
- /usr/local/include/assimp/MathFunctions.h
- /usr/local/include/assimp/aabb.h
- /usr/local/include/assimp/anim.h
- /usr/local/include/assimp/camera.h
- /usr/local/include/assimp/color4.h
- /usr/local/include/assimp/color4.inl
- /usr/local/include/assimp/config.h
- /usr/local/include/assimp/defs.h
- /usr/local/include/assimp/light.h
- /usr/local/include/assimp/material.h
- /usr/local/include/assimp/material.inl
- /usr/local/include/assimp/matrix3x3.h
- /usr/local/include/assimp/matrix3x3.inl
- /usr/local/include/assimp/matrix4x4.h
- /usr/local/include/assimp/matrix4x4.inl
- /usr/local/include/assimp/mesh.h
- /usr/local/include/assimp/metadata.h
- /usr/local/include/assimp/postprocess.h
- /usr/local/include/assimp/quaternion.h
- /usr/local/include/assimp/quaternion.inl
- /usr/local/include/assimp/scene.h
- /usr/local/include/assimp/texture.h
- /usr/local/include/assimp/types.h
- /usr/local/include/assimp/vector2.h
- /usr/local/include/assimp/vector2.inl
- /usr/local/include/assimp/vector3.h
- /usr/local/include/assimp/vector3.inl
  /usr/local/include/glm/common.hpp
  /usr/local/include/glm/detail/_fixes.hpp
  /usr/local/include/glm/detail/_vectorize.hpp
@@ -2821,7 +2721,6 @@ CMakeFiles/engine.dir/logic/world.cpp.o
  /usr/include/c++/14.1.1/bits/stringfwd.h
  /usr/include/c++/14.1.1/bits/uniform_int_dist.h
  /usr/include/c++/14.1.1/bits/unordered_map.h
- /usr/include/c++/14.1.1/bits/unordered_set.h
  /usr/include/c++/14.1.1/bits/uses_allocator.h
  /usr/include/c++/14.1.1/bits/uses_allocator_args.h
  /usr/include/c++/14.1.1/bits/utility.h
@@ -2887,7 +2786,6 @@ CMakeFiles/engine.dir/logic/world.cpp.o
  /usr/include/c++/14.1.1/type_traits
  /usr/include/c++/14.1.1/typeinfo
  /usr/include/c++/14.1.1/unordered_map
- /usr/include/c++/14.1.1/unordered_set
  /usr/include/c++/14.1.1/vector
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h
  /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/basic_file.h
@@ -2935,36 +2833,6 @@ CMakeFiles/engine.dir/logic/world.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stddef.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stdint.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/syslimits.h
- /usr/local/include/assimp/Compiler/poppack1.h
- /usr/local/include/assimp/Compiler/pushpack1.h
- /usr/local/include/assimp/Importer.hpp
- /usr/local/include/assimp/MathFunctions.h
- /usr/local/include/assimp/aabb.h
- /usr/local/include/assimp/anim.h
- /usr/local/include/assimp/camera.h
- /usr/local/include/assimp/color4.h
- /usr/local/include/assimp/color4.inl
- /usr/local/include/assimp/config.h
- /usr/local/include/assimp/defs.h
- /usr/local/include/assimp/light.h
- /usr/local/include/assimp/material.h
- /usr/local/include/assimp/material.inl
- /usr/local/include/assimp/matrix3x3.h
- /usr/local/include/assimp/matrix3x3.inl
- /usr/local/include/assimp/matrix4x4.h
- /usr/local/include/assimp/matrix4x4.inl
- /usr/local/include/assimp/mesh.h
- /usr/local/include/assimp/metadata.h
- /usr/local/include/assimp/postprocess.h
- /usr/local/include/assimp/quaternion.h
- /usr/local/include/assimp/quaternion.inl
- /usr/local/include/assimp/scene.h
- /usr/local/include/assimp/texture.h
- /usr/local/include/assimp/types.h
- /usr/local/include/assimp/vector2.h
- /usr/local/include/assimp/vector2.inl
- /usr/local/include/assimp/vector3.h
- /usr/local/include/assimp/vector3.inl
  /usr/local/include/glm/common.hpp
  /usr/local/include/glm/detail/_fixes.hpp
  /usr/local/include/glm/detail/_vectorize.hpp
@@ -3833,7 +3701,6 @@ CMakeFiles/engine.dir/multiplayer.cpp.o
  /usr/include/c++/14.1.1/bits/unique_lock.h
  /usr/include/c++/14.1.1/bits/unique_ptr.h
  /usr/include/c++/14.1.1/bits/unordered_map.h
- /usr/include/c++/14.1.1/bits/unordered_set.h
  /usr/include/c++/14.1.1/bits/uses_allocator.h
  /usr/include/c++/14.1.1/bits/uses_allocator_args.h
  /usr/include/c++/14.1.1/bits/utility.h
@@ -3913,7 +3780,6 @@ CMakeFiles/engine.dir/multiplayer.cpp.o
  /usr/include/c++/14.1.1/type_traits
  /usr/include/c++/14.1.1/typeinfo
  /usr/include/c++/14.1.1/unordered_map
- /usr/include/c++/14.1.1/unordered_set
  /usr/include/c++/14.1.1/utility
  /usr/include/c++/14.1.1/vector
  /usr/include/c++/14.1.1/version
@@ -3992,36 +3858,6 @@ CMakeFiles/engine.dir/multiplayer.cpp.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stddef.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/stdint.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/syslimits.h
- /usr/local/include/assimp/Compiler/poppack1.h
- /usr/local/include/assimp/Compiler/pushpack1.h
- /usr/local/include/assimp/Importer.hpp
- /usr/local/include/assimp/MathFunctions.h
- /usr/local/include/assimp/aabb.h
- /usr/local/include/assimp/anim.h
- /usr/local/include/assimp/camera.h
- /usr/local/include/assimp/color4.h
- /usr/local/include/assimp/color4.inl
- /usr/local/include/assimp/config.h
- /usr/local/include/assimp/defs.h
- /usr/local/include/assimp/light.h
- /usr/local/include/assimp/material.h
- /usr/local/include/assimp/material.inl
- /usr/local/include/assimp/matrix3x3.h
- /usr/local/include/assimp/matrix3x3.inl
- /usr/local/include/assimp/matrix4x4.h
- /usr/local/include/assimp/matrix4x4.inl
- /usr/local/include/assimp/mesh.h
- /usr/local/include/assimp/metadata.h
- /usr/local/include/assimp/postprocess.h
- /usr/local/include/assimp/quaternion.h
- /usr/local/include/assimp/quaternion.inl
- /usr/local/include/assimp/scene.h
- /usr/local/include/assimp/texture.h
- /usr/local/include/assimp/types.h
- /usr/local/include/assimp/vector2.h
- /usr/local/include/assimp/vector2.inl
- /usr/local/include/assimp/vector3.h
- /usr/local/include/assimp/vector3.inl
  /usr/local/include/glm/common.hpp
  /usr/local/include/glm/detail/_fixes.hpp
  /usr/local/include/glm/detail/_vectorize.hpp

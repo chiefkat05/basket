@@ -5,58 +5,14 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "../nms/stb_image.h"
 
+#define TINYOBJLOADER_IMPLEMENTATION
+// #define TINYOBJLOADER_USE_MAPBOX_EARCUT
+#include <tiny_obj_loader.h>
+
 const float width = 1280.0f;
 const float height = 720.0f;
 const float nearView = 0.01f;
 const float farView = 100.0f;
-float cube[288] = {
-    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-
-    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-    0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-
-    -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-
-    0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-    0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-    0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
-
-    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-    0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-    0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f};
-
-float quad[24] = {
-    -0.5f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f,
-    -0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f,
-    0.5f, 0.0f, -0.5f, 0.0f, 1.0f, 0.0f,
-    0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 0.0f};
 
 unsigned int gfx::loadTexture(const char *path, const std::string &directory)
 {
@@ -71,8 +27,6 @@ unsigned int gfx::loadTexture(const char *path, const std::string &directory)
     if (data)
     {
         GLenum format = GL_RED;
-        // if (nrComponents == 1)
-        //     format = GL_RED;
         if (nrComponents == 3)
             format = GL_RGB;
         if (nrComponents == 4)
@@ -197,116 +151,268 @@ void gfx::processInput()
         glfwSetWindowShouldClose(mainWindow, true);
 }
 
-void gfx::model::loadModel(std::string path)
+gfx::mesh::mesh(std::string dir, std::string path)
 {
-    Assimp::Importer import;
-    const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
-    if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+    tinyobj::ObjReaderConfig reader_config;
+    reader_config.mtl_search_path = dir;
+    tinyobj::ObjReader reader;
+
+    if (!reader.ParseFromFile(std::string(dir + path), reader_config))
     {
-        std::cout << "Assimp failed to load model: " << import.GetErrorString() << "\n";
+        if (!reader.Error().empty())
+        {
+            std::cout << "Failed to load model: " << reader.Error();
+        }
         return;
     }
-    directory = path.substr(0, path.find_last_of('/'));
-    fullPath = path;
 
-    processNode(scene->mRootNode, scene);
+    if (!reader.Warning().empty())
+    {
+        std::cout << "TinyObjLoader warning: " << reader.Warning();
+    }
+
+    std::cout << dir << "\n";
+    directory = dir;
+    name = path;
+
+    auto &attributes = reader.GetAttrib();
+    auto &shapes = reader.GetShapes();
+    auto &materials = reader.GetMaterials();
+
+    for (unsigned int s = 0; s < shapes.size(); ++s)
+    {
+        for (unsigned int f = 0; f < shapes[s].mesh.indices.size(); ++f)
+        {
+            tinyobj::index_t idx = shapes[s].mesh.indices[f];
+            vertex tmpV;
+
+            if (idx.vertex_index < 0)
+                continue;
+
+            tmpV.position.x = attributes.vertices[idx.vertex_index * 3];
+            tmpV.position.y = attributes.vertices[idx.vertex_index * 3 + 1];
+            tmpV.position.z = attributes.vertices[idx.vertex_index * 3 + 2];
+
+            // indices.push_back(idx.vertex_index * 3);
+
+            if (idx.normal_index < 0)
+                continue;
+
+            tmpV.normal.x = attributes.normals[idx.normal_index * 3];
+            tmpV.normal.y = attributes.normals[idx.normal_index * 3 + 1];
+            tmpV.normal.z = attributes.normals[idx.normal_index * 3 + 2];
+
+            if (idx.texcoord_index < 0)
+                continue;
+            tmpV.textureCoordinates.x = attributes.texcoords[idx.texcoord_index * 3];
+            tmpV.textureCoordinates.y = attributes.texcoords[idx.texcoord_index * 3 + 1];
+
+            vertices.push_back(tmpV);
+        }
+        texture tmpT;
+        std::string str = "diffuse.png";
+        tmpT.id = loadTexture(str.c_str(), dir);
+        tmpT.type = "diffuse";
+        tmpT.path = str.c_str();
+        textures.push_back(tmpT);
+
+        // for (size_t f = 0; f < shapes[s].mesh.indices.size() / 3; f++)
+        // {
+        //     tinyobj::index_t idx0 = shapes[s].mesh.indices[3 * f + 0];
+        //     tinyobj::index_t idx1 = shapes[s].mesh.indices[3 * f + 1];
+        //     tinyobj::index_t idx2 = shapes[s].mesh.indices[3 * f + 2];
+
+        //     indices.push_back(idx0.vertex_index);
+        //     indices.push_back(idx1.vertex_index);
+        //     indices.push_back(idx2.vertex_index);
+        // }
+
+        // unsigned int index_offset = 0;
+        // for (unsigned int f = 0; f < shapes[s].mesh.num_face_vertices.size(); ++f)
+        // {
+        //     for (unsigned int v = 0; v < shapes[s].mesh.num_face_vertices[f]; ++v)
+        //     {
+        //         vertex tmpV;
+
+        //         // tinyobj::index_t idx0 = shapes[s].mesh.indices[3 * f + 0];
+        //         // tinyobj::index_t idx1 = shapes[s].mesh.indices[3 * f + 1];
+        //         // tinyobj::index_t idx2 = shapes[s].mesh.indices[3 * f + 2];
+        //         tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
+        //         tmpV.position.x = attributes.vertices[3 * static_cast<size_t>(idx.vertex_index)];
+        //         tmpV.position.y = attributes.vertices[3 * static_cast<size_t>(idx.vertex_index) + 1];
+        //         tmpV.position.z = attributes.vertices[3 * static_cast<size_t>(idx.vertex_index) + 2];
+        //         // indices.push_back(attributes.vertices[idx.)
+
+        //         if (idx.normal_index < 0)
+        //             continue;
+
+        //         tmpV.normal.x = attributes.normals[3 * static_cast<size_t>(idx.normal_index)];
+        //         tmpV.normal.y = attributes.normals[3 * static_cast<size_t>(idx.normal_index) + 1]; // okay make this work now
+        //         tmpV.normal.z = attributes.normals[3 * static_cast<size_t>(idx.normal_index) + 2];
+
+        //         if (idx.texcoord_index < 0)
+        //             continue;
+
+        //         tmpV.textureCoordinates.x = attributes.texcoords[2 * static_cast<size_t>(idx.texcoord_index)];
+        //         tmpV.textureCoordinates.y = attributes.texcoords[2 * static_cast<size_t>(idx.texcoord_index) + 1];
+
+        //         vertices.push_back(tmpV);
+        //     }
+
+        //     index_offset += shapes[s].mesh.num_face_vertices[f];
+
+        //     texture tmpT;
+        //     std::string str = "diffuse.png";
+        //     tmpT.id = loadTexture(str.c_str(), directory);
+        //     tmpT.type = "diffuse";
+        //     tmpT.path = str.c_str();
+
+        //     // std::cout << tmpT.path << ", " << tmpT.type << "\n";
+        //     textures.push_back(tmpT);
+        // }
+    }
+
+    meshInit();
 }
 
-void gfx::model::processNode(aiNode *node, const aiScene *scene)
+void gfx::mesh::meshInit()
 {
-    for (unsigned int i = 0; i < node->mNumMeshes; ++i)
-    {
-        aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
-        meshes.push_back(processMesh(mesh, scene));
-    }
-    for (unsigned int i = 0; i < node->mNumChildren; ++i)
-    {
-        processNode(node->mChildren[i], scene);
-    }
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    // glGenBuffers(1, &EBO);
+
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertex), &vertices[0], GL_STATIC_DRAW);
+
+    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int),
+    //  &indices[0], GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void *)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void *)offsetof(vertex, normal));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void *)offsetof(vertex, textureCoordinates));
+
+    glBindVertexArray(0);
 }
-gfx::mesh gfx::model::processMesh(aiMesh *_mesh, const aiScene *_scene)
+void gfx::mesh::draw(Shader &shader)
 {
-    std::vector<vertex> vertices;
-    std::vector<unsigned int> indices;
-    std::vector<texture> textures;
-    std::vector<aiFace> faces;
-
-    for (unsigned int i = 0; i < _mesh->mNumVertices; ++i)
+    for (unsigned int i = 0; i < textures.size(); ++i)
     {
-        vertex _vertex;
+        glActiveTexture(GL_TEXTURE0 + i);
+        std::string name = textures[i].type;
 
-        _vertex.position = glm::vec3(_mesh->mVertices[i].x,
-                                     _mesh->mVertices[i].y,
-                                     _mesh->mVertices[i].z);
-        _vertex.normal = glm::vec3(_mesh->mNormals[i].x,
-                                   _mesh->mNormals[i].y,
-                                   _mesh->mNormals[i].z);
-
-        if (_mesh->mTextureCoords[0])
-        {
-            _vertex.textureCoordinates = glm::vec2(
-                _mesh->mTextureCoords[0][i].x,
-                _mesh->mTextureCoords[0][i].y);
-        }
-        else
-        {
-            _vertex.textureCoordinates = glm::vec2(0.0f, 0.0f);
-        }
-
-        vertices.push_back(_vertex);
+        shader.setInt(("material." + name).c_str(), i);
+        glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
 
-    for (unsigned int i = 0; i < _mesh->mNumFaces; ++i)
-    {
-        aiFace face = _mesh->mFaces[i];
+    glBindVertexArray(VAO);
+    // glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+    glBindVertexArray(0);
 
-        for (unsigned int j = 0; j < face.mNumIndices; ++j)
-            indices.push_back(face.mIndices[j]);
-    }
-
-    if (_mesh->mMaterialIndex >= 0)
-    {
-        aiMaterial *material = _scene->mMaterials[_mesh->mMaterialIndex];
-
-        std::vector<texture> diffuseMaps = loadMaterialTextures(material,
-                                                                aiTextureType_DIFFUSE, "diffuse");
-        textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
-        std::vector<texture> specularMaps = loadMaterialTextures(material,
-                                                                 aiTextureType_SPECULAR, "specular");
-        textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
-    }
-
-    return mesh(vertices, indices, textures);
+    glActiveTexture(GL_TEXTURE0);
 }
-std::vector<gfx::texture> gfx::model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
-                                                           std::string typeName)
-{
-    std::vector<texture> textures;
-    for (unsigned int i = 0; i < mat->GetTextureCount(type); ++i)
-    {
-        aiString str;
-        mat->GetTexture(type, i, &str);
-        bool loaded = false;
-        for (unsigned int j = 0; j < loaded_textures.size(); ++j)
-        {
-            if (std::strcmp(loaded_textures[j].path.data(), str.C_Str()) == 0)
-            {
-                textures.push_back(loaded_textures[j]);
-                loaded = true;
-                break;
-            }
-        }
 
-        if (!loaded)
-        {
-            texture _texture;
-            _texture.id = loadTexture(str.C_Str(), directory);
-            _texture.type = typeName;
-            _texture.path = str.C_Str();
-            textures.push_back(_texture);
-            loaded_textures.push_back(_texture);
-        }
-    }
-    return textures;
-}
+// void gfx::model::processNode(aiNode *node, const aiScene *scene)
+// {
+//     for (unsigned int i = 0; i < node->mNumMeshes; ++i)
+//     {
+//         aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+//         meshes.push_back(processMesh(mesh, scene));
+//     }
+//     for (unsigned int i = 0; i < node->mNumChildren; ++i)
+//     {
+//         processNode(node->mChildren[i], scene);
+//     }
+// }
+// gfx::mesh gfx::model::processMesh(aiMesh *_mesh, const aiScene *_scene)
+// {
+//     std::vector<vertex> vertices;
+//     std::vector<unsigned int> indices;
+//     std::vector<texture> textures;
+//     std::vector<aiFace> faces;
+
+//     for (unsigned int i = 0; i < _mesh->mNumVertices; ++i)
+//     {
+//         vertex _vertex;
+
+//         _vertex.position = glm::vec3(_mesh->mVertices[i].x,
+//                                      _mesh->mVertices[i].y,
+//                                      _mesh->mVertices[i].z);
+//         _vertex.normal = glm::vec3(_mesh->mNormals[i].x,
+//                                    _mesh->mNormals[i].y,
+//                                    _mesh->mNormals[i].z);
+
+//         if (_mesh->mTextureCoords[0])
+//         {
+//             _vertex.textureCoordinates = glm::vec2(
+//                 _mesh->mTextureCoords[0][i].x,
+//                 _mesh->mTextureCoords[0][i].y);
+//         }
+//         else
+//         {
+//             _vertex.textureCoordinates = glm::vec2(0.0f, 0.0f);
+//         }
+
+//         vertices.push_back(_vertex);
+//     }
+
+//     for (unsigned int i = 0; i < _mesh->mNumFaces; ++i)
+//     {
+//         aiFace face = _mesh->mFaces[i];
+
+//         for (unsigned int j = 0; j < face.mNumIndices; ++j)
+//             indices.push_back(face.mIndices[j]);
+//     }
+
+//     if (_mesh->mMaterialIndex >= 0)
+//     {
+//         aiMaterial *material = _scene->mMaterials[_mesh->mMaterialIndex];
+
+//         std::vector<texture> diffuseMaps = loadMaterialTextures(material,
+//                                                                 aiTextureType_DIFFUSE, "diffuse");
+//         textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+//         std::vector<texture> specularMaps = loadMaterialTextures(material,
+//                                                                  aiTextureType_SPECULAR, "specular");
+//         textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
+//     }
+
+//     return mesh(vertices, indices, textures);
+// }
+// std::vector<gfx::texture> gfx::model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
+//                                                            std::string typeName)
+// {
+//     std::vector<texture> textures;
+//     for (unsigned int i = 0; i < mat->GetTextureCount(type); ++i)
+//     {
+//         aiString str;
+//         mat->GetTexture(type, i, &str);
+//         bool loaded = false;
+//         for (unsigned int j = 0; j < loaded_textures.size(); ++j)
+//         {
+//             if (std::strcmp(loaded_textures[j].path.data(), str.C_Str()) == 0)
+//             {
+//                 textures.push_back(loaded_textures[j]);
+//                 loaded = true;
+//                 break;
+//             }
+//         }
+
+//         if (!loaded)
+//         {
+//             texture _texture;
+// _texture.id = loadTexture(str.C_Str(), directory);
+//             _texture.type = typeName;
+//             _texture.path = str.C_Str();
+//             textures.push_back(_texture);
+//             loaded_textures.push_back(_texture);
+//         }
+//     }
+//     return textures;
+// }

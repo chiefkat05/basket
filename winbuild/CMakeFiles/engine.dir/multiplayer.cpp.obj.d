@@ -1124,38 +1124,6 @@ CMakeFiles/engine.dir/multiplayer.cpp.obj: \
  /home/chiefkat/Documents/vscodeprojects/basket/./logic/../gfx/../nms/glad/include/glad/gl.h \
  /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/KHR/khrplatform.h \
  /usr/x86_64-w64-mingw32/include/GLFW/glfw3.h \
- /usr/x86_64-w64-mingw32/include/assimp/aabb.h \
- /usr/x86_64-w64-mingw32/include/assimp/vector3.h \
- /usr/x86_64-w64-mingw32/include/assimp/defs.h \
- /usr/x86_64-w64-mingw32/include/assimp/config.h \
- /usr/x86_64-w64-mingw32/include/assimp/Importer.hpp \
- /usr/x86_64-w64-mingw32/include/assimp/types.h \
- /usr/x86_64-w64-mingw32/include/assimp/vector2.h \
- /usr/x86_64-w64-mingw32/include/assimp/color4.h \
- /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.h \
- /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.h \
- /usr/x86_64-w64-mingw32/include/assimp/quaternion.h \
- /usr/x86_64-w64-mingw32/include/assimp/vector2.inl \
- /usr/x86_64-w64-mingw32/include/assimp/vector3.inl \
- /usr/x86_64-w64-mingw32/include/assimp/color4.inl \
- /usr/x86_64-w64-mingw32/include/assimp/matrix3x3.inl \
- /usr/x86_64-w64-mingw32/include/assimp/matrix4x4.inl \
- /usr/x86_64-w64-mingw32/include/assimp/MathFunctions.h \
- /usr/x86_64-w64-mingw32/include/assimp/quaternion.inl \
- /usr/x86_64-w64-mingw32/include/assimp/scene.h \
- /usr/x86_64-w64-mingw32/include/assimp/texture.h \
- /usr/x86_64-w64-mingw32/include/assimp/Compiler/pushpack1.h \
- /usr/x86_64-w64-mingw32/include/assimp/Compiler/poppack1.h \
- /usr/x86_64-w64-mingw32/include/assimp/mesh.h \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/unordered_set \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/unordered_set.h \
- /usr/x86_64-w64-mingw32/include/assimp/light.h \
- /usr/x86_64-w64-mingw32/include/assimp/camera.h \
- /usr/x86_64-w64-mingw32/include/assimp/material.h \
- /usr/x86_64-w64-mingw32/include/assimp/material.inl \
- /usr/x86_64-w64-mingw32/include/assimp/anim.h \
- /usr/x86_64-w64-mingw32/include/assimp/metadata.h \
- /usr/x86_64-w64-mingw32/include/assimp/postprocess.h \
  /usr/x86_64-w64-mingw32/include/glm/gtc/matrix_transform.hpp \
  /usr/x86_64-w64-mingw32/include/glm/ext/matrix_projection.hpp \
  /usr/x86_64-w64-mingw32/include/glm/gtc/constants.hpp \
