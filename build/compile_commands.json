@@ -1,49 +1,49 @@
 [
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/main.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/main.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/main.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/main.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/main.cpp",
   "output": "CMakeFiles/engine.dir/main.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/game.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/game.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/logic/game.cpp",
   "output": "CMakeFiles/engine.dir/logic/game.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/multiplayer.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/multiplayer.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/multiplayer.cpp",
   "output": "CMakeFiles/engine.dir/multiplayer.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/gfx/graphics.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/gfx/graphics.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.cpp",
   "output": "CMakeFiles/engine.dir/gfx/graphics.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/events.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/events.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/events.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/events.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/logic/events.cpp",
   "output": "CMakeFiles/engine.dir/logic/events.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/world.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/world.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/logic/world.cpp",
   "output": "CMakeFiles/engine.dir/logic/world.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/collision.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/logic/collision.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/logic/collision.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/logic/collision.cpp",
   "output": "CMakeFiles/engine.dir/logic/collision.cpp.o"
 },
 {
   "directory": "/home/chiefkat/Documents/vscodeprojects/basket/build",
-  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O2 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/gfx/shader.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.cpp",
+  "command": "/usr/bin/c++ -I/home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include -O1 -Wall -I/home/chiefkat/Documents/vscodeprojects/basket/gfx/backpack/ -g -o CMakeFiles/engine.dir/gfx/shader.cpp.o -c /home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.cpp",
   "file": "/home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.cpp",
   "output": "CMakeFiles/engine.dir/gfx/shader.cpp.o"
 },

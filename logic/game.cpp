@@ -384,7 +384,7 @@ void mainLoop()
         level1.objects[players[i].objID].invisible = true;
         level1.objects[players[i].objID].collisionMeshID = 0;
     }
-    level1.objects[players[0].objID].position.y = 2.0f;
+    level1.objects[players[0].objID].position.y = 4.0f;
     level1.objects[players[0].objID].collidable = true;
 
     glEnable(GL_DEPTH_TEST);
