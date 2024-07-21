@@ -13,5 +13,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = @CMakeFiles/engine.dir/includes_CXX.rsp
 
-CXX_FLAGS = --static -O2 -Wall -std=gnu++17
+CXX_FLAGS = -static -static-libgcc -static-libstdc++ -O3 -Wall -std=gnu++17
 

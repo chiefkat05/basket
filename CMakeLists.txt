@@ -8,7 +8,7 @@ add_executable(engine main.cpp "${CMAKE_SOURCE_DIR}/logic/game.cpp" multiplayer.
 set(CMAKE_CXX_FLAGS "-O2 -Wall -I${CMAKE_SOURCE_DIR}/gfx/backpack/")
 
 if (WIN32)
-    set(CMAKE_CXX_FLAGS "--static -O2 -Wall")
+    set(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -O3 -Wall")
 endif()
 
 if (UNIX)
