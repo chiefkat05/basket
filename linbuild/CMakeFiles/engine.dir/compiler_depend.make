@@ -141,6 +141,7 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o: /home/chiefkat/Documents/vscodeproject
   /usr/include/c++/14.1.1/bits/refwrap.h \
   /usr/include/c++/14.1.1/bits/requires_hosted.h \
   /usr/include/c++/14.1.1/bits/specfun.h \
+  /usr/include/c++/14.1.1/bits/sstream.tcc \
   /usr/include/c++/14.1.1/bits/std_abs.h \
   /usr/include/c++/14.1.1/bits/std_function.h \
   /usr/include/c++/14.1.1/bits/stl_algobase.h \
@@ -152,7 +153,10 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o: /home/chiefkat/Documents/vscodeproject
   /usr/include/c++/14.1.1/bits/stl_iterator_base_types.h \
   /usr/include/c++/14.1.1/bits/stl_map.h \
   /usr/include/c++/14.1.1/bits/stl_multimap.h \
+  /usr/include/c++/14.1.1/bits/stl_multiset.h \
   /usr/include/c++/14.1.1/bits/stl_pair.h \
+  /usr/include/c++/14.1.1/bits/stl_relops.h \
+  /usr/include/c++/14.1.1/bits/stl_set.h \
   /usr/include/c++/14.1.1/bits/stl_tree.h \
   /usr/include/c++/14.1.1/bits/stl_uninitialized.h \
   /usr/include/c++/14.1.1/bits/stl_vector.h \
@@ -204,6 +208,8 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o: /home/chiefkat/Documents/vscodeproject
   /usr/include/c++/14.1.1/new \
   /usr/include/c++/14.1.1/ostream \
   /usr/include/c++/14.1.1/pstl/pstl_config.h \
+  /usr/include/c++/14.1.1/set \
+  /usr/include/c++/14.1.1/sstream \
   /usr/include/c++/14.1.1/stdexcept \
   /usr/include/c++/14.1.1/stdlib.h \
   /usr/include/c++/14.1.1/streambuf \
@@ -226,6 +232,7 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o: /home/chiefkat/Documents/vscodeproject
   /usr/include/c++/14.1.1/type_traits \
   /usr/include/c++/14.1.1/typeinfo \
   /usr/include/c++/14.1.1/unordered_map \
+  /usr/include/c++/14.1.1/utility \
   /usr/include/c++/14.1.1/vector \
   /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
   /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
@@ -4126,8 +4133,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/fcntl.h:
 
-/usr/include/c++/14.1.1/sstream:
-
 /usr/include/c++/14.1.1/ratio:
 
 /usr/include/c++/14.1.1/pstl/glue_memory_defs.h:
@@ -4147,8 +4152,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/c++/14.1.1/bits/unique_lock.h:
 
 /usr/include/c++/14.1.1/bits/this_thread_sleep.h:
-
-/usr/include/c++/14.1.1/bits/stl_relops.h:
 
 /usr/include/c++/14.1.1/bits/shared_ptr_base.h:
 
@@ -4492,8 +4495,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/asio/detail/strand_service.hpp:
 
-/usr/include/asio/detail/strand_executor_service.hpp:
-
 /usr/include/asio/detail/static_mutex.hpp:
 
 /usr/include/asio/detail/socket_types.hpp:
@@ -4704,19 +4705,13 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/asio/detail/chrono.hpp:
 
-/usr/include/netdb.h:
+/usr/include/asio/detail/blocking_executor_op.hpp:
 
-/usr/include/asio/posix/basic_descriptor.hpp:
+/usr/include/linux/falloc.h:
 
-/usr/include/asio/detail/timer_queue_ptime.hpp:
+/usr/include/asio/detail/base_from_completion_cond.hpp:
 
-/usr/include/sched.h:
-
-/usr/include/bits/fp-fast.h:
-
-/usr/include/wctype.h:
-
-/usr/local/include/glm/ext/matrix_double2x4_precision.hpp:
+/usr/include/asio/detail/base_from_cancellation_state.hpp:
 
 /usr/include/linux/errno.h:
 
@@ -4760,6 +4755,16 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/error_constants.h:
 
+/usr/include/sys/stat.h:
+
+/usr/include/c++/14.1.1/pstl/glue_algorithm_defs.h:
+
+/usr/local/include/glm/ext/matrix_double3x2.hpp:
+
+/usr/include/asio/detail/buffer_sequence_adapter.hpp:
+
+/usr/include/c++/14.1.1/unordered_map:
+
 /usr/include/asio/traits/static_require.hpp:
 
 /usr/local/include/glm/ext/quaternion_geometric.inl:
@@ -4773,10 +4778,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/time.h:
 
 /usr/include/asio/any_completion_executor.hpp:
-
-/usr/include/asio/ip/network_v6.hpp:
-
-/usr/local/include/glm/ext/vector_double1_precision.hpp:
 
 /usr/include/c++/14.1.1/tuple:
 
@@ -4844,13 +4845,13 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/c++/14.1.1/map:
 
+/usr/include/asio/ip/network_v6.hpp:
+
+/usr/local/include/glm/ext/vector_double1_precision.hpp:
+
 /usr/include/c++/14.1.1/istream:
 
 /usr/include/asio/basic_socket_acceptor.hpp:
-
-/usr/include/pthread.h:
-
-/usr/include/c++/14.1.1/exception:
 
 /usr/include/linux/stddef.h:
 
@@ -4904,19 +4905,17 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/c++/14.1.1/cmath:
 
-/usr/include/c++/14.1.1/tr1/modified_bessel_func.tcc:
+/usr/include/asio/detail/reactive_socket_service.hpp:
 
-/usr/include/stdint.h:
+/usr/include/asio/detail/buffer_resize_guard.hpp:
 
-/usr/include/endian.h:
+/usr/include/linux/limits.h:
 
 /home/chiefkat/Documents/vscodeprojects/basket/gfx/shader.h:
 
 /usr/include/c++/14.1.1/cfloat:
 
-/usr/include/asio/local/basic_endpoint.hpp:
-
-/usr/include/math.h:
+/usr/include/c++/14.1.1/sstream:
 
 /usr/include/c++/14.1.1/cerrno:
 
@@ -4955,6 +4954,14 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/sys/cdefs.h:
 
 /usr/local/include/glm/ext/matrix_float2x3.hpp:
+
+/usr/include/asio/detail/strand_executor_service.hpp:
+
+/usr/include/c++/14.1.1/bits/stl_set.h:
+
+/usr/include/bits/ioctl-types.h:
+
+/usr/local/include/glm/ext/vector_int3_sized.hpp:
 
 /usr/include/c++/14.1.1/bits/stl_pair.h:
 
@@ -5034,8 +5041,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/bits/types/struct_itimerspec.h:
 
-/usr/local/include/glm/mat2x2.hpp:
-
 /usr/include/c++/14.1.1/bits/predefined_ops.h:
 
 /usr/include/bits/time.h:
@@ -5050,15 +5055,17 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/c++/14.1.1/bits/ostream_insert.h:
 
+/usr/include/endian.h:
+
+/usr/include/c++/14.1.1/tr1/modified_bessel_func.tcc:
+
+/usr/include/stdint.h:
+
 /usr/include/c++/14.1.1/bits/erase_if.h:
 
 /home/chiefkat/Documents/vscodeprojects/basket/gfx/graphics.h:
 
 /usr/local/include/glm/ext/vector_uint3_sized.hpp:
-
-/usr/include/bits/ioctl-types.h:
-
-/usr/local/include/glm/ext/vector_int3_sized.hpp:
 
 /usr/include/c++/14.1.1/bits/new_allocator.h:
 
@@ -5125,6 +5132,20 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/bits/pthreadtypes.h:
 
 /usr/include/bits/posix2_lim.h:
+
+/usr/include/bits/fp-fast.h:
+
+/usr/include/netdb.h:
+
+/usr/include/asio/posix/basic_descriptor.hpp:
+
+/usr/include/asio/detail/timer_queue_ptime.hpp:
+
+/usr/include/sched.h:
+
+/usr/include/wctype.h:
+
+/usr/local/include/glm/ext/matrix_double2x4_precision.hpp:
 
 /usr/include/bits/posix_opt.h:
 
@@ -5314,6 +5335,8 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/gnu/stubs.h:
 
+/usr/local/include/glm/mat4x2.hpp:
+
 /usr/include/asio/traits/query_member.hpp:
 
 /usr/local/include/glm/ext/matrix_float4x2_precision.hpp:
@@ -5327,8 +5350,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /home/chiefkat/Documents/vscodeprojects/basket/nms/glad/include/glad/gl.h:
 
 /usr/local/include/glm/detail/type_mat2x2.inl:
-
-/usr/include/asio/detail/blocking_executor_op.hpp:
 
 /usr/include/c++/14.1.1/bits/uses_allocator_args.h:
 
@@ -5410,6 +5431,10 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/local/include/glm/ext/vector_double2_precision.hpp:
 
+/usr/include/c++/14.1.1/bits/stl_multiset.h:
+
+/usr/local/include/glm/detail/type_quat.inl:
+
 /usr/include/bits/types/__sigset_t.h:
 
 /usr/include/asio/serial_port.hpp:
@@ -5425,10 +5450,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/bits/types/mbstate_t.h:
 
 /usr/include/c++/14.1.1/bits/memory_resource.h:
-
-/usr/include/stdlib.h:
-
-/usr/include/c++/14.1.1/bits/hashtable.h:
 
 /usr/include/asio/basic_stream_file.hpp:
 
@@ -5514,6 +5535,14 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/asio/buffers_iterator.hpp:
 
+/usr/include/c++/14.1.1/bits/stl_relops.h:
+
+/usr/include/asio/ip/basic_resolver.hpp:
+
+/usr/include/asio/detail/array_fwd.hpp:
+
+/usr/local/include/glm/gtc/constants.hpp:
+
 /usr/include/c++/14.1.1/bits/char_traits.h:
 
 /usr/local/include/glm/detail/compute_common.hpp:
@@ -5540,6 +5569,10 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/c++/14.1.1/bits/cpp_type_traits.h:
 
+/usr/include/c++/14.1.1/exception:
+
+/usr/include/pthread.h:
+
 /usr/include/asio/prepend.hpp:
 
 /usr/include/asio/local/datagram_protocol.hpp:
@@ -5547,12 +5580,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/c++/14.1.1/bits/charconv.h:
 
 /usr/include/c++/14.1.1/cctype:
-
-/usr/include/c++/14.1.1/iterator:
-
-/usr/local/include/glm/ext/matrix_float3x2_precision.hpp:
-
-/usr/local/include/glm/ext/vector_int1_sized.hpp:
 
 /usr/include/c++/14.1.1/bits/hash_bytes.h:
 
@@ -5579,6 +5606,22 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/bits/xopen_lim.h:
 
 /usr/include/asio/buffered_read_stream_fwd.hpp:
+
+/usr/include/asio/local/basic_endpoint.hpp:
+
+/usr/include/math.h:
+
+/usr/include/c++/14.1.1/iterator:
+
+/usr/local/include/glm/ext/vector_int1_sized.hpp:
+
+/usr/local/include/glm/ext/matrix_float3x2_precision.hpp:
+
+/usr/local/include/glm/mat2x2.hpp:
+
+/usr/include/c++/14.1.1/bits/hashtable.h:
+
+/usr/include/stdlib.h:
 
 /usr/local/include/glm/geometric.hpp:
 
@@ -5654,6 +5697,14 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/asio/cancellation_signal.hpp:
 
+/usr/include/asio/use_future.hpp:
+
+/usr/include/asio/detail/atomic_count.hpp:
+
+/usr/include/bits/types/__locale_t.h:
+
+/usr/local/include/glm/detail/type_half.inl:
+
 /usr/include/asio/buffer_registration.hpp:
 
 /usr/include/c++/14.1.1/bits/node_handle.h:
@@ -5714,8 +5765,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/local/include/glm/detail/type_mat4x4.hpp:
 
-/usr/local/include/glm/detail/type_quat.inl:
-
 /usr/include/sys/uio.h:
 
 /usr/include/asm-generic/ioctl.h:
@@ -5763,12 +5812,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/local/include/glm/ext/matrix_double2x3_precision.hpp:
 
 /usr/local/include/glm/gtc/type_ptr.inl:
-
-/usr/include/sys/stat.h:
-
-/usr/include/c++/14.1.1/pstl/glue_algorithm_defs.h:
-
-/usr/local/include/glm/ext/matrix_double3x2.hpp:
 
 /usr/include/gnu/stubs-64.h:
 
@@ -5952,12 +5995,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/local/include/glm/glm.hpp:
 
-/usr/include/asio/ip/basic_resolver.hpp:
-
-/usr/include/asio/detail/array_fwd.hpp:
-
-/usr/local/include/glm/gtc/constants.hpp:
-
 /usr/local/include/glm/gtc/constants.inl:
 
 /usr/local/include/glm/mat2x3.hpp:
@@ -5967,14 +6004,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/c++/14.1.1/vector:
 
 /usr/local/include/glm/gtc/epsilon.hpp:
-
-/usr/include/asio/use_future.hpp:
-
-/usr/include/bits/types/__locale_t.h:
-
-/usr/local/include/glm/detail/type_half.inl:
-
-/usr/include/asio/detail/atomic_count.hpp:
 
 /usr/include/asm-generic/errno.h:
 
@@ -6005,8 +6034,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/bits/types/sigset_t.h:
 
 /usr/local/include/glm/mat3x3.hpp:
-
-/usr/local/include/glm/mat4x2.hpp:
 
 /usr/include/asio/detail/string_view.hpp:
 
@@ -6042,6 +6069,8 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/asio/detail/posix_static_mutex.hpp:
 
+/usr/include/c++/14.1.1/set:
+
 /usr/local/include/glm/vec4.hpp:
 
 /usr/include/asio/executor.hpp:
@@ -6063,8 +6092,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/asio/any_io_executor.hpp:
 
 /usr/include/asio/append.hpp:
-
-/usr/include/asio/detail/base_from_cancellation_state.hpp:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -6124,10 +6151,6 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 
 /usr/include/asio/basic_writable_pipe.hpp:
 
-/usr/include/linux/falloc.h:
-
-/usr/include/asio/detail/base_from_completion_cond.hpp:
-
 /usr/local/include/glm/detail/func_integer.inl:
 
 /usr/include/c++/14.1.1/cassert:
@@ -6157,13 +6180,3 @@ CMakeFiles/engine.dir/nms/glad/src/gl.c.o: /home/chiefkat/Documents/vscodeprojec
 /usr/include/c++/14.1.1/x86_64-pc-linux-gnu/bits/c++io.h:
 
 /usr/include/asio/defer.hpp:
-
-/usr/include/asio/detail/reactive_socket_service.hpp:
-
-/usr/include/linux/limits.h:
-
-/usr/include/asio/detail/buffer_resize_guard.hpp:
-
-/usr/include/c++/14.1.1/unordered_map:
-
-/usr/include/asio/detail/buffer_sequence_adapter.hpp:
