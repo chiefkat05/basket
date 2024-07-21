@@ -8,8 +8,7 @@ void world::PlaceObject(std::string modelDir, std::string modelPath, glm::vec3 p
 {
     for (unsigned int i = 0; i < models.size(); ++i)
     {
-        // std::cout << models[i].directory << ", " << modelPath << "\n";
-        if (models[i].directory == modelPath)
+        if (models[i].directory == modelDir)
         {
             object tmp = tmp.create(position, scale, rotation, tScale, obtainable, collidable, solid);
             tmp.modelID = i;
@@ -64,6 +63,7 @@ glm::vec3 world::FurthestPoint(glm::vec3 direction, std::vector<gfx::vertex> &ve
 
     for (unsigned int i = 0; i < vertices.size(); ++i)
     {
+
         glm::vec3 checkPosition = ((vertices[i].position) * objScale) + objPosition;
         float distance = glm::dot(checkPosition, direction);
         if (distance > maxDistance)
@@ -261,7 +261,8 @@ CollisionData world::EPA(const simplex &simplex, object &obj1, object &obj2)
 
             for (size_t i = 0; i < normals.size(); i++)
             {
-                if (SameDirection(normals[i], support))
+                // if (SameDirection(normals[i], support))
+                if (glm::dot(glm::vec3(normals[i].x, normals[i].y, normals[i].z), support) > glm::dot(glm::vec3(normals[i].x, normals[i].y, normals[i].z), polytope[faces[i * 3]]))
                 {
                     size_t f = i * 3;
 
@@ -327,13 +328,13 @@ CollisionData world::EPA(const simplex &simplex, object &obj1, object &obj2)
 bool world::collisionDetection(object &obj1, object &obj2)
 {
     // rudimentary collision
-    // float distance = std::abs((obj1.position.x - obj2.position.x) * (obj1.position.y - obj2.position.y) * (obj1.position.z - obj2.position.z));
-    // if (distance > 4.0f)
-    //     return false;
-    // float distance = glm::distance(obj1.position, obj2.position);
+    float distance = glm::distance(obj1.position, obj2.position);
 
-    // if (distance > 40.0f)
-    //     return false;
+    float rad1 = glm::length(obj1.scale) * models[obj1.modelID].boundingSphereRadius;
+    float rad2 = glm::length(obj2.scale) * models[obj2.modelID].boundingSphereRadius;
+
+    if (distance > rad1 * rad1 + rad2 * rad2)
+        return false;
 
     glm::vec3 support = GJK_Support(glm::vec3(1.0f, 0.0f, 0.0f), obj1, obj2);
 
@@ -386,7 +387,6 @@ bool world::collisionDetection(object &obj1, object &obj2)
 void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 &playerPos, glm::vec3 &camFront, object *&objectLookingAt, object *&objectHolding,
                    unsigned int &objectHoldingID, float floorlevel, float delta_time)
 {
-    // std::cout << "at least here\n";
     objectLookingAt = nullptr;
     s.use();
     s.setMat4("projection", projection); // collision mesh does not get rotated!!! // okay yea EPA is absolutely broken // also add quadtree
@@ -398,57 +398,60 @@ void world::Render(Shader &s, glm::mat4 &projection, glm::mat4 &view, glm::vec3 
             objectHoldingID = i;
         if (objectHolding == nullptr)
             objectHoldingID = -1;
-        // if (!objects[i].solid)
-        // {
-        //     // gravity
-        //     if (objects[i].beingHeld == -1 || !objects[i].obtainable)
-        //     {
-        //         objects[i].velocity.y -= 30.0f * delta_time;
-        //     }
-        //     // if (objects[i].prevPosition.y == objects[i].position.y)
-        //     //     objects[i].velocity.y = 0.0f;
+        if (!objects[i].solid)
+        {
+            // gravity
+            if (objects[i].beingHeld == -1 || !objects[i].obtainable)
+            {
+                objects[i].velocity.y -= 30.0f * delta_time;
+            }
+            // if (objects[i].prevPosition.y == objects[i].position.y)
+            //     objects[i].velocity.y = 0.0f;
 
-        //     // player pickup
-        //     if (objects[i].obtainable && objectHolding == nullptr)
-        //     {
-        //         glm::vec3 toObjectVector = playerPos - objects[i].position;
+            // player pickup
+            if (objects[i].obtainable && objectHolding == nullptr)
+            {
+                glm::vec3 toObjectVector = playerPos - objects[i].position;
 
-        //         glm::vec3 distance = glm::cross(camFront, toObjectVector);
-        //         if (distance.y < 0.1f && distance.x < 0.1f && distance.z < 0.1f && toObjectVector.x < 3.0f && toObjectVector.y < 3.0f && toObjectVector.z < 3.0f)
-        //         {
-        //             objects[i].internalScale = glm::vec3(0.87f);
-        //             s.setVec4("colorMultiple", glm::vec4(0.4f, 0.7f, 0.6f, 1.0f));
-        //             objectLookingAt = &objects[i];
-        //         }
-        //         else
-        //         {
-        //             objects[i].internalScale = glm::vec3(1.0f);
-        //         }
-        //     }
+                glm::vec3 distance = glm::cross(camFront, toObjectVector);
+                if (distance.y < 0.1f && distance.x < 0.1f && distance.z < 0.1f && toObjectVector.x < 3.0f && toObjectVector.y < 3.0f && toObjectVector.z < 3.0f)
+                {
+                    objects[i].internalScale = glm::vec3(0.87f);
+                    s.setVec4("colorMultiple", glm::vec4(0.4f, 0.7f, 0.6f, 1.0f));
+                    objectLookingAt = &objects[i];
+                }
+                else
+                {
+                    objects[i].internalScale = glm::vec3(1.0f);
+                }
+            }
 
-        //     objects[i].position += objects[i].velocity * delta_time;
+            objects[i].position += objects[i].velocity * delta_time;
 
-        //     if (objects[i].onGround)
-        //         objects[i].velocity.y = 0.0f;
+            if (objects[i].onGround)
+            {
+                objects[i].velocity.y = 0.0f;
+            }
+            objects[i].velocity.x *= 0.05f;
+            objects[i].velocity.z *= 0.05f;
 
-        //     objects[i].onGround = false;
-        // }
+            objects[i].onGround = false;
+        }
 
         // collision
-        // if (objects[i].collidable)
-        // {
-        //     for (unsigned int j = 0; j < objects.size(); ++j)
-        //     {
-        //         if (j == i || !objects[j].collidable)
-        //             continue;
+        if (objects[i].collidable)
+        {
+            for (unsigned int j = 0; j < objects.size(); ++j)
+            {
+                if (j == i || !objects[j].collidable)
+                    continue;
 
-        //         if (collisionDetection(objects[i], objects[j]))
-        //         {
-        //             // s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
-        //         }
-        //     }
-        // }
-        // std::cout << objects[i].position.x << ", " << objects[i].position.y << ", " << objects[i].position.z << ", " << models[objects[i].modelID].name << "\n";
+                if (collisionDetection(objects[i], objects[j]))
+                {
+                    // s.setVec4("colorMultiple", glm::vec4(0.3f, 0.3f, 0.3f, 1.0f));
+                }
+            }
+        }
         if (!objects[i].invisible)
         {
             glm::mat4 model = glm::mat4(1.0f);

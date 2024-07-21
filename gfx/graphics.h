@@ -29,23 +29,25 @@ namespace gfx
 
     struct vertex
     {
-        glm::vec3 position, normal;
-        glm::vec2 textureCoordinates;
+        glm::vec3 position = glm::vec3(0.0f), normal = glm::vec3(0.0f);
+        glm::vec2 textureCoordinates = glm::vec2(0.0f);
     };
     struct texture
     {
-        unsigned int id;
-        std::string type;
-        std::string path;
+        unsigned int id = 0;
+        std::string type = "";
+        std::string path = "";
     };
     class mesh
     {
     public:
         std::vector<vertex> vertices;
-        std::vector<unsigned int> indices;
-        std::vector<texture> textures;
+        // std::vector<unsigned int> indices;
+        texture tex;
 
-        std::string directory, name;
+        float boundingSphereRadius = 0.0f;
+
+        std::string directory = "", name = "";
 
         // mesh(std::vector<vertex> _vertices, std::vector<unsigned int> _indices, std::vector<texture> _textures)
         // {
