@@ -387,9 +387,4 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o: \
  /usr/local/include/tiny_obj_loader.h /usr/include/c++/14.1.1/map \
  /usr/include/c++/14.1.1/bits/stl_tree.h \
  /usr/include/c++/14.1.1/bits/stl_map.h \
- /usr/include/c++/14.1.1/bits/stl_multimap.h /usr/include/c++/14.1.1/set \
- /usr/include/c++/14.1.1/bits/stl_set.h \
- /usr/include/c++/14.1.1/bits/stl_multiset.h \
- /usr/include/c++/14.1.1/sstream /usr/include/c++/14.1.1/bits/sstream.tcc \
- /usr/include/c++/14.1.1/utility \
- /usr/include/c++/14.1.1/bits/stl_relops.h
+ /usr/include/c++/14.1.1/bits/stl_multimap.h

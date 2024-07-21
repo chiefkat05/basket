@@ -399,11 +399,4 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.obj: \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/map \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_tree.h \
  /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_map.h \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_multimap.h \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/set \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_set.h \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_multiset.h \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/sstream \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/sstream.tcc \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/utility \
- /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_relops.h
+ /usr/x86_64-w64-mingw32/include/c++/13.1.0/bits/stl_multimap.h

@@ -5,8 +5,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "../nms/stb_image.h"
 
-#define TINYOBJLOADER_IMPLEMENTATION
-// #define TINYOBJLOADER_USE_MAPBOX_EARCUT
 #include <tiny_obj_loader.h>
 
 const float width = 1280.0f;
