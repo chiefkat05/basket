@@ -384,7 +384,12 @@ CMakeFiles/engine.dir/gfx/graphics.cpp.o: \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/xmmintrin.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/mmintrin.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/14.1.1/include/mm_malloc.h \
- /usr/local/include/tiny_obj_loader.h /usr/include/c++/14.1.1/map \
- /usr/include/c++/14.1.1/bits/stl_tree.h \
+ /home/chiefkat/Documents/vscodeprojects/basket/gfx/../nms/tiny_obj_loader.h \
+ /usr/include/c++/14.1.1/map /usr/include/c++/14.1.1/bits/stl_tree.h \
  /usr/include/c++/14.1.1/bits/stl_map.h \
- /usr/include/c++/14.1.1/bits/stl_multimap.h
+ /usr/include/c++/14.1.1/bits/stl_multimap.h /usr/include/c++/14.1.1/set \
+ /usr/include/c++/14.1.1/bits/stl_set.h \
+ /usr/include/c++/14.1.1/bits/stl_multiset.h \
+ /usr/include/c++/14.1.1/sstream /usr/include/c++/14.1.1/bits/sstream.tcc \
+ /usr/include/c++/14.1.1/utility \
+ /usr/include/c++/14.1.1/bits/stl_relops.h

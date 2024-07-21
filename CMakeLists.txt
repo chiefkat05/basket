@@ -12,9 +12,9 @@ if (WIN32)
 endif()
 
 if (UNIX)
-    target_link_libraries(engine glfw3 tinyobjloader)
+    target_link_libraries(engine glfw3)
 endif()
 
 if(WIN32)
-    target_link_libraries(engine glfw3 tinyobjloader gdi32 opengl32 dl ws2_32 wsock32)
+    target_link_libraries(engine glfw3 gdi32 opengl32 dl ws2_32 wsock32)
 endif()                  

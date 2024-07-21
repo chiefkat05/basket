@@ -5,7 +5,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "../nms/stb_image.h"
 
-#include <tiny_obj_loader.h>
+#define TINYOBJLOADER_IMPLEMENTATION
+#include "../nms/tiny_obj_loader.h"
 
 const float width = 1280.0f;
 const float height = 720.0f;
