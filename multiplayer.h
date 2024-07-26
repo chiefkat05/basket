@@ -192,7 +192,7 @@ public:
 
     bool Connect(const std::string &host, const std::string port);
 
-    void UpdatePlayer(glm::vec3 position, glm::vec3 rotation);
+    void UpdatePlayer(glm::vec3 position, glm::vec3 rotation, glm::vec3 velocity);
     void UpdateObject(unsigned int ID, glm::vec3 position, glm::vec3 rotation);
     void CancelObjectUpdates(unsigned int ID);
     void SendObject(object obj, const unsigned int objModelID);

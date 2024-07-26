@@ -375,12 +375,12 @@ bool client::Connect(const std::string &host, const std::string port)
     return true;
 }
 
-void client::UpdatePlayer(glm::vec3 position, glm::vec3 rotation)
+void client::UpdatePlayer(glm::vec3 position, glm::vec3 rotation, glm::vec3 velocity)
 {
     message msg;
     msg.header.id = 1;
 
-    msg << position << rotation;
+    msg << position << rotation << velocity;
 
     connection_->Send(msg);
 }
@@ -573,12 +573,12 @@ void server::OnMessage(std::shared_ptr<connection> client, message &msg, world &
     {
         message newMsg;
         newMsg.header.id = 1;
-        glm::vec3 pos, rot;
+        glm::vec3 pos, rot, vel;
 
         message_header msgtempheader;
         msg >> msgtempheader;
-        msg >> rot >> pos;
-        newMsg << pos << rot << client->GetID();
+        msg >> vel >> rot >> pos;
+        newMsg << pos << rot << vel << client->GetID();
 
         MessageAllClients(newMsg, client);
     }

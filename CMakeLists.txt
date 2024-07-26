@@ -19,4 +19,4 @@ endif()
 
 if(WIN32)
     target_link_libraries(engine glfw3 ws2_32 wsock32)
-endif()                  
+endif()

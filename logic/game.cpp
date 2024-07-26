@@ -223,7 +223,7 @@ void playerInput()
     }
     if (clientonline && clientvalidated <= 0.0f && msgUpdate <= 0.0f) // multiplayer player update loop (what data gets sent)
     {
-        mClient->UpdatePlayer(level1.objects[players[0].objID].position, camFrontAlign);
+        mClient->UpdatePlayer(level1.objects[players[0].objID].position, camFrontAlign, level1.objects[players[0].objID].velocity);
         msgUpdate = 0.01f;
     }
     if (clientonline && msgUpdate > 0.0f)
