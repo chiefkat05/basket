@@ -508,7 +508,7 @@ void mainLoop()
             plPos = level1.objects[players[i].objID].position;
             glm::vec3 plRot = level1.objects[players[i].objID].rotation;
 
-            std::cout << i << ", " << plPos.y << " hmm\n";
+            // std::cout << i << ", " << plPos.y << " hmm\n";
 
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, plPos);
