@@ -8,7 +8,7 @@ void world::PlaceObject(std::string modelDir, std::string modelPath, glm::vec3 p
 {
     for (unsigned int i = 0; i < models.size(); ++i)
     {
-        if (models[i].directory == modelDir)
+        if (models[i].directory == modelDir && models[i].name == modelPath)
         {
             object tmp = tmp.create(position, scale, rotation, tScale, obtainable, collidable, solid);
             tmp.modelID = i;

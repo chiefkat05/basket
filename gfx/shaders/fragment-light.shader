@@ -134,10 +134,10 @@ void main()
 
     result = dirLightCalculation(dLight, norm, viewDir);
 
-    for (int i = 0; i < pointLightCount; ++i)
-    {
-        result.xyz += pointLightCalculation(pLights[i], norm, viewDir);
-    }
+    // for (int i = 0; i < pointLightCount; ++i)
+    // {
+    //     result.xyz += pointLightCalculation(pLights[i], norm, viewDir);
+    // }
     for (int i = 0; i < spotLightCount; ++i)
     {
         result.xyz += spotLightCalculation(sLights[i], norm, viewDir);
@@ -163,7 +163,8 @@ void main()
 
         // result.xyz -= 0.001 * fragmentPosition.x;
 
-    gl_FragColor = result * (0.8 + fog);
+    // gl_FragColor = result * (0.8 + fog);
+    gl_FragColor = result;
 
     // float gamma = 0.5;
     // gl_FragColor.rgb = pow(result.xyz, vec3(1.0/gamma));

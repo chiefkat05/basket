@@ -14,9 +14,6 @@ extern const float height;
 extern const float nearView;
 extern const float farView;
 
-extern float cube[288];
-extern float quad[24];
-
 extern glm::vec3 camRotation;
 
 extern glm::vec3 camFront;
@@ -40,12 +37,12 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 void gameInit()
 {
-    std::cout << "version alpha0.1\n\n";
+    std::cout << "version alpha0.2\n\n";
 }
 
 server *hostServer;
 client *mClient;
-bool playerRunning = false, flashlight = true;
+bool playerRunning = false, flashlight = false;
 
 bool clientonline = false, serveronline = false, noserverduplicates = false, noclientduplicates = false;
 float clientvalidated = 0.0f, msgUpdate = 0.0f;
@@ -185,8 +182,8 @@ void playerInput()
 
     if (ehandler.requestKeyState(GLFW_KEY_Y) == 2)
     {
-        level1.PlaceObject(level1.models[1].directory, level1.models[1].name, level1.objects[players[0].objID].position + camFront * 8.0f,
-                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject("../gfx/models/terrain/bush-1", "/bush.obj", level1.objects[players[0].objID].position + camFront * 8.0f,
+                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, false);
 
         if (clientonline && clientvalidated <= 0.0f)
         {
@@ -196,79 +193,13 @@ void playerInput()
     }
     if (ehandler.requestKeyState(GLFW_KEY_U) == 2)
     {
-        level1.PlaceObject(level1.models[0].directory, level1.models[0].name, level1.objects[players[0].objID].position + camFront * 8.0f,
-                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
+        level1.PlaceObject("../gfx/models/enemies/smoosh", "/smooshman.obj", level1.objects[players[0].objID].position + camFront * 8.0f,
+                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, false);
 
         if (clientonline && clientvalidated <= 0.0f)
         {
             unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 0);
-        }
-    }
-    if (ehandler.requestKeyState(GLFW_KEY_I) == 2)
-    {
-        level1.PlaceObject(level1.models[2].directory, level1.models[2].name, level1.objects[players[0].objID].position + camFront * 8.0f,
-                           glm::vec3(1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
-
-        if (clientonline && clientvalidated <= 0.0f)
-        {
-            unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 2);
-        }
-    }
-    if (ehandler.requestKeyState(GLFW_KEY_O) == 2)
-    {
-        level1.PlaceObject(level1.models[3].directory, level1.models[3].name, level1.objects[players[0].objID].position + camFront * 8.0f,
-                           glm::vec3(1.0f),
-                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
-        if (clientonline && clientvalidated <= 0.0f)
-        {
-            unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 3);
-        }
-    }
-    if (ehandler.requestKeyState(GLFW_KEY_P) == 2)
-    {
-        level1.PlaceObject(level1.models[4].directory, level1.models[4].name, level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
-                           glm::vec3(1.0f),
-                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
-        if (clientonline && clientvalidated <= 0.0f)
-        {
-            unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 4);
-        }
-    }
-    if (ehandler.requestKeyState(GLFW_KEY_J) == 2)
-    {
-        level1.PlaceObject(level1.models[5].directory, level1.models[5].name, level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
-                           glm::vec3(1.0f),
-                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
-        if (clientonline && clientvalidated <= 0.0f)
-        {
-            unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 5);
-        }
-    }
-    if (ehandler.requestKeyState(GLFW_KEY_K) == 2)
-    {
-        level1.PlaceObject(level1.models[6].directory, level1.models[6].name, level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
-                           glm::vec3(1.0f),
-                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
-        if (clientonline && clientvalidated <= 0.0f)
-        {
-            unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 6);
-        }
-    }
-    if (ehandler.requestKeyState(GLFW_KEY_L) == 2)
-    {
-        level1.PlaceObject(level1.models[7].directory, level1.models[7].name, level1.objects[players[0].objID].position + camFrontAlign * 8.0f,
-                           glm::vec3(1.0f),
-                           glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true, true);
-        if (clientonline && clientvalidated <= 0.0f)
-        {
-            unsigned int lastObj = level1.objects.size() - 1;
-            mClient->SendObject(level1.objects[lastObj], 7);
+            mClient->SendObject(level1.objects[lastObj], 1);
         }
     }
 
@@ -334,14 +265,10 @@ void mainLoop()
 
     gfx::mesh playerModel("../gfx/models/player", "/player.obj"); // this is the origin of the problem with the player textures
 
-    level1.PlaceObject("../gfx/models/terrain/simple", "/plane.obj", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(800.0f, 1.0f, 800.0f), glm::vec3(1.0f), glm::vec2(160.0f, 160.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/terrain/simple", "/plane.obj", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(40.0f, 40.0f, 40.0f), glm::vec3(0.0f), glm::vec2(10.0f, 10.0f), false, true, true);
     // too bloated
-    level1.PlaceObject("../gfx/models/items", "/carrot.obj", glm::vec3(0.8f, 5.0f, -3.0f), glm::vec3(1.0f),
+    level1.PlaceObject("../gfx/models/items", "/carrot.obj", glm::vec3(-6.0f, 5.0f, -28.0f), glm::vec3(1.0f),
                        glm::vec3(0.0f, 160.0f, 0.0f), glm::vec2(1.0f), true, true, false);
-    level1.PlaceObject("../gfx/models/items", "/carrot.obj", glm::vec3(-0.4f, 5.0f, -3.8f), glm::vec3(1.5f),
-                       glm::vec3(0.0f, 20.0f, 0.0f), glm::vec2(1.0f), true, true, false);
-    level1.PlaceObject("../gfx/models/items", "/carrot.obj", glm::vec3(0.5f, 5.0f, -6.0f), glm::vec3(2.0f),
-                       glm::vec3(0.0f, -60.0f, 0.0f), glm::vec2(1.0f), true, true, false);
 
     level1.PlaceObject("../gfx/models/enemies/smoosh", "/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
     level1.PlaceObject("../gfx/models/enemies/smoosh", "/smooshman.obj", glm::vec3(4.0f, 1.5f, 0.0f), glm::vec3(0.5f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, false);
@@ -355,26 +282,9 @@ void mainLoop()
         float randRot = static_cast<float>(rand() % 900) * 0.1f;
         level1.PlaceObject("../gfx/models/terrain/bush-1", "/bush.obj", glm::vec3(randX, 0.0f, randZ), glm::vec3(1.0f), glm::vec3(0.0f, randRot, 0.0f));
     }
-    level1.PlaceObject("../gfx/models/structures/badstairs", "/badstairs.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-    level1.PlaceObject("../gfx/models/structures/what", "/what.obj", glm::vec3(-15.0f, 0.0f, -25.0f), glm::vec3(1.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-    level1.PlaceObject("../gfx/models/structures/badarch", "/badarch.obj", glm::vec3(15.0f, 0.0f, -25.0f), glm::vec3(5.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
-
-    // glm::vec3 randPosition = glm::vec3(float(rand() % 6 + 1) * 2.2f, -2.0f, float(rand() % 13 + 3) * 2.2f);
-    glm::vec3 randPosition = glm::vec3(4.0f, -2.0f, -8.0f);
-    for (int i = 0; i < 10; ++i)
-    {
-        // float yRot = (rand() % 8) * 45.0f;
-        float yRot = 0.0f;
-        glm::vec3 pos = randPosition + (static_cast<float>(i + 1) * 4.0f) + (sin(yRot) + cos(yRot));
-        // glm::vec3 pos = randPosition * static_cast<float>(i + 1) * 4.0f;
-        // glm::vec3 pos = glm::vec3(0.0f);
-
-        level1.PlaceObject("../gfx/models/walls/W-o1", "/w-01.obj", glm::vec3(pos.x * (i % 4 - 1), -.0f, pos.z), glm::vec3(1.0f - i * 0.1f),
-                           glm::vec3(0.0f, yRot, 0.0f), glm::vec3(1.0f), false, true, true);
-        // level1.PlaceObject("../gfx/models/walls/cube/cube.obj", glm::vec3(pos.x * (i % 4 - 1), -1.0f, pos.z), glm::vec3(1.0f),
-        //                    glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f), false, true);
-    }
-
+    level1.PlaceObject("../gfx/models/structures/house-1", "/housea.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/structures/house-1", "/houseb.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
+    level1.PlaceObject("../gfx/models/structures/house-1", "/housec.obj", glm::vec3(-5.0f, 0.0f, -25.0f), glm::vec3(3.0f), glm::vec3(0.0f), glm::vec2(1.0f), false, true, true);
     for (int i = 0; i < PLAYER_COUNT; ++i)
     {
         level1.PlaceObject("../gfx/models/player", "/player.obj",
@@ -386,8 +296,20 @@ void mainLoop()
         level1.objects[players[i].objID].invisible = true;
         level1.objects[players[i].objID].collisionMeshID = 0;
     }
-    level1.objects[players[0].objID].position.y = 4.0f;
+    level1.objects[players[0].objID].position.y = 14.0f;
     level1.objects[players[0].objID].collidable = true;
+
+    lightShader.use();
+    lightShader.setVec3("sLights[0].specular", 1.0, 1.0, 1.0);
+    lightShader.setVec3("sLights[0].position", level1.objects[players[0].objID].position + camRight * 0.3f + camUp * 1.5f);
+    lightShader.setVec3("sLights[0].direction", camFront + camRight * -0.05f);
+    lightShader.setDouble("sLights[0].constant", 1.0f);
+    lightShader.setDouble("sLights[0].linear", 0.24f);
+    lightShader.setDouble("sLights[0].quadratic", 0.008f);
+    lightShader.setDouble("sLights[0].cutOff", glm::cos(glm::radians(25.0f)));
+    lightShader.setDouble("sLights[0].outerCutOff", glm::cos(glm::radians(29.0f)));
+    lightShader.setVec3("sLights[0].diffuse", glm::vec3(1.0f));
+    lightShader.setVec3("sLights[0].ambient", glm::vec3(1.0f) * 0.2f);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_STENCIL_TEST);
@@ -396,12 +318,6 @@ void mainLoop()
     glEnable(GL_FRAMEBUFFER_SRGB);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     std::shared_ptr<connection> ptrClient;
-
-    gfx::fbuffer fbuf;
-    // gfx::mesh screenquad("../gfx/models/player", "/player.obj");
-    level1.PlaceObject("../gfx/models/terrain/simple", "/plane.obj", glm::vec3(0.0f, 8.0f, 0.0f), glm::vec3(8.0f, 8.0f, 8.0f), glm::vec3(-90.0f, 0.0f, 0.0f));
-    int screenquad = level1.objects.size() - 1;
-    // level1.objects[screenquad].invisible = true;
 
     sound_system audio;
     audio.play("../snd/music/overworld/04.mp3");
@@ -422,6 +338,15 @@ void mainLoop()
         glfwPollEvents();
 
         playerInput();
+        if (level1.objects[players[0].objID].position.x > 80.0f)
+            level1.objects[players[0].objID].position.x = 80.0f;
+        if (level1.objects[players[0].objID].position.x < -80.0f)
+            level1.objects[players[0].objID].position.x = -80.0f;
+
+        if (level1.objects[players[0].objID].position.z > 80.0f)
+            level1.objects[players[0].objID].position.z = 80.0f;
+        if (level1.objects[players[0].objID].position.z < -80.0f)
+            level1.objects[players[0].objID].position.z = -80.0f;
 
         prevCamFront = camFront;
 
@@ -529,8 +454,6 @@ void mainLoop()
 
         // graphics begin here
 
-        glm::vec3 disco = glm::vec3(10.0f, 10.0f, 10.0f);
-
         glUseProgram(lightShader.ID);
         // lightShader.setInt("pointLightCount", 4);
         // lightShader.setInt("spotLightCount", 1);
@@ -544,8 +467,8 @@ void mainLoop()
             lightShader.setDouble("sLights[0].quadratic", 0.008f);
             lightShader.setDouble("sLights[0].cutOff", glm::cos(glm::radians(25.0f)));
             lightShader.setDouble("sLights[0].outerCutOff", glm::cos(glm::radians(29.0f)));
-            lightShader.setVec3("sLights[0].diffuse", disco);
-            lightShader.setVec3("sLights[0].ambient", disco * 0.2f);
+            lightShader.setVec3("sLights[0].diffuse", glm::vec3(1.0f));
+            lightShader.setVec3("sLights[0].ambient", glm::vec3(1.0f) * 0.2f);
         }
         if (!flashlight)
         {
@@ -553,16 +476,16 @@ void mainLoop()
             lightShader.setVec3("sLights[0].specular", glm::vec3(0.0f));
             lightShader.setVec3("sLights[0].ambient", glm::vec3(0.0f));
         }
-        for (int i = 0; i < 4; ++i)
-        {
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].position", pointLightPositions[i]);
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].specular", glm::vec3(2.0f));
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].diffuse", glm::vec3(1.0f));
-            lightShader.setVec3("pLights[" + std::to_string(i) + "].ambient", glm::vec3(0.5f));
-            lightShader.setDouble("pLights[" + std::to_string(i) + "].constant", 1.0f);
-            lightShader.setDouble("pLights[" + std::to_string(i) + "].linear", 0.09f);
-            lightShader.setDouble("pLights[" + std::to_string(i) + "].quadratic", 0.032f);
-        }
+        // for (int i = 0; i < 4; ++i)
+        // {
+        //     lightShader.setVec3("pLights[" + std::to_string(i) + "].position", pointLightPositions[i]);
+        //     lightShader.setVec3("pLights[" + std::to_string(i) + "].specular", glm::vec3(2.0f));
+        //     lightShader.setVec3("pLights[" + std::to_string(i) + "].diffuse", glm::vec3(1.0f));
+        //     lightShader.setVec3("pLights[" + std::to_string(i) + "].ambient", glm::vec3(0.5f));
+        //     lightShader.setDouble("pLights[" + std::to_string(i) + "].constant", 1.0f);
+        //     lightShader.setDouble("pLights[" + std::to_string(i) + "].linear", 0.09f);
+        //     lightShader.setDouble("pLights[" + std::to_string(i) + "].quadratic", 0.032f);
+        // }
         lightShader.setDouble("material.shininess", 32.0);
         lightShader.setVec3("dLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
         lightShader.setVec3("dLight.specular", glm::vec3(1.0));
@@ -606,7 +529,6 @@ void mainLoop()
         glfwPollEvents();
     }
 
-    fbuf.fdelete();
     terminate();
     if (serveronline && serverThread.joinable())
         serverThread.join();
