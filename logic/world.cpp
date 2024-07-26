@@ -328,13 +328,16 @@ CollisionData world::EPA(const simplex &simplex, object &obj1, object &obj2)
 bool world::collisionDetection(object &obj1, object &obj2)
 {
     // rudimentary collision
-    float distance = glm::distance(obj1.position, obj2.position);
+    glm::vec3 dist3 = obj1.position - obj2.position;
+    float distance = dist3.x * dist3.x + dist3.y * dist3.y + dist3.z * dist3.z;
 
-    float rad1 = glm::length(obj1.scale) * models[obj1.modelID].boundingSphereRadius;
-    float rad2 = glm::length(obj2.scale) * models[obj2.modelID].boundingSphereRadius;
+    float rad1 = (obj1.scale.x * obj1.scale.x + obj1.scale.y * obj1.scale.y + obj1.scale.z * obj1.scale.z) * models[obj1.modelID].boundingSphereRadius;
+    float rad2 = (obj2.scale.x * obj2.scale.x + obj2.scale.y * obj2.scale.y + obj2.scale.z * obj2.scale.z) * models[obj2.modelID].boundingSphereRadius;
 
-    if (distance > rad1 * rad1 + rad2 * rad2)
+    if (distance > rad1 + rad2)
+    {
         return false;
+    }
 
     glm::vec3 support = GJK_Support(glm::vec3(1.0f, 0.0f, 0.0f), obj1, obj2);
 

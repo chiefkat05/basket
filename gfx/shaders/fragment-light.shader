@@ -163,8 +163,8 @@ void main()
 
         // result.xyz -= 0.001 * fragmentPosition.x;
 
-    // gl_FragColor = result * (0.8 + fog);
-    gl_FragColor = result;
+    gl_FragColor = result * (0.8 + fog);
+    // gl_FragColor = result;
 
     // float gamma = 0.5;
     // gl_FragColor.rgb = pow(result.xyz, vec3(1.0/gamma));

@@ -192,6 +192,12 @@ gfx::mesh::mesh(std::string dir, std::string path)
             tmpV.position.y = attributes.vertices[idx.vertex_index * 3 + 1];
             tmpV.position.z = attributes.vertices[idx.vertex_index * 3 + 2];
 
+            float testLength = tmpV.position.x * tmpV.position.x + tmpV.position.y * tmpV.position.y + tmpV.position.z * tmpV.position.z;
+            if (testLength > boundingSphereRadius)
+            {
+                boundingSphereRadius = testLength;
+            }
+
             float vertexDist = abs(glm::length(tmpV.position));
             if (vertexDist > boundingSphereRadius)
             {
