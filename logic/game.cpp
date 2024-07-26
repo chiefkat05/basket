@@ -223,7 +223,7 @@ void playerInput()
     }
     if (clientonline && clientvalidated <= 0.0f && msgUpdate <= 0.0f) // multiplayer player update loop (what data gets sent)
     {
-        mClient->UpdatePlayer(level1.objects[players[0].objID].position, camFrontAlign);
+        mClient->UpdatePlayer(level1.objects[players[0].objID].position, camFrontAlign, level1.objects[players[0].objID].velocity);
         msgUpdate = 0.01f;
     }
     if (clientonline && msgUpdate > 0.0f)
@@ -422,11 +422,11 @@ void mainLoop()
                                 case 1:
                                     msg >> eh; // just temporary, please fix the msgtmp_ header thing in multiplayer.cpp
                                     msg >> playerMoved; // who cares
-                                    playerMoved -= 399; // + 1 since self client is first player
+                                    playerMoved -= 400; // + 1 since self client is first player
 
                                     if (playerMoved >= PLAYER_COUNT)
                                         playerMoved = PLAYER_COUNT;
-                                    msg >> level1.objects[players[playerMoved].objID].rotation >> level1.objects[players[playerMoved].objID].position;
+                                    msg >> level1.objects[players[playerMoved].objID].velocity >> level1.objects[players[playerMoved].objID].rotation >> level1.objects[players[playerMoved].objID].position;
                                     break;
                                 case 2:
                                     msg >> eh;
@@ -507,6 +507,8 @@ void mainLoop()
         {
             plPos = level1.objects[players[i].objID].position;
             glm::vec3 plRot = level1.objects[players[i].objID].rotation;
+
+            std::cout << i << ", " << plPos.y << " hmm\n";
 
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, plPos);
