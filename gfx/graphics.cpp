@@ -176,7 +176,6 @@ gfx::mesh::mesh(std::string dir, std::string path)
 
     auto &attributes = reader.GetAttrib();
     auto &shapes = reader.GetShapes();
-    auto &materials = reader.GetMaterials();
 
     for (unsigned int s = 0; s < shapes.size(); ++s)
     {

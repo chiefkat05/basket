@@ -1,6 +1,6 @@
-set(CMAKE_HOST_SYSTEM "Linux-6.9.6-arch1-1")
+set(CMAKE_HOST_SYSTEM "Linux-6.10.0-arch1-2")
 set(CMAKE_HOST_SYSTEM_NAME "Linux")
-set(CMAKE_HOST_SYSTEM_VERSION "6.9.6-arch1-1")
+set(CMAKE_HOST_SYSTEM_VERSION "6.10.0-arch1-2")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
 include("/home/chiefkat/Documents/vscodeprojects/basket/winbuild.cmake")
