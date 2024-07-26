@@ -3,6 +3,7 @@
 #include "../multiplayer.h"
 #include "collision.h"
 #include "game.h"
+#include "sound.h"
 
 #include "../nms/stb_image.h"
 
@@ -144,7 +145,7 @@ void playerInput()
 
     if (ehandler.requestKeyState(GLFW_KEY_SPACE) == 2 && level1.objects[players[0].objID].onGround)
     {
-        level1.objects[players[0].objID].velocity.y = 8.0f + 0.2f * glm::length(level1.objects[players[0].objID].velocity);
+        level1.objects[players[0].objID].velocity.y = 8.0f + 0.04f * glm::length(level1.objects[players[0].objID].velocity);
         level1.objects[players[0].objID].onGround = false;
     }
 
@@ -153,7 +154,7 @@ void playerInput()
 
     if (objectHolding != nullptr)
     {
-        objectHolding->position = level1.objects[players[0].objID].position + camFront * 2.2f - camUp * 0.6f;
+        objectHolding->position = level1.objects[players[0].objID].position + camUp * 2.0f + camFront * 6.0f - camUp * 0.6f;
         objectHolding->rotation.y = glm::degrees(atan2f(camFrontAlign.x, camFrontAlign.z)) - 90.0f;
 
         objectHolding->rotation.z = -glm::degrees(glm::acos(camFront.y));
@@ -316,6 +317,7 @@ void mainLoop()
     Shader lightShader("../gfx/shaders/vertex-light.shader", "../gfx/shaders/fragment-light.shader");
     Shader lampShader("../gfx/shaders/vertex-blank.shader", "../gfx/shaders/fragment-blank.shader");
     Shader playerShader("../gfx/shaders/vertex.shader", "../gfx/shaders/fragment.shader");
+    Shader portalShader("../gfx/shaders/vertex-portal.shader", "../gfx/shaders/fragment-portal.shader");
 
     float time = 0.0f;
     float prev_time = time;
@@ -388,18 +390,32 @@ void mainLoop()
     level1.objects[players[0].objID].collidable = true;
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_STENCIL_TEST);
     glEnable(GL_BLEND);
     glEnable(GL_CULL_FACE);
+    glEnable(GL_FRAMEBUFFER_SRGB);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     std::shared_ptr<connection> ptrClient;
 
+    gfx::fbuffer fbuf;
+    // gfx::mesh screenquad("../gfx/models/player", "/player.obj");
+    level1.PlaceObject("../gfx/models/terrain/simple", "/plane.obj", glm::vec3(0.0f, 8.0f, 0.0f), glm::vec3(8.0f, 8.0f, 8.0f), glm::vec3(-90.0f, 0.0f, 0.0f));
+    int screenquad = level1.objects.size() - 1;
+    // level1.objects[screenquad].invisible = true;
+
+    sound_system audio;
+    audio.play("../snd/music/overworld/04.mp3");
+    // I think quad floor needs to be thicker
     while (!glfwWindowShouldClose(mainWindow))
     {
         prev_time = time;
         time = glfwGetTime();
         delta_time = time - prev_time;
 
-        glClearColor(0.03, 0.03, 0.05, 1.0);
+        glm::vec3 skycolor = glm::vec3(0.1f + 0.095f * static_cast<float>(sin(glfwGetTime() * 0.02f)),
+                                       0.08f + 0.075f * static_cast<float>(sin(glfwGetTime() * 0.02f)),
+                                       0.03f + 0.01f * static_cast<float>(sin(glfwGetTime() * 0.02f)));
+        glClearColor(skycolor.x, skycolor.y, skycolor.z, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         ehandler.poll();
@@ -550,7 +566,9 @@ void mainLoop()
         lightShader.setDouble("material.shininess", 32.0);
         lightShader.setVec3("dLight.direction", glm::vec3(-0.2f, -1.0f, -0.3f));
         lightShader.setVec3("dLight.specular", glm::vec3(1.0));
-        lightShader.setVec3("dLight.ambient", glm::vec3(0.3f));
+        lightShader.setVec3("dLight.ambient", skycolor);
+        // lightShader.setVec3("dLight.ambient", glm::vec3(0.05f * sin(glfwGetTime() * 4.0f),
+        //                                                 0.0f, 0.f));
         lightShader.setVec3("dLight.diffuse", glm::vec3(0.5f));
 
         glm::mat4 view = glm::mat4(1.0f);
@@ -581,12 +599,14 @@ void mainLoop()
             pointLightPositions[i] = level1.objects[i].position;
         }
 
+        // render
         level1.Render(lightShader, proj, view, level1.objects[players[0].objID].position, camFront, objectLookingAt, objectHolding, objectHoldingID, -2.0f, delta_time);
 
         glfwSwapBuffers(mainWindow);
         glfwPollEvents();
     }
 
+    fbuf.fdelete();
     terminate();
     if (serveronline && serverThread.joinable())
         serverThread.join();

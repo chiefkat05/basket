@@ -58,46 +58,58 @@ namespace gfx
         //     meshInit();
         // }
         mesh(std::string dir, std::string path);
-        void draw(Shader &shader);
+        void draw(Shader &shader, bool customTexture = true);
 
     private:
         unsigned int VAO, VBO, EBO;
 
         void meshInit();
     };
-    // class model
-    // {
-    // public:
-    //     model(std::string path)
-    //     {
-    //         loadModel(path);
-    //     }
-    //     void draw(Shader &shader)
-    //     {
-    //         for (unsigned int i = 0; i < meshes.size(); ++i)
-    //         {
-    //             meshes[i].draw(shader);
-    //         }
-    //     }
 
-    //     std::string fullPath;
+    struct fbuffer
+    {
+        unsigned int fbo, texture;
+        fbuffer()
+        {
+            glGenFramebuffers(1, &fbo);
 
-    //     std::vector<mesh> meshes;
+            glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-    // private:
-    //     std::string directory;
-    //     std::vector<texture> loaded_textures;
+            glGenTextures(1, &texture);
+            glBindTexture(GL_TEXTURE_2D, texture);
 
-    //     void loadModel(std::string path);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1280, 720, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 
-    //     // void processNode(aiNode *node, const aiScene *scene);
-    //     // mesh processMesh(aiMesh *_mesh, const aiScene *_scene);
-    //     // std::vector<texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type,
-    //     //                                           std::string typeName); // tinyobjloader documentation time
-    // };
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    void
-    framebuffer_size_callback(GLFWwindow *_win, int _w, int _h);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
+
+            unsigned int rbo;
+            glGenRenderbuffers(1, &rbo);
+            glBindRenderbuffer(GL_RENDERBUFFER, rbo);
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 1280, 720);
+            glBindRenderbuffer(GL_RENDERBUFFER, 0);
+
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rbo);
+
+            if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            {
+                std::cout << "framebuffer failed\n";
+                return;
+            }
+
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        }
+
+        void fdelete()
+        {
+
+            glDeleteFramebuffers(1, &fbo);
+        }
+    };
+
+    void framebuffer_size_callback(GLFWwindow *_win, int _w, int _h);
     void mouse_callback(GLFWwindow *window, double xpos, double ypos);
 
     int windowInit();

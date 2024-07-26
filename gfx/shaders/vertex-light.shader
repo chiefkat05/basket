@@ -15,6 +15,7 @@ out vec3 normal;
 out vec3 fragmentPosition;
 out vec2 TexCoords;
 
+
 void main()
 {
     int posY = 0;

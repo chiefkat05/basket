@@ -64,14 +64,19 @@ in vec2 TexCoords;
 in vec3 fragmentPosition;
 in vec3 normal;
 
+float specularCalc(vec3 lightDir, vec3 viewDir, float mShininess)
+{
+    vec3 reflectDir = reflect(-lightDir, normal);
+    return pow(max(dot(viewDir, reflectDir), 0.0), mShininess);
+}
+
 vec4 dirLightCalculation(DirectionalLight light, vec3 normal, vec3 viewDir)
 {
     vec3 lightDir = normalize(-light.direction);
 
     float diff = max(dot(normal, lightDir), 0.0);
 
-    vec3 reflectDir = reflect(-lightDir, normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    float spec = specularCalc(lightDir, viewDir, material.shininess);
 
     vec4 ambient  = vec4(light.ambient, 1.0) * texture(material.diffuse, TexCoords);
     vec4 diffuse = diff * texture(material.diffuse, TexCoords) * vec4(light.diffuse, 1.0);
@@ -85,8 +90,7 @@ vec3 pointLightCalculation(PointLight light, vec3 normal, vec3 viewDir)
 
     float diff = max(dot(normal, lightDir), 0.0);
 
-    vec3 reflectDir = reflect(-lightDir, normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    float spec = specularCalc(lightDir, viewDir, material.shininess);
 
     float distance = length(light.position - fragmentPosition);
     float attenuation = 1.0 / (light.constant + light.linear * distance + 
@@ -108,8 +112,7 @@ vec3 spotLightCalculation(SpotLight light, vec3 normal, vec3 viewDir)
 
     float diff = max(dot(normal, lightDir), 0.0);
 
-    vec3 reflectDir = reflect(-lightDir, normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    float spec = specularCalc(lightDir, viewDir, material.shininess);
 
     float distance = length(light.position - fragmentPosition);
     float attenuation = 1.0 / (light.constant + light.linear * distance + 
@@ -151,13 +154,18 @@ void main()
     // result += vec3(texture(material.emission, TexCoords));
 
     float ndc = gl_FragCoord.z * 2.0 - 1.0;
-    float linearDepth = (2.0 * near * far) / (far + near - ndc * (far - near));
+    float linearDepth = (8.0 * near * far) / (far + near - ndc * (far - near));
     float fog = (1.0 - (linearDepth / far));
     
     // temporary, please delete when proper alpha is included
     if (result.w < 0.01)
         discard;
 
-    gl_FragColor = result;
+        // result.xyz -= 0.001 * fragmentPosition.x;
+
+    gl_FragColor = result * (0.8 + fog);
+
+    // float gamma = 0.5;
+    // gl_FragColor.rgb = pow(result.xyz, vec3(1.0/gamma));
     // gl_FragColor = glm::vec4(1.0, 1.0, 1.0, 1.0);
 };

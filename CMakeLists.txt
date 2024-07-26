@@ -3,9 +3,11 @@ project(basket)
 
 include_directories("${CMAKE_SOURCE_DIR}/nms/glad/include/")
 
-add_executable(engine main.cpp "${CMAKE_SOURCE_DIR}/logic/game.cpp" multiplayer.cpp "${CMAKE_SOURCE_DIR}/gfx/graphics.cpp" "${CMAKE_SOURCE_DIR}/logic/events.cpp" "${CMAKE_SOURCE_DIR}/logic/world.cpp" "${CMAKE_SOURCE_DIR}/logic/collision.cpp" "${CMAKE_SOURCE_DIR}/gfx/shader.cpp" "${CMAKE_SOURCE_DIR}/nms/glad/src/gl.c")
+add_executable(engine main.cpp "${CMAKE_SOURCE_DIR}/logic/game.cpp" multiplayer.cpp "${CMAKE_SOURCE_DIR}/gfx/graphics.cpp" "${CMAKE_SOURCE_DIR}/logic/events.cpp"
+    "${CMAKE_SOURCE_DIR}/logic/world.cpp" "${CMAKE_SOURCE_DIR}/logic/collision.cpp" "${CMAKE_SOURCE_DIR}/gfx/shader.cpp" "${CMAKE_SOURCE_DIR}/nms/glad/src/gl.c"
+    "${CMAKE_SOURCE_DIR}/logic/sound.cpp" "${CMAKE_SOURCE_DIR}/nms/miniaudio.c")
 
-set(CMAKE_CXX_FLAGS "-O1 -Wall -I${CMAKE_SOURCE_DIR}/gfx/backpack/") // probably get rid of the false positive next // use the windows iso to make a virtualbox and test
+set(CMAKE_CXX_FLAGS "-O1 -Wall -I${CMAKE_SOURCE_DIR}/gfx/backpack/")
 
 if (WIN32)
     set(CMAKE_CXX_FLAGS "-static -static-libgcc -static-libstdc++ -O1 -Wall")

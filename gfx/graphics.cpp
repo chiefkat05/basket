@@ -241,13 +241,17 @@ void gfx::mesh::meshInit()
 
     glBindVertexArray(0);
 }
-void gfx::mesh::draw(Shader &shader)
+void gfx::mesh::draw(Shader &shader, bool customTexture)
 {
-    glActiveTexture(GL_TEXTURE0);
-    std::string name = tex.type;
+    shader.use();
+    if (customTexture)
+    {
+        glActiveTexture(GL_TEXTURE0);
+        std::string name = tex.type;
 
-    shader.setInt(("material." + name).c_str(), 0);
-    glBindTexture(GL_TEXTURE_2D, tex.id);
+        shader.setInt(("material." + name).c_str(), 0);
+        glBindTexture(GL_TEXTURE_2D, tex.id);
+    }
 
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, vertices.size());
